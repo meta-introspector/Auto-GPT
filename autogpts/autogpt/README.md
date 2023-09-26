@@ -1,3 +1,5 @@
+curl https://api.github.com/repos/jmikedupont2/ai-ticket/issues/comments/1735879231 | jq -r  ".body" tt.txt   | sed -e's!```!!g' |jq .messages[1].content -r
+
 # Auto-GPT: An Autonomous GPT-4 Experiment
 
 [![Discord Follow](https://dcbadge.vercel.app/api/server/autogpt?style=flat)](https://discord.gg/autogpt)
