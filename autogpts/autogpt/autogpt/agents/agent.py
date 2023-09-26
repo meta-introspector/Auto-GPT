@@ -168,6 +168,8 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
                 command_name, arguments = plugin.pre_command(command_name, command_args)
 
             try:
+                print("DEBUG COMMAND",command_name)
+                print("DEBUG ARGS",command_args)
                 return_value = execute_command(
                     command_name=command_name,
                     arguments=command_args,
@@ -187,7 +189,10 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
 
                 result = ActionSuccessResult(return_value)
             except AgentException as e:
+
+                print("eerr",e)
                 result = ActionErrorResult(e.message, e)
+                raise e
 
             result_tlength = count_string_tokens(str(result), self.llm.name)
             history_tlength = count_string_tokens(

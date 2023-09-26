@@ -96,7 +96,13 @@ class ActionHistory:
 
     def register_result(self, result: ActionResult) -> None:
         if not self.current_record:
-            raise RuntimeError("Cannot register result for cycle without action")
+            #print("CURSOR",self.cursor)
+            self.cursor = self.cursor -1 #hack it
+            #print(self.cycles)
+
+            #import pdb
+            #pdb.set_trace()
+            #raise RuntimeError("Cannot register result for cycle without action")
         elif self.current_record.result:
             raise ValueError("Result for current cycle already set")
 
