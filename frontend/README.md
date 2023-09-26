@@ -20,16 +20,18 @@ You can access the design document [here](https://docs.google.com/document/d/1S-
 - Flutter 3.x
 - Dart 3.x
 
+Flutter comes with Dart, to install Flutter, follow the instructions here: https://docs.flutter.dev/get-started/install
+
 ## Installation
 
 1. **Clone the repo:**
 ```
-git clone https://github.com/yourusername/auto_gpt_flutter_client.git
+git clone https://github.com/Significant-Gravitas/Auto-GPT.git
 ```
 
 2. **Navigate to the project directory:**
 ```
-cd auto_gpt_flutter_client
+cd Auto-GPT/frontend
 ```
 
 3. **Get Flutter packages:**
@@ -58,4 +60,3 @@ The app features a responsive design that adapts to different screen sizes and o
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-

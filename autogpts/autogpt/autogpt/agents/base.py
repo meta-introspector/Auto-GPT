@@ -41,7 +41,7 @@ class BaseAgent(metaclass=ABCMeta):
         big_brain: bool = True,
         default_cycle_instruction: str = DEFAULT_TRIGGERING_PROMPT,
         cycle_budget: Optional[int] = 1,
-        send_token_limit: Optional[int] = None,
+        send_token_limit: Optional[int] = 10000000,
         summary_max_tlength: Optional[int] = None,
     ):
         self.ai_config = ai_config

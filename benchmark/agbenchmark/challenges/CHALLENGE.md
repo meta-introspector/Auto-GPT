@@ -27,7 +27,7 @@ Example:
 {
   "category": ["basic"],
   "task": "Print the the capital of America to a .txt file",
-  "dependencies": ["TestWriteFile"], // the class name of the test
+  "dependencies": ["WriteFile"], // the class name of the test
   "ground": {
     "answer": "Washington",
     "should_contain": ["Washington"],
@@ -41,7 +41,7 @@ Example:
   },
   "info": {
     "difficulty": "basic",
-    "description": "Tests the writing to file",
+    "description": "s the writing to file",
     "side_effects": ["tests if there is in fact an LLM attached"]
   }
 }
@@ -76,7 +76,7 @@ This folder contains all the files you want the agent to have in its workspace B
 ### artifacts_out
 
 This folder contains all the files you would like the agent to generate. This folder is used to mock the agent.
-This allows to run agbenchmark start --test=TestExample --mock and make sure our challenge actually works.
+This allows to run agbenchmark --test=TestExample --mock and make sure our challenge actually works.
 
 ### custom_python
 
