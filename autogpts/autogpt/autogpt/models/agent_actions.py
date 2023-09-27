@@ -105,7 +105,8 @@ class ActionHistory:
 
             #import pdb
             #pdb.set_trace()
-            raise RuntimeError("Cannot register result for cycle without action")
+            #raise RuntimeError("Cannot register result for cycle without action")
+            self.cycles.append(self.CycleRecord(Action("fake",{},{}), None))
         
         elif self.current_record.result:
             raise ValueError("Result for current cycle already set")

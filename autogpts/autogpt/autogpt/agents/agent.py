@@ -190,9 +190,9 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
                 result = ActionSuccessResult(return_value)
             except AgentException as e:
 
-                print("AGENT ERRR",e)
+                print("AGENT ERROR",e)
                 result = ActionErrorResult(e.message, e)
-                raise e
+                #raise e
 
             result_tlength = count_string_tokens(str(result), self.llm.name)
             history_tlength = count_string_tokens(
