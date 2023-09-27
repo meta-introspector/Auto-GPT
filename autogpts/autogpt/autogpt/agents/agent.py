@@ -190,7 +190,7 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
                 result = ActionSuccessResult(return_value)
             except AgentException as e:
 
-                print("eerr",e)
+                print("AGENT ERRR",e)
                 result = ActionErrorResult(e.message, e)
                 raise e
 
@@ -244,7 +244,7 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
             raise InvalidAgentResponseError("Assistant response has no text content")
 
         response_content = llm_response.content
-
+        print("DEBUG RESPONSE",response_content)
         for plugin in self.config.plugins:
             if not plugin.can_handle_post_planning():
                 continue
@@ -256,7 +256,8 @@ class Agent(ContextMixin, WorkspaceMixin, WatchdogMixin, BaseAgent):
         if errors:
             raise InvalidAgentResponseError(
                 "Validation of response failed:\n  "
-                + ";\n  ".join([str(e) for e in errors])
+                + "In output :" + str(assistant_reply_dict) 
+                + ";\n  ".join([str(e) for e in errors]  )
             )
 
         # Get command name and arguments

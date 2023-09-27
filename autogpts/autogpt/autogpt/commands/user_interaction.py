@@ -64,7 +64,12 @@ def request_assistence(ticket_url: str, next_action: str, agent: Agent) -> str:
 
     class Foo :
         content = data["body"]
-    agent.event_history.rewind(1)
+        #agent.event_history.rewind(1)
+        #self.message_history.append(prompt[-1])
+    agent.message_history.add(
+        "assistant", "requesting large", "ai_response"
+        ) 
+
     data1 = agent.parse_and_process_response(Foo())
 
     next_command_name, next_command_args, assistant_reply_dict = data1

@@ -20,6 +20,8 @@ def extract_dict_from_response(response_content: str) -> dict[str, Any]:
         # Discard the first and last ```, then re-join in case the response naturally included ```
         response_content = "```".join(response_content.split("```")[1:-1])
 
+    print("response_content",response_content)
+
     # response content comes from OpenAI as a Python `str(content_dict)`, literal_eval reverses this
     try:
         return ast.literal_eval(response_content)
@@ -27,7 +29,8 @@ def extract_dict_from_response(response_content: str) -> dict[str, Any]:
         logger.info(f"Error parsing JSON response with literal_eval {e}")
         logger.debug(f"Invalid JSON received in response: {response_content}")
         # TODO: How to raise an error here without causing the program to exit?
-        return {}
+        #return {}
+        raise e
 
 
 def llm_response_schema(

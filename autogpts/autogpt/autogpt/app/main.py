@@ -333,9 +333,7 @@ def run_interaction_loop(
 
         if not command_name:
             continue
-
-
-
+        result = agent.execute(command_name, command_args, user_input)
         if result.status == "success":
             logger.info(result, extra={"title": "SYSTEM:", "title_color": Fore.YELLOW})
         elif result.status == "error":

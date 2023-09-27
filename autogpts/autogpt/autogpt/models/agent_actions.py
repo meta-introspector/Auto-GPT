@@ -92,17 +92,21 @@ class ActionHistory:
             self.cycles.append(self.CycleRecord(action, None))
             assert self.current_record
         elif self.current_record.action:
-            raise ValueError("Action for current cycle already set")
+            #raise ValueError("Action for current cycle already set")
+            pass
 
     def register_result(self, result: ActionResult) -> None:
         if not self.current_record:
             #print("CURSOR",self.cursor)
-            self.cursor = self.cursor -1 #hack it
+
+            #if self.cursor >0:
+            #    self.cursor = self.cursor -1 #hack it
             #print(self.cycles)
 
             #import pdb
             #pdb.set_trace()
-            #raise RuntimeError("Cannot register result for cycle without action")
+            raise RuntimeError("Cannot register result for cycle without action")
+        
         elif self.current_record.result:
             raise ValueError("Result for current cycle already set")
 
