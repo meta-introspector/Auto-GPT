@@ -10,7 +10,7 @@ from typing import Any, Dict, List
 import openai
 import pytest
 
-import agbenchmark.start_benchmark
+from agbenchmark.__main__ import OPTIONAL_CATEGORIES, TEMP_FOLDER_ABS_PATH
 from agbenchmark.agent_api_interface import run_api_agent
 from agbenchmark.utils.data_types import ChallengeData, Ground
 from agbenchmark.utils.prompts import (
@@ -28,7 +28,6 @@ class Challenge(ABC):
 
     _data_cache: Dict[str, ChallengeData] = {}
     CHALLENGE_LOCATION: str = ""
-    ARTIFACTS_LOCATION: str = ""  # this is for suites
     scores: dict[str, Any] = {}  # this is for suites
 
     @property
@@ -48,15 +47,12 @@ class Challenge(ABC):
         return self.data.dependencies
 
     async def setup_challenge(self, config: Dict[str, Any], cutoff: int) -> None:
-        from agbenchmark.agent_interface import copy_artifacts_into_workspace, run_agent
+        from agbenchmark.agent_interface import copy_artifacts_into_temp_folder
 
         artifact_paths = [
             self.ARTIFACTS_LOCATION,
             str(Path(self.CHALLENGE_LOCATION).parent),
         ]
-
-        for path in artifact_paths:
-            copy_artifacts_into_workspace(config["workspace"], "artifacts_in", path)
 
         if not self.task:
             return
@@ -66,32 +62,15 @@ class Challenge(ABC):
         )
         print(f"\033[1;30mTask: {self.task}\033[0m")
 
-        if "--api_mode" in sys.argv:
-            await run_api_agent(self.data, config, self.ARTIFACTS_LOCATION, cutoff)
-        elif "--mock" in sys.argv:
-            print("Running mock agent")
-            for path in artifact_paths:
-                copy_artifacts_into_workspace(
-                    config["workspace"], "artifacts_out", path
-                )
-        else:
-            run_agent(self.task, cutoff)
+        await run_api_agent(self.data, config, self.ARTIFACTS_LOCATION, cutoff)
 
         # hidden files are added after the agent runs. Hidden files can be python test files.
-        # We copy them in the workspace to make it easy to import the code produced by the agent
-
+        # We copy them in the temporary folder to make it easy to import the code produced by the agent
         for path in artifact_paths:
-            copy_artifacts_into_workspace(config["workspace"], "custom_python", path)
+            copy_artifacts_into_temp_folder(TEMP_FOLDER_ABS_PATH, "custom_python", path)
 
     def test_method(self, config: Dict[str, Any]) -> None:
         raise NotImplementedError
-
-    @staticmethod
-    def open_file(workspace: str, filename: str) -> str:
-        script_dir = workspace
-        workspace_dir = os.path.join(script_dir, filename)
-        with open(workspace_dir, "r") as f:
-            return f.read()
 
     def get_artifacts_out(
         self, workspace: str | dict[str, str], ground: Ground
@@ -130,7 +109,7 @@ class Challenge(ABC):
             if ground.eval.type == "pytest":
                 result = subprocess.run(
                     [sys.executable, "-m", "pytest"],
-                    cwd=os.path.abspath(workspace),
+                    cwd=TEMP_FOLDER_ABS_PATH,
                     capture_output=True,
                     text=True,
                 )
@@ -140,24 +119,6 @@ class Challenge(ABC):
                 files_contents.append(f"Output: {result.stdout}\n")
 
         return files_contents
-
-    @staticmethod
-    def write_to_file(workspace: str, filename: str, content: str) -> None:
-        script_dir = workspace
-        print("Writing file at", script_dir)
-        workspace_dir = os.path.join(script_dir, filename)
-
-        # Open the file in write mode.
-        with open(workspace_dir, "w") as f:
-            # Write the content to the file.
-            f.write(content)
-
-    def get_filenames_in_workspace(self, workspace: str) -> List[str]:
-        return [
-            filename
-            for filename in os.listdir(workspace)
-            if os.path.isfile(os.path.join(workspace, filename))
-        ]
 
     def scoring(self, config: Dict[str, Any], content: str, ground: Ground) -> float:
         print("\033[1;34mScoring content:\033[0m", content)
@@ -185,7 +146,7 @@ class Challenge(ABC):
 
     def llm_eval(self, config: Dict[str, Any], content: str, ground: Ground) -> float:
         openai.api_key = os.getenv("OPENAI_API_KEY")
-        if "--mock" in sys.argv:
+        if os.getenv("IS_MOCK"):
             return 1.0
 
         # the validation for this is done in the Eval BaseModel
@@ -210,15 +171,16 @@ class Challenge(ABC):
         scores = []
         scores_dict: Any = {}
         percentage = None
-
+        answers = {}
         try:
-            if self.data.task == "" and "--mock" in sys.argv:
+            if self.data.task == "" and os.getenv("IS_MOCK"):
                 scores = [1.0]
+                answers = {"mock": "This is a mock answer"}
             elif isinstance(self.data.ground, Ground):
                 files_contents = self.get_artifacts_out(
-                    config["workspace"], self.data.ground
+                    TEMP_FOLDER_ABS_PATH, self.data.ground
                 )
-
+                answers = {"answer": files_contents}
                 for file_content in files_contents:
                     score = self.scoring(config, file_content, self.data.ground)
                     print("\033[1;32mYour score is:\033[0m", score)
@@ -235,53 +197,6 @@ class Challenge(ABC):
                     print("\033[1;32mYour score is:\033[0m", llm_eval)
 
                     scores.append(llm_eval)
-            elif isinstance(self.data.ground, dict):
-                # if it's a dict then we know its a combined suite
-                for ground_key in self.data.ground:
-                    ground = self.data.ground[ground_key]
-                    files_contents = self.get_artifacts_out(config["workspace"], ground)
-
-                    for file_content in files_contents:
-                        score = self.scoring(config, file_content, ground)
-                        scores_dict.setdefault(ground_key, []).append(score)
-                        print(
-                            f"\033[1;35mScore for {ground_key}:\033[0m",
-                            scores_dict[ground_key],
-                        )
-
-                    if ground.eval.type == "llm":
-                        llm_eval = self.llm_eval(
-                            config, "\n".join(files_contents), ground
-                        )
-
-                        if ground.eval.scoring == "percentage":
-                            scores_dict[ground_key].append(math.ceil(llm_eval / 100))
-                        elif ground.eval.scoring == "scale":
-                            scores_dict[ground_key].append(math.ceil(llm_eval / 10))
-                        scores_dict[ground_key].append(llm_eval)
-
-                # Count the number of times the value 1.0 appears in the dictionary
-                num_ones = sum(
-                    1
-                    for scores in scores_dict.values()
-                    for score in scores
-                    if score == 1.0
-                )
-
-                # Calculate the percentage
-                percentage = round((num_ones / len(scores_dict)) * 100, 2)
-
-                # Print the result in green
-                print(f"\033[1;92mPercentage of 1.0 scores:\033[0m {percentage}%")
-
-                # TODO: in an ideal world it only returns 1.0 if all of the tests pass but then the dependencies break.
-                # So for now we return 1.0 if there's any that pass
-                if percentage > 0:
-                    scores.append(1.0)
-                    if percentage != 100:
-                        print(
-                            "\033[1;93mWARNING:\033[0m Your agent did not pass all the tests in the suite."
-                        )
         except Exception as e:
             print("Error getting scores", e)
 
@@ -289,6 +204,7 @@ class Challenge(ABC):
             "values": scores,
             "scores_obj": scores_dict,
             "percentage": percentage,
+            "answers": answers,
         }
 
         self.scores[self.__class__.__name__] = scores_data
@@ -306,7 +222,7 @@ class Challenge(ABC):
         challenge_category = self.data.category
         categories = [
             category
-            for category in agbenchmark.start_benchmark.OPTIONAL_CATEGORIES
+            for category in OPTIONAL_CATEGORIES
             if category in challenge_category
         ]
         if not agent_eligibible_for_optional_categories(

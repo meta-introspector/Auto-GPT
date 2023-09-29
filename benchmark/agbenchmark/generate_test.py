@@ -6,55 +6,17 @@ import sys
 import types
 from collections import deque
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import pytest
 
-import agbenchmark.start_benchmark
+from agbenchmark.__main__ import CHALLENGES_ALREADY_BEATEN
+from agbenchmark.agent_api_interface import append_updates_file
+from agbenchmark.agent_protocol_client.models.step import Step
 from agbenchmark.utils.challenge import Challenge
-from agbenchmark.utils.data_types import ChallengeData, SuiteConfig
-from agbenchmark.utils.utils import get_test_path
+from agbenchmark.utils.data_types import AgentBenchmarkConfig, ChallengeData
 
 DATA_CATEGORY = {}
-
-
-def setup_dummy_dependencies(
-    file_datum: list[dict[str, Any]],
-    challenge_class: Any,
-    challenge_data: ChallengeData,
-) -> None:
-    """Sets up the dependencies if it's a suite. Creates tests that pass
-    based on the main test run."""
-
-    def create_test_func(test_name: str) -> Callable[[Any, dict[str, Any]], None]:
-        # This function will return another function
-
-        # Define a dummy test function that does nothing
-        def setup_dependency_test(self: Any, scores: dict[str, Any]) -> None:
-            scores = self.get_dummy_scores(test_name, scores)
-            assert scores == 1
-
-        return setup_dependency_test
-
-    for datum in file_datum:
-        DATA_CATEGORY[datum["name"]] = challenge_data.category[0]
-        test_func = create_test_func(datum["name"])
-        # TODO: replace this once I figure out actual dependencies
-        test_func = pytest.mark.depends(on=[challenge_data.name], name=datum["name"])(
-            test_func
-        )
-        test_func = pytest.mark.parametrize(
-            "challenge_data",
-            [None],
-            indirect=True,
-        )(test_func)
-
-        # Add category markers
-        for category in challenge_data.category:
-            test_func = getattr(pytest.mark, category)(test_func)
-
-        test_func = pytest.mark.usefixtures("scores")(test_func)
-        setattr(challenge_class, f"test_{datum['name']}", test_func)
 
 
 def create_single_test(
@@ -71,24 +33,10 @@ def create_single_test(
     DATA_CATEGORY[data["name"]] = data["category"][0]
 
     # Define test class dynamically
-    challenge_class = types.new_class(data["name"], (Challenge,))
-
-    clean_challenge_location = get_test_path(challenge_location)
-    setattr(challenge_class, "CHALLENGE_LOCATION", clean_challenge_location)
-
-    # in the case of a suite
-    if isinstance(challenge_data, ChallengeData):
-        if file_datum:  # same task suite
-            setup_dummy_dependencies(file_datum, challenge_class, challenge_data)
-
-        artifacts_location = str(Path(challenge_location).resolve())
-        if "--test" in sys.argv or "--maintain" in sys.argv or "--improve" in sys.argv:
-            artifacts_location = str(Path(challenge_location).resolve().parent.parent)
-        setattr(
-            challenge_class,
-            "_data_cache",
-            {clean_challenge_location: challenge_data},
-        )
+    challenge_class = types.new_class(f"Test{data['name']}", (Challenge,))
+    print(challenge_location)
+    # clean_challenge_location = get_test_path(challenge_location)
+    setattr(challenge_class, "CHALLENGE_LOCATION", challenge_location)
 
     setattr(
         challenge_class,
@@ -103,7 +51,7 @@ def create_single_test(
         test_name = self.data.name
 
         try:
-            with open("challenges_already_beaten.json", "r") as f:
+            with open(CHALLENGES_ALREADY_BEATEN, "r") as f:
                 challenges_beaten_in_the_past = json.load(f)
         except:
             challenges_beaten_in_the_past = {}
@@ -132,8 +80,29 @@ def create_single_test(
         await self.setup_challenge(config, timeout)
 
         scores = self.get_scores(config)
+        request.node.answers = (
+            scores["answers"] if "--keep-answers" in sys.argv else None
+        )
+        del scores["answers"]  # remove answers from scores
         request.node.scores = scores  # store scores in request.node
-        assert 1 in scores["values"]
+        is_score_100 = 1 in scores["values"]
+
+        evaluation = "Correct!" if is_score_100 else "Incorrect."
+        eval_step = Step(
+            input=evaluation,
+            additional_input=None,
+            task_id="irrelevant, this step is a hack",
+            step_id="irrelevant, this step is a hack",
+            name="",
+            status="created",
+            output=None,
+            additional_output=None,
+            artifacts=[],
+            is_last=True,
+        )
+        await append_updates_file(eval_step)
+
+        assert is_score_100
 
     # Parametrize the method here
     test_method = pytest.mark.parametrize(
@@ -146,7 +115,8 @@ def create_single_test(
 
     # Attach the new class to a module so it can be discovered by pytest
     module = importlib.import_module(__name__)
-    setattr(module, data["name"], challenge_class)
+    setattr(module, f"Test{data['name']}", challenge_class)
+    return challenge_class
 
 
 def create_single_suite_challenge(challenge_data: ChallengeData, path: Path) -> None:
@@ -156,98 +126,65 @@ def create_single_suite_challenge(challenge_data: ChallengeData, path: Path) -> 
 def create_challenge(
     data: Dict[str, Any],
     json_file: str,
-    suite_config: SuiteConfig | None,
     json_files: deque,
-) -> deque:
+) -> Union[deque, Any]:
     path = Path(json_file).resolve()
-    if suite_config is not None:
-        grandparent_dir = path.parent.parent
+    print("Creating challenge for", path)
 
-        # if its a single test running we dont care about the suite
-        if "--test" in sys.argv or "--maintain" in sys.argv or "--improve" in sys.argv:
-            challenge_data = suite_config.challenge_from_test_data(data)
-            create_single_suite_challenge(challenge_data, path)
-            return json_files
+    challenge_class = create_single_test(data, str(path))
+    print("Creation complete for", path)
 
-        # Get all data.json files within the grandparent directory
-        suite_files = suite_config.get_data_paths(grandparent_dir)
-
-        # Remove all data.json files from json_files list, except for current_file
-        json_files = deque(
-            file
-            for file in json_files
-            if file not in suite_files
-            and Path(file).resolve() != Path(json_file).resolve()
-        )
-
-        suite_file_datum = [
-            ChallengeData.get_json_from_path(suite_file)
-            for suite_file in suite_files
-            if suite_file != json_file
-        ]
-
-        file_datum = [data, *suite_file_datum]
-
-        if suite_config.same_task:
-            challenge_data = suite_config.challenge_from_datum(file_datum)
-
-            create_single_test(
-                challenge_data, str(grandparent_dir), file_datum=file_datum
-            )
-        else:
-            reverse = suite_config.reverse_order
-
-            # TODO: reversing doesn't work, for the same reason why the ordering of dummy tests doesn't work
-            if reverse:
-                paired_data = list(reversed(list(zip(file_datum, suite_files))))
-            else:
-                paired_data = list(zip(file_datum, suite_files))
-
-            for file_data, file_path in paired_data:
-                # if we're running in reverse we don't want dependencies to get in the way
-                if reverse:
-                    file_data["dependencies"] = []
-                create_single_test(file_data, file_path)
-
-    else:
-        create_single_test(data, str(path))
-
-    return json_files
-
-
-# if there's any suite.json files with that prefix
+    return json_files, challenge_class
 
 
 def generate_tests() -> None:  # sourcery skip: invert-any-all
     print("Generating tests...")
 
+    challenges_path = os.path.join(os.path.dirname(__file__), "challenges")
+    print(f"Looking for challenges in {challenges_path}...")
+
     json_files = deque(
         glob.glob(
-            f"{agbenchmark.start_benchmark.CHALLENGES_PATH}/**/data.json",
+            f"{challenges_path}/**/data.json",
             recursive=True,
         )
     )
-    regression_tests = agbenchmark.start_benchmark.get_regression_data()
 
-    # for suites to know if the file has already been used to generate the tests
-    # Dynamic class creation
+    print(f"Found {len(json_files)} challenges.")
+    print(f"Sample path: {json_files[0]}")
+
+    agent_benchmark_config_path = str(Path.cwd() / "agbenchmark_config" / "config.json")
+    try:
+        with open(agent_benchmark_config_path, "r") as f:
+            agent_benchmark_config = AgentBenchmarkConfig(**json.load(f))
+            agent_benchmark_config.agent_benchmark_config_path = (
+                agent_benchmark_config_path
+            )
+    except json.JSONDecodeError:
+        print("Error: benchmark_config.json is not a valid JSON file.")
+        raise
+
+    regression_reports_path = agent_benchmark_config.get_regression_reports_path()
+    if regression_reports_path and os.path.exists(regression_reports_path):
+        with open(regression_reports_path, "r") as f:
+            regression_tests = json.load(f)
+    else:
+        regression_tests = {}
+
     while json_files:
         json_file = (
             json_files.popleft()
         )  # Take and remove the first element from json_files
+        if challenge_should_be_ignored(json_file):
+            continue
+
         data = ChallengeData.get_json_from_path(json_file)
-        suite_config = SuiteConfig.suite_data_if_suite(Path(json_file))
 
         commands = sys.argv
-        # --category flag
+        # --by flag
         if "--category" in commands:
             categories = data.get("category", [])
             commands_set = set(commands)
-
-            # Add the shared category if the conditions are met
-            if suite_config and suite_config.same_task:
-                # handled by if same_task is false in types
-                categories += suite_config.shared_category  # type: ignore
 
             # Convert the combined list to a set
             categories_set = set(categories)
@@ -257,8 +194,12 @@ def generate_tests() -> None:  # sourcery skip: invert-any-all
                 continue
 
         # --test flag, only run the test if it's the exact one specified
-        test_flag = "--test" in commands
-        if test_flag and data["name"] not in commands:
+        tests = []
+        for command in commands:
+            if command.startswith("--test="):
+                tests.append(command.split("=")[1])
+
+        if tests and data["name"] not in tests:
             continue
 
         # --maintain and --improve flag
@@ -269,28 +210,14 @@ def generate_tests() -> None:  # sourcery skip: invert-any-all
             continue
         elif "--improve" in commands and improve_flag:
             continue
+        json_files, challenge_class = create_challenge(data, json_file, json_files)
 
-        # "--suite flag
-        if "--suite" in commands:
-            if not suite_config:
-                # not a test from a suite
-                continue
-            elif not any(command in data["name"] for command in commands):
-                continue
+        print(f"Generated test for {data['name']}.")
+    print("Test generation complete.")
 
-            # elif (
-            #     not any(command in data["name"] for command in commands)
-            #     and suite_config.prefix not in data["name"]
-            # ):
-            #     # a part of the suite but not the one specified
-            #     continue
 
-        json_files = create_challenge(data, json_file, suite_config, json_files)
-
-        if suite_config and not (test_flag or maintain_flag or improve_flag):
-            print(f"Generated suite for {suite_config.prefix}.")
-        else:
-            print(f"Generated test for {data['name']}.")
+def challenge_should_be_ignored(json_file):
+    return "challenges/deprecated" in json_file or "challenges/library" in json_file
 
 
 generate_tests()

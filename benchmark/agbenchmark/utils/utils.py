@@ -1,61 +1,17 @@
 # radio charts, logs, helper functions for tests, anything else relevant.
+import json
 import os
 import re
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, List, Optional
 
-import git
 from dotenv import load_dotenv
 
 load_dotenv()
-
 from agbenchmark.utils.data_types import DIFFICULTY_MAP, DifficultyLevel
 
 AGENT_NAME = os.getenv("AGENT_NAME")
 REPORT_LOCATION = os.getenv("REPORT_LOCATION", None)
-
-
-def calculate_info_test_path(base_path: Path) -> str:
-    """
-    Calculates the path to the directory where the test report will be saved.
-    """
-    # Ensure the reports path exists
-    base_path.mkdir(parents=True, exist_ok=True)
-
-    # Get current UTC date-time stamp
-    date_stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
-
-    # Default run name
-    run_name = "full_run"
-
-    # Map command-line arguments to their respective labels
-    arg_labels = {
-        "--test": None,
-        "--suite": None,
-        "--category": None,
-        "--maintain": "maintain",
-        "--improve": "improve",
-        "--explore": "explore",
-    }
-
-    # Identify the relevant command-line argument
-    for arg, label in arg_labels.items():
-        if arg in sys.argv:
-            test_arg = sys.argv[sys.argv.index(arg) + 1] if label is None else None
-            run_name = arg.strip("--")
-            if test_arg:
-                run_name = f"{run_name}_{test_arg}"
-            break
-
-    # Create the full new directory path with ISO standard UTC date-time stamp
-    report_path = base_path / f"{date_stamp}_{run_name}"
-
-    # Ensure the new directory is created
-    report_path.mkdir(exist_ok=True)
-
-    return str(report_path)
 
 
 def replace_backslash(value: Any) -> Any:
@@ -88,7 +44,7 @@ def get_test_path(json_file: str | Path) -> str:
 
     # Find the index of "agbenchmark" in the path parts
     try:
-        agbenchmark_index = json_file.parts.index("agbenchmark")
+        agbenchmark_index = json_file.parts.index("benchmark")
     except ValueError:
         raise ValueError("Invalid challenge location.")
 
@@ -152,116 +108,19 @@ def get_highest_success_difficulty(
     return "No successful tests"
 
 
-def assign_paths(folder_path: Path) -> tuple[str, str, str, str, str]:
-    CONFIG_PATH = str(folder_path / "config.json")
+# def get_git_commit_sha(directory: Path) -> Optional[str]:
+#     try:
+#         repo = git.Repo(directory)
+#         remote_url = repo.remotes.origin.url
+#         if remote_url.endswith(".git"):
+#             remote_url = remote_url[:-4]
+#         git_commit_sha = f"{remote_url}/tree/{repo.head.commit.hexsha}"
 
-    reports_location = folder_path / "reports"
-
-    # if the user has a locally defined challenges path that they've added tests to
-    CHALLENGES_PATH = str(folder_path / "challenges")
-    if not os.path.exists(CHALLENGES_PATH):
-        CHALLENGES_PATH = str(Path(__file__).parent.parent / "challenges")
-
-    if not os.path.exists(reports_location):
-        os.makedirs(reports_location)
-
-    # from the ci
-    if REPORT_LOCATION:
-        reports_location = Path.cwd() / REPORT_LOCATION
-
-    REPORTS_PATH = calculate_info_test_path(reports_location)
-
-    REGRESSION_TESTS_PATH = str(reports_location / "regression_tests.json")
-
-    SUCCESS_RATE_PATH = str(reports_location / "success_rate.json")
-
-    return (
-        CONFIG_PATH,
-        REGRESSION_TESTS_PATH,
-        REPORTS_PATH,
-        SUCCESS_RATE_PATH,
-        CHALLENGES_PATH,
-    )
-
-
-def calculate_dynamic_paths() -> tuple[Path, str, str, str, str, str]:
-    # the default home is where you're running from
-    HOME_DIRECTORY = Path(os.getcwd())
-
-    if os.path.join("Auto-GPT-Benchmarks", "backend") in str(
-        HOME_DIRECTORY
-    ):  # accounting for backend calls
-        HOME_DIRECTORY = HOME_DIRECTORY.parent
-
-    benchmarks_folder_path = HOME_DIRECTORY / "agbenchmark"
-
-    if AGENT_NAME and not os.path.join("Auto-GPT-Benchmarks", "agent") in str(
-        HOME_DIRECTORY
-    ):
-        # if the agent name is defined but the run is not from the agent repo, then home is the agent repo
-        # used for development of both a benchmark and an agent
-        HOME_DIRECTORY = HOME_DIRECTORY / "agent" / AGENT_NAME
-        benchmarks_folder_path = HOME_DIRECTORY / "agbenchmark"
-
-        (
-            CONFIG_PATH,
-            REGRESSION_TESTS_PATH,
-            REPORTS_PATH,
-            SUCCESS_RATE_PATH,
-            CHALLENGES_PATH,
-        ) = assign_paths(benchmarks_folder_path)
-    else:
-        # otherwise the default is when home is an agent (running agbenchmark from agent/agent_repo)
-        # used when its just a pip install
-        (
-            CONFIG_PATH,
-            REGRESSION_TESTS_PATH,
-            REPORTS_PATH,
-            SUCCESS_RATE_PATH,
-            CHALLENGES_PATH,
-        ) = assign_paths(benchmarks_folder_path)
-
-    if not benchmarks_folder_path.exists():
-        benchmarks_folder_path.mkdir(exist_ok=True)
-
-    if not os.path.exists(benchmarks_folder_path / "reports"):
-        os.makedirs(benchmarks_folder_path / "reports")
-
-    if not os.path.exists(REGRESSION_TESTS_PATH):
-        with open(REGRESSION_TESTS_PATH, "w"):
-            pass
-
-    if not os.path.exists(SUCCESS_RATE_PATH):
-        with open(SUCCESS_RATE_PATH, "w"):
-            pass
-
-    if not os.path.exists(Path(REPORTS_PATH) / "report.json"):
-        with open(Path(REPORTS_PATH) / "report.json", "w"):
-            pass
-
-    return (
-        HOME_DIRECTORY,
-        CONFIG_PATH,
-        REGRESSION_TESTS_PATH,
-        REPORTS_PATH,
-        SUCCESS_RATE_PATH,
-        CHALLENGES_PATH,
-    )
-
-
-def get_git_commit_sha(directory: Path) -> Optional[str]:
-    try:
-        repo = git.Repo(directory)
-        remote_url = repo.remotes.origin.url
-        if remote_url.endswith(".git"):
-            remote_url = remote_url[:-4]
-        git_commit_sha = f"{remote_url}/tree/{repo.head.commit.hexsha}"
-
-        # print(f"GIT_COMMIT_SHA: {git_commit_sha}")
-        return git_commit_sha
-    except Exception:
-        # print(f"{directory} is not a git repository!")
-        return None
+#         # print(f"GIT_COMMIT_SHA: {git_commit_sha}")
+#         return git_commit_sha
+#     except Exception:
+#         # print(f"{directory} is not a git repository!")
+#         return None
 
 
 def agent_eligibible_for_optional_categories(
@@ -273,23 +132,20 @@ def agent_eligibible_for_optional_categories(
     return True
 
 
-def find_absolute_benchmark_path() -> Path:
-    # Find the absolute path to the current working directory
-    current_path = Path.cwd()
+def write_pretty_json(data, json_file):
+    sorted_data = deep_sort(data)
+    json_graph = json.dumps(sorted_data, indent=4)
+    with open(json_file, "w") as f:
+        f.write(json_graph)
+        f.write("\n")
 
-    # Find the position of "Auto-GPT-Benchmarks" in the path
-    benchmark_path_index = (
-        current_path.parts.index("Auto-GPT-Benchmarks")
-        if "Auto-GPT-Benchmarks" in current_path.parts
-        else None
-    )
 
-    if benchmark_path_index is not None:
-        # Construct the absolute path starting from "Auto-GPT-Benchmarks"
-        benchmark_path = Path(*current_path.parts[: benchmark_path_index + 1])
-
-        return benchmark_path
-    else:
-        raise ValueError(
-            "The directory 'Auto-GPT-Benchmarks' is not found in the current path."
-        )
+def deep_sort(obj):
+    """
+    Recursively sort the keys in JSON object
+    """
+    if isinstance(obj, dict):
+        return {k: deep_sort(v) for k, v in sorted(obj.items())}
+    if isinstance(obj, list):
+        return [deep_sort(elem) for elem in obj]
+    return obj

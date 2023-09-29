@@ -1,6 +1,15 @@
 import abc
 import enum
-from typing import Callable, ClassVar
+from typing import (
+    Callable,
+    ClassVar,
+    Generic,
+    Literal,
+    Optional,
+    Protocol,
+    TypedDict,
+    TypeVar,
+)
 
 from pydantic import BaseModel, Field, SecretStr, validator
 
@@ -13,41 +22,118 @@ from autogpt.core.resource.schema import (
     ProviderUsage,
     ResourceType,
 )
+from autogpt.core.utils.json_schema import JSONSchema
 
 
 class ModelProviderService(str, enum.Enum):
     """A ModelService describes what kind of service the model provides."""
 
-    EMBEDDING: str = "embedding"
-    LANGUAGE: str = "language"
-    TEXT: str = "text"
+    EMBEDDING = "embedding"
+    CHAT = "chat_completion"
+    TEXT = "text_completion"
 
 
 class ModelProviderName(str, enum.Enum):
-    OPENAI: str = "openai"
+    OPENAI = "openai"
 
 
-class MessageRole(str, enum.Enum):
-    USER = "user"
-    SYSTEM = "system"
-    ASSISTANT = "assistant"
+class ChatMessage(BaseModel):
+    class Role(str, enum.Enum):
+        USER = "user"
+        SYSTEM = "system"
+        ASSISTANT = "assistant"
+
+        FUNCTION = "function"
+        """May be used for the return value of function calls"""
+
+    role: Role
+    content: str
+
+    @staticmethod
+    def assistant(content: str) -> "ChatMessage":
+        return ChatMessage(role=ChatMessage.Role.ASSISTANT, content=content)
+
+    @staticmethod
+    def user(content: str) -> "ChatMessage":
+        return ChatMessage(role=ChatMessage.Role.USER, content=content)
+
+    @staticmethod
+    def system(content: str) -> "ChatMessage":
+        return ChatMessage(role=ChatMessage.Role.SYSTEM, content=content)
 
 
-class LanguageModelMessage(BaseModel):
-    role: MessageRole
+class ChatMessageDict(TypedDict):
+    role: str
     content: str
 
 
-class LanguageModelFunction(BaseModel):
-    json_schema: dict
+class AssistantFunctionCall(BaseModel):
+    name: str
+    arguments: str
 
 
-class ModelProviderModelInfo(BaseModel):
+class AssistantFunctionCallDict(TypedDict):
+    name: str
+    arguments: str
+
+
+class AssistantChatMessage(ChatMessage):
+    role: Literal["assistant"]
+    content: Optional[str]
+    function_call: Optional[AssistantFunctionCall]
+
+
+class AssistantChatMessageDict(TypedDict, total=False):
+    role: str
+    content: str
+    function_call: AssistantFunctionCallDict
+
+
+class CompletionModelFunction(BaseModel):
+    """General representation object for LLM-callable functions."""
+
+    name: str
+    description: str
+    parameters: dict[str, "JSONSchema"]
+
+    @property
+    def schema(self) -> dict[str, str | dict | list]:
+        """Returns an OpenAI-consumable function specification"""
+
+        return {
+            "name": self.name,
+            "description": self.description,
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    name: param.to_dict() for name, param in self.parameters.items()
+                },
+                "required": [
+                    name for name, param in self.parameters.items() if param.required
+                ],
+            },
+        }
+
+    @staticmethod
+    def parse(schema: dict) -> "CompletionModelFunction":
+        return CompletionModelFunction(
+            name=schema["name"],
+            description=schema["description"],
+            parameters=JSONSchema.parse_properties(schema["parameters"]),
+        )
+
+    def fmt_line(self) -> str:
+        params = ", ".join(
+            f"{name}: {p.type.value}" for name, p in self.parameters.items()
+        )
+        return f"{self.name}: {self.description}. Params: ({params})"
+
+
+class ModelInfo(BaseModel):
     """Struct for model information.
 
     Would be lovely to eventually get this directly from APIs, but needs to be
     scraped from websites for now.
-
     """
 
     name: str
@@ -57,12 +143,12 @@ class ModelProviderModelInfo(BaseModel):
     completion_token_cost: float = 0.0
 
 
-class ModelProviderModelResponse(BaseModel):
+class ModelResponse(BaseModel):
     """Standard response struct for a response from a model."""
 
     prompt_tokens_used: int
     completion_tokens_used: int
-    model_info: ModelProviderModelInfo
+    model_info: ModelInfo
 
 
 class ModelProviderCredentials(ProviderCredentials):
@@ -101,7 +187,7 @@ class ModelProviderUsage(ProviderUsage):
 
     def update_usage(
         self,
-        model_response: ModelProviderModelResponse,
+        model_response: ModelResponse,
     ) -> None:
         self.completion_tokens += model_response.completion_tokens_used
         self.prompt_tokens += model_response.prompt_tokens_used
@@ -118,21 +204,21 @@ class ModelProviderBudget(ProviderBudget):
 
     def update_usage_and_cost(
         self,
-        model_response: ModelProviderModelResponse,
+        model_response: ModelResponse,
     ) -> None:
         """Update the usage and cost of the provider."""
         model_info = model_response.model_info
         self.usage.update_usage(model_response)
-        incremental_cost = (
+        incurred_cost = (
             model_response.completion_tokens_used * model_info.completion_token_cost
             + model_response.prompt_tokens_used * model_info.prompt_token_cost
-        ) / 1000.0
-        self.total_cost += incremental_cost
-        self.remaining_budget -= incremental_cost
+        )
+        self.total_cost += incurred_cost
+        self.remaining_budget -= incurred_cost
 
 
 class ModelProviderSettings(ProviderSettings):
-    resource_type = ResourceType.MODEL
+    resource_type: ResourceType = ResourceType.MODEL
     credentials: ModelProviderCredentials
     budget: ModelProviderBudget
 
@@ -140,7 +226,15 @@ class ModelProviderSettings(ProviderSettings):
 class ModelProvider(abc.ABC):
     """A ModelProvider abstracts the details of a particular provider of models."""
 
-    defaults: ClassVar[ModelProviderSettings]
+    default_settings: ClassVar[ModelProviderSettings]
+
+    @abc.abstractmethod
+    def count_tokens(self, text: str, model_name: str) -> int:
+        ...
+
+    @abc.abstractmethod
+    def get_tokenizer(self, model_name: str) -> "ModelTokenizer":
+        ...
 
     @abc.abstractmethod
     def get_token_limit(self, model_name: str) -> int:
@@ -151,19 +245,32 @@ class ModelProvider(abc.ABC):
         ...
 
 
+class ModelTokenizer(Protocol):
+    """A ModelTokenizer provides tokenization specific to a model."""
+
+    @abc.abstractmethod
+    def encode(self, text: str) -> list:
+        ...
+
+    @abc.abstractmethod
+    def decode(self, tokens: list) -> str:
+        ...
+
+
 ####################
 # Embedding Models #
 ####################
 
 
-class EmbeddingModelProviderModelInfo(ModelProviderModelInfo):
+class EmbeddingModelInfo(ModelInfo):
     """Struct for embedding model information."""
 
-    model_service = ModelProviderService.EMBEDDING
+    llm_service = ModelProviderService.EMBEDDING
+    max_tokens: int
     embedding_dimensions: int
 
 
-class EmbeddingModelProviderModelResponse(ModelProviderModelResponse):
+class EmbeddingModelResponse(ModelResponse):
     """Standard response struct for a response from an embedding model."""
 
     embedding: Embedding = Field(default_factory=list)
@@ -184,36 +291,49 @@ class EmbeddingModelProvider(ModelProvider):
         model_name: str,
         embedding_parser: Callable[[Embedding], Embedding],
         **kwargs,
-    ) -> EmbeddingModelProviderModelResponse:
+    ) -> EmbeddingModelResponse:
         ...
 
 
-###################
-# Language Models #
-###################
+###############
+# Chat Models #
+###############
 
 
-class LanguageModelProviderModelInfo(ModelProviderModelInfo):
+class ChatModelInfo(ModelInfo):
     """Struct for language model information."""
 
-    model_service = ModelProviderService.LANGUAGE
+    llm_service = ModelProviderService.CHAT
     max_tokens: int
+    has_function_call_api: bool = False
 
 
-class LanguageModelProviderModelResponse(ModelProviderModelResponse):
+_T = TypeVar("_T")
+
+
+class ChatModelResponse(ModelResponse, Generic[_T]):
     """Standard response struct for a response from a language model."""
 
-    content: dict = None
+    response: AssistantChatMessageDict
+    parsed_result: _T = None
 
 
-class LanguageModelProvider(ModelProvider):
+class ChatModelProvider(ModelProvider):
     @abc.abstractmethod
-    async def create_language_completion(
+    def count_message_tokens(
         self,
-        model_prompt: list[LanguageModelMessage],
-        functions: list[LanguageModelFunction],
+        messages: ChatMessage | list[ChatMessage],
         model_name: str,
-        completion_parser: Callable[[dict], dict],
+    ) -> int:
+        ...
+
+    @abc.abstractmethod
+    async def create_chat_completion(
+        self,
+        model_prompt: list[ChatMessage],
+        model_name: str,
+        completion_parser: Callable[[AssistantChatMessageDict], _T] = lambda _: None,
+        functions: list[CompletionModelFunction] = [],
         **kwargs,
-    ) -> LanguageModelProviderModelResponse:
+    ) -> ChatModelResponse[_T]:
         ...

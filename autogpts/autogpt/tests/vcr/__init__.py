@@ -1,3 +1,4 @@
+import logging
 import os
 from hashlib import sha256
 
@@ -47,7 +48,7 @@ def get_base_vcr_config(request):
 @pytest.fixture()
 def vcr_cassette_dir(request):
     test_name = os.path.splitext(request.node.name)[0]
-    return os.path.join("tests/Auto-GPT-test-cassettes", test_name)
+    return os.path.join("tests/vcr_cassettes", test_name)
 
 
 def patch_api_base(requestor: openai.api_requestor.APIRequestor):
@@ -72,8 +73,8 @@ def patched_api_requestor(mocker: MockerFixture):
             headers["AGENT-MODE"] = os.environ.get("AGENT_MODE")
             headers["AGENT-TYPE"] = os.environ.get("AGENT_TYPE")
 
-        print(
-            f"[DEBUG] Outgoing API request: {headers}\n{data.decode() if data else None}"
+        logging.getLogger("patched_api_requestor").debug(
+            f"Outgoing API request: {headers}\n{data.decode() if data else None}"
         )
 
         # Add hash header for cheap & fast matching on cassette playback

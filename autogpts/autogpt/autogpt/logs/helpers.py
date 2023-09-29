@@ -3,7 +3,7 @@ from typing import Any, Optional
 
 from colorama import Fore
 
-from .config import USER_FRIENDLY_OUTPUT_LOGGER, _chat_plugins
+from .config import SPEECH_OUTPUT_LOGGER, USER_FRIENDLY_OUTPUT_LOGGER, _chat_plugins
 
 
 def user_friendly_output(
@@ -54,7 +54,7 @@ def request_user_double_check(additionalText: Optional[str] = None) -> None:
     if not additionalText:
         additionalText = (
             "Please ensure you've setup and configured everything"
-            " correctly. Read https://github.com/Torantulino/Auto-GPT#readme to "
+            " correctly. Read https://github.com/Significant-Gravitas/AutoGPT/autogpts/autogpt#readme to "
             "double check. You can also create a github issue or join the discord"
             " and ask there!"
         )
@@ -65,3 +65,7 @@ def request_user_double_check(additionalText: Optional[str] = None) -> None:
         title="DOUBLE CHECK CONFIGURATION",
         preserve_message_color=True,
     )
+
+
+def speak(message: str, level: int = logging.INFO) -> None:
+    logging.getLogger(SPEECH_OUTPUT_LOGGER).log(level, message)
