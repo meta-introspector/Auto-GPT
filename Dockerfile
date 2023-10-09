@@ -33,6 +33,5 @@ RUN poetry run pip install /opt/ai-ticket
 #RUN poetry install --verbose ||echo some failed lets inspect
 #RUN poetry install --verbose ||echo some failed lets inspect
 
-#ENTRYPOINT ["poetry", "run", "autogpt", "--install-plugin-deps"]
-#ENTRYPOINT ["poetry", "install" ]
-#CMD []
+ENTRYPOINT ["/bin/bash"]
+
