@@ -1,4 +1,4 @@
-FROM ai_ticket
+FROM h4ckermike/ai_ticket:latest
 ARG BUILD_TYPE=dev
 RUN apt-get update && apt-get install -y \
     chromium-driver firefox-esr ca-certificates gcc \
