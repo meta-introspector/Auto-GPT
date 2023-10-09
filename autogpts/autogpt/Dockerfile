@@ -19,7 +19,6 @@ ADD autogpts/autogpt /app/
 WORKDIR /app
 COPY pyproject.toml poetry.lock ./
 COPY README.md poetry.lock ./
-ADD ./benchmark /
+#ADD ./benchmark /
 RUN poetry add /opt/ai-ticket
 RUN poetry install
-
