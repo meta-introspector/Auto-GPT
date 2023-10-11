@@ -1,6 +1,6 @@
 #FROM ai_ticket
-ARG OFFICIAL_PYTHON_IMAGE
-FROM ${OFFICIAL_PYTHON_IMAGE} 
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE} 
 
 # Install browsers
 # Install utilities
@@ -19,14 +19,14 @@ ENV PATH="$POETRY_HOME/bin:$PATH"
 
 ADD autogpts/autogpt /app/
 
-ADD ./benchmark /benchmark/
+#ADD ./benchmark /benchmark/
 
 WORKDIR /app
 #RUN poetry run pip install /opt/ai-ticket
 # RUN poetry install
 
-RUN poetry install --verbose ||echo fail
-RUN poetry install --verbose ||echo fail2
+RUN poetry install --verbose
+#RUN poetry install --verbose ||echo fail2
 
 #ENTRYPOINT ["poetry", "run", "autogpt", "--install-plugin-deps"]
 #ENTRYPOINT ["poetry", "install" ]
