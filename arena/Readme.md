@@ -38,3 +38,8 @@ run jobs in 100 parallel
 
 get the logs for the past 30 days
 `jc git log --all --stat --since 2023-09-01 --decorate=full | jq > all_30.json`
+
+
+# look at the shortlist
+for x in `cat short_list_todo.txt `; do echo $x; git log --decorate=full $x -1; done > 
+grep ref shortlist.txt  >shortrefs.txt
