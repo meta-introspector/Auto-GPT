@@ -22,6 +22,7 @@ from autogpt.agents.utils.exceptions import (
 )
 from autogpt.command_decorator import command
 from autogpt.config import Config
+from autogpt.core.utils.json_schema import JSONSchema
 
 from .decorators import sanitize_path_arg
 
@@ -36,11 +37,11 @@ DENYLIST_CONTROL = "denylist"
     "Executes the given Python code inside a single-use Docker container"
     " with access to your workspace folder",
     {
-        "code": {
-            "type": "string",
-            "description": "The Python code to run",
-            "required": True,
-        },
+        "code": JSONSchema(
+            type=JSONSchema.Type.STRING,
+            description="The Python code to run",
+            required=True,
+        ),
     },
 )
 def execute_python_code(code: str, agent: Agent) -> str:
@@ -74,26 +75,38 @@ def execute_python_code(code: str, agent: Agent) -> str:
     "Execute an existing Python file inside a single-use Docker container"
     " with access to your workspace folder",
     {
-        "filename": {
-            "type": "string",
-            "description": "The name of te file to execute",
-            "required": True,
-        },
+        "filename": JSONSchema(
+            type=JSONSchema.Type.STRING,
+            description="The name of the file to execute",
+            required=True,
+        ),
+        "args": JSONSchema(
+            type=JSONSchema.Type.ARRAY,
+            description="The (command line) arguments to pass to the script",
+            required=False,
+            items=JSONSchema(type=JSONSchema.Type.STRING),
+        ),
     },
 )
 @sanitize_path_arg("filename")
-def execute_python_file(filename: Path, agent: Agent) -> str:
+def execute_python_file(
+    filename: Path, agent: Agent, args: list[str] | str = []
+) -> str:
     """Execute a Python file in a Docker container and return the output
 
     Args:
         filename (Path): The name of the file to execute
+        args (list, optional): The arguments with which to run the python script
 
     Returns:
         str: The output of the file
     """
     logger.info(
-        f"Executing python file '{filename}' in working directory '{agent.config.workspace_path}'"
+        f"Executing python file '{filename}' in working directory '{agent.legacy_config.workspace_path}'"
     )
+
+    if isinstance(args, str):
+        args = args.split()  # Convert space-separated string to a list
 
     if not str(filename).endswith(".py"):
         raise InvalidArgumentError("Invalid file type. Only .py files are allowed.")
@@ -107,10 +120,10 @@ def execute_python_file(filename: Path, agent: Agent) -> str:
 
     if we_are_running_in_a_docker_container():
         logger.debug(
-            f"Auto-GPT is running in a Docker container; executing {file_path} directly..."
+            f"AutoGPT is running in a Docker container; executing {file_path} directly..."
         )
         result = subprocess.run(
-            ["python", "-B", str(file_path)],
+            ["python", "-B", str(file_path)] + args,
             capture_output=True,
             encoding="utf8",
             cwd=str(agent.workspace.root),
@@ -120,7 +133,7 @@ def execute_python_file(filename: Path, agent: Agent) -> str:
         else:
             raise CodeExecutionError(result.stderr)
 
-    logger.debug("Auto-GPT is not running in a Docker container")
+    logger.debug("AutoGPT is not running in a Docker container")
     try:
         client = docker.from_env()
         # You can replace this with the desired Python image/version
@@ -152,7 +165,8 @@ def execute_python_file(filename: Path, agent: Agent) -> str:
                 "python",
                 "-B",
                 file_path.relative_to(agent.workspace.root).as_posix(),
-            ],
+            ]
+            + args,
             volumes={
                 str(agent.workspace.root): {
                     "bind": "/workspace",
@@ -206,11 +220,11 @@ def validate_command(command: str, config: Config) -> bool:
     "execute_shell",
     "Execute a Shell Command, non-interactive commands only",
     {
-        "command_line": {
-            "type": "string",
-            "description": "The command line to execute",
-            "required": True,
-        }
+        "command_line": JSONSchema(
+            type=JSONSchema.Type.STRING,
+            description="The command line to execute",
+            required=True,
+        )
     },
     enabled=lambda config: config.execute_local_commands,
     disabled_reason="You are not allowed to run local shell commands. To execute"
@@ -226,7 +240,7 @@ def execute_shell(command_line: str, agent: Agent) -> str:
     Returns:
         str: The output of the command
     """
-    if not validate_command(command_line, agent.config):
+    if not validate_command(command_line, agent.legacy_config):
         logger.info(f"Command '{command_line}' not allowed")
         raise OperationNotAllowedError("This shell command is not allowed.")
 
@@ -252,11 +266,11 @@ def execute_shell(command_line: str, agent: Agent) -> str:
     "execute_shell_popen",
     "Execute a Shell Command, non-interactive commands only",
     {
-        "command_line": {
-            "type": "string",
-            "description": "The command line to execute",
-            "required": True,
-        }
+        "command_line": JSONSchema(
+            type=JSONSchema.Type.STRING,
+            description="The command line to execute",
+            required=True,
+        )
     },
     lambda config: config.execute_local_commands,
     "You are not allowed to run local shell commands. To execute"
@@ -273,7 +287,7 @@ def execute_shell_popen(command_line: str, agent: Agent) -> str:
     Returns:
         str: Description of the fact that the process started and its id
     """
-    if not validate_command(command_line, agent.config):
+    if not validate_command(command_line, agent.legacy_config):
         logger.info(f"Command '{command_line}' not allowed")
         raise OperationNotAllowedError("This shell command is not allowed.")
 
