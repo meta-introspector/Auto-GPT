@@ -89,8 +89,8 @@ pytest-recording = "*"
 pytest-xdist = "*"
 vcrpy = {git = "https://github.com/Significant-Gravitas/vcrpy.git", rev = "master"}
 
-[tool.poetry.group.benchmark.dependencies]
-agbenchmark = { path = "../../benchmark" }
+#[tool.poetry.group.benchmark.dependencies]
+#agbenchmark = { path = "../../benchmark" }
 
 
 [build-system]
