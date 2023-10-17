@@ -24,9 +24,14 @@ def sample(a):
         len = alen,
         sample = sample
     )
+
+
 @click.command()
 @click.argument('ref')
 def evaluate_branch(ref): #return 0 - 1    
+    return _evaluate_branch(ref)
+
+def _evaluate_branch(ref): #return 0 - 1    
     # checkout ref
     branches = repo.git.branch("-r","--all","--contains", ref)
     aref = repo.commit(ref)
