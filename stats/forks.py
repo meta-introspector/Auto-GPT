@@ -1,6 +1,7 @@
 # An example to get the remaining rate limit using the Github GraphQL API.
 import os
 import json
+import click
 import requests
 access_token = os.environ.get("GITHUB_TOKEN")
 #headers = {"Authorization": "Bearer YOUR API KEY"}
@@ -35,38 +36,48 @@ def run_query(query): # A simple function to use requests.post to make the API c
 
         
 # The GraphQL query (with a few aditional bits included) itself defined as a multi-line string.
+def query_repo(owner_name,repo_name):
+    page = 1
+    has_next_page = True
+    after_cursor = None
 
-page = 1
-has_next_page = True
-after_cursor = None
+    while has_next_page:
+        #print("step")
+        after = ""
+        if after_cursor:
+            after = f", after: \"{after_cursor}\""
 
-while has_next_page:
-    #print("step")
-    after = ""
-    if after_cursor:
-        after = f", after: \"{after_cursor}\""
- 
-    query = f"""{{  repository(owner: "Significant-Gravitas", name: "AutoGPT") 
-    {{
-      forks(orderBy: 
-       {{         field: UPDATED_AT, direction: DESC }}, first: 100 {after}) 
-       {{ pageInfo     {{            endCursor            hasNextPage }}
-          nodes 
-         {{            updatedAt,            nameWithOwner}}
+            # https://leaderboard.agpt.co/ https://github.com//
+        query = f"""{{  repository(owner: "{owner_name}", name: "{repo_name}" ) 
+        {{
+          forks(orderBy: 
+           {{         field: UPDATED_AT, direction: DESC }}, first: 100 {after}) 
+           {{ pageInfo     {{            endCursor            hasNextPage }}
+              nodes 
+             {{            updatedAt,            nameWithOwner}}
 
+            }}
+          }}
         }}
-      }}
-    }}
 
-    """
-    #print(query)
-    result = run_query(query) # Execute the query
+        """
+        #print(query)
+        result = run_query(query) # Execute the query
 
-    #print (result)
-    page= result["data"]["repository"]["forks"]["pageInfo"]
-    nodes= result["data"]["repository"]["forks"]["nodes"]
-    has_next_page = page["hasNextPage"    ]
-    after_cursor = page["endCursor"]    
-    for x in  nodes:
-        print(json.dumps(x))
+        #print (result)
+        page= result["data"]["repository"]["forks"]["pageInfo"]
+        nodes= result["data"]["repository"]["forks"]["nodes"]
+        has_next_page = page["hasNextPage"    ]
+        after_cursor = page["endCursor"]    
+        for x in  nodes:
+            print(json.dumps(x))
 
+@click.command()
+@click.argument('owner_name')
+@click.argument('repo_name')
+def main(owner_name, repo_name):
+    #user_repo = {}
+    query_repo(owner_name,repo_name)
+
+if __name__ =="__main__":
+    main()

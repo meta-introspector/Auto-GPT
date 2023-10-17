@@ -2,7 +2,7 @@
 
 1. `cp .env.example .env`
 2. edit .env add in you pat
-3. `python forks.py | tee forks.json`
+3. `python forks.py Significant-Gravitas AutoGPT | tee forks.json`
 stop when you want to 
 
 4. extract the reponame
