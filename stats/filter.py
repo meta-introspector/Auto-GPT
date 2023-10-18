@@ -19,4 +19,5 @@ with open("git_samples.json") as fi:
           #print(parts[1],parts[2],)
           #print(f"git submodule  add {remote} {parts[1]} && cd {parts[1]} &&git checkout {parts[1]}")
           print(f"git submodule  add {remote} {parts[1]}")
-          #print(f"pushd {parts[1]} && git checkout {parts[1]} && popd")
+          #print(parts)
+          print(f"pushd {parts[1]} && git checkout {parts[2]} && popd")
