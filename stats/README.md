@@ -17,3 +17,13 @@ now fetch them
 ```
 for x in `cat repos.txt`; do git fetch $(echo $x| cut -d/ -f1 ); done
 ```
+
+or in parallel
+``
+for x in `cat repos.txt`; do echo git fetch $(echo $x| cut -d/ -f1 ); done  | parallel -j 50
+``
+
+Now we pull in the changes since sept
+```
+ojc git log --all --stat --since 2023-09-01 --decorate=full | jq > all_30.json
+```
