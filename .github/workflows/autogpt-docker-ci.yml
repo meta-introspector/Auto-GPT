@@ -1,19 +1,7 @@
 name: AutoGPT Docker CI
-
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'autogpts/autogpt/**'
-      - '!autogpts/autogpt/tests/vcr_cassettes'
-      - '!autogpts/autogpt/tests/challenges/current_score.json'
-  pull_request:
-    branches: [ master, release-*, stable ]
-    paths:
-      - 'autogpts/autogpt/**'
-      - '!autogpts/autogpt/tests/vcr_cassettes'
-      - '!autogpts/autogpt/tests/challenges/current_score.json'
-
+ workflow_run :
+ 
 concurrency:
   group: ${{ format('autogpt-docker-ci-{0}', github.head_ref && format('pr-{0}', github.event.pull_request.number) || github.sha) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
