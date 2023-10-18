@@ -67,7 +67,14 @@ def main(infile):
 
     #####
     df2 = pd.DataFrame.from_dict(user_repo2,orient="index")
+    df3 = pd.DataFrame.from_dict(user_repo2,orient="index")
+    df3.index.name='name'
     df2.index.name='name'
+    df3.rename({'index':'word',0:'ref'},axis='columns',inplace=True)    
+    #df3["name"] = pd.util.hash_array(df3["name"].to_numpy())
+
+    df3.to_csv("users_repos.csv")
+    
     filtered_result2 =pd.merge(filtered_result,df2,on="name",how="inner").drop(columns=["name"])
     filtered_result2.rename({'index':'word',0:'name'},axis='columns',inplace=True)    
     filtered_result2.insert(0,"name",filtered_result2.pop("name"))

@@ -25,5 +25,9 @@ for x in `cat repos.txt`; do echo git fetch $(echo $x| cut -d/ -f1 ); done  | pa
 
 Now we pull in the changes since sept
 ```
-ojc git log --all --stat --since 2023-09-01 --decorate=full | jq > all_30.json
+jc git log --all --stat --since 2023-09-01 --decorate=full | jq > all_30.json
 ```
+
+`python report.py all_30.json`
+
+run_version2.py ./users_repos.csv
