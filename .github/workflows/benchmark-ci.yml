@@ -1,19 +1,7 @@
 name: Benchmark CI
 
 on:
-  push:
-    branches: [master, ci-test*]
-    paths:
-      - 'benchmark/**'
-      - .github/workflows/benchmark-ci.yml
-      - '!benchmark/reports/**'
-  pull_request:
-    branches: [stable, master, release-*]
-    paths:
-      - 'benchmark/**'
-      - '!benchmark/reports/**'
-      - .github/workflows/benchmark-ci.yml
-
+  workflow_dispatch :
 jobs:
   lint:
     runs-on: ubuntu-latest
