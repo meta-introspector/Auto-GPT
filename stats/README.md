@@ -76,3 +76,19 @@ Finally we can filter the results and extract out the good repos.
 
 That contains the submodule add and checkout, we apply submodule add to the vendor of ai ticket 
 this transfers the bots from eval into the arena.
+
+`cp todo.sh ~/experiments/ai-ticket/vendor/`
+
+now switch where you have ai-ticket checked out
+`cd ~/experiments/ai-ticket/vendor/`
+
+`grep submodule todo.sh  | parallel -j 10`
+
+and then run one more time to fix the locks
+`grep submodule todo.sh  | parallel -j 1`
+
+You can inspect the git samples here
+https://github.com/jmikedupont2/Auto-GPT/blob/bot_prep/stats/git_samples.json
+
+
+
