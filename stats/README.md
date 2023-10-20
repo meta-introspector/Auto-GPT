@@ -39,8 +39,7 @@ please `git stash` all your work or commit it first.
 
 `python run_version2.py ./users_repos.csv > git_samples.json`
 
-
-Alternativtly you can call it from another dir, I prepared my second copy like this :
+But you can call it from another dir, I prepared my second copy like this :
 ```
 git clone Auto-GPT Auto-GPT-work
 cd Auto-GPT-work/
@@ -54,8 +53,7 @@ And finally we can call the other version that is fixed with this verion
 python ../../Auto-GPT/stats/run_version2.py ../../Auto-GPT/stats/users_repos.csv > git_samples2.json
 ```
   
-now plot
-`python ./plot.py`
+now plot `python ./plot.py`
 ![diff_sizes.png](diff_sizes.png "diff_sizes.png")
 ![rebase_sizes.png](rebase_sizes.png "rebase_sizes.png")
 ![diff_hist.png](diff_hist.png "diff_hist.png")
