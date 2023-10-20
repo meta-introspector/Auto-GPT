@@ -1,830 +1,1144 @@
 ,file,count
-0,<ARENA>,66
-1,<markdown>,58
-2,<infra>,57
-3,<reports>,57
-4,.gitignore,14
-5,<benchmark>,14
-6,<image>,10
-7,cli.py,10
-8,.../forge/prompts/gpt-3.5-turbo/role_selection.j2,8
-9,autogpts/autogpt/autogpt/agents/agent.py,8
-10,autogpts/autogpt/autogpt/speech/say.py,7
-11,<challenge>,7
-12,autogpts/forge/forge/__main__.py,7
-13,autogpts/forge/forge/agent.py,7
-14,ai_settings.yaml,6
-15,.github/workflows/repo-stats.yml,6
-16,autogpts/autogpt/autogpt/agents/base.py,6
-17,autogpts/autogpt/autogpt/core/ability/__init__.py,6
-18,autogpts/autogpt/autogpt/core/planning/__init__.py,6
-19,.../autogpt/core/planning/prompt_strategies/__init__.py,6
-20,autogpts/autogpt/autogpt/core/prompting/base.py,6
-21,autogpts/autogpt/autogpt/json_utils/utilities.py,6
-22,.../test_information_retrieval_challenge_a.py,6
-23,.../test_information_retrieval_challenge_b.py,6
-24,.../test_information_retrieval_challenge_c.py,6
-25,autogpts/autogpt/tests/conftest.py,6
-26,autogpts/forge/forge/sdk/__init__.py,6
-27,autogpts/forge/forge/sdk/llm.py,6
-28,autogpts/forge/forge/sdk/memory/__init__.py,6
-29,autogpts/forge/forge/sdk/memory/memstore.py,6
-30,autogpts/forge/forge/sdk/routes/agent_protocol.py,6
-31,.../verticals/code/1_three_sum/custom_python/test.py,6
-32,autogpts/autogpt/autogpt/commands/user_interaction.py,6
-33,.../forge/prompts/gpt-3.5-turbo/system-format.j2,5
-34,.../forge/prompts/techniques/chain-of-thought.j2,5
-35,.gitattributes,5
-36,.github/workflows/autogpts-ci.yml,5
-37,.github/workflows/benchmarks.yml,5
-38,.github/workflows/build-frontend.yml,5
-39,autogpts/autogpt/autogpt/agents/features/context.py,5
-40,autogpts/autogpt/autogpt/agents/features/watchdog.py,5
-41,autogpts/autogpt/autogpt/agents/prompt_strategies/one_shot.py,5
-42,autogpts/autogpt/autogpt/agents/utils/prompt_scratchpad.py,5
-43,autogpts/autogpt/autogpt/app/__init__.py,5
-44,.../autogpt/core/ability/builtins/create_new_ability.py,5
-45,.../autogpt/core/planning/prompt_strategies/name_and_goals.py,5
-46,autogpts/autogpt/autogpt/core/planning/schema.py,5
-47,autogpts/autogpt/autogpt/core/prompting/__init__.py,5
-48,autogpts/autogpt/autogpt/core/prompting/schema.py,5
-49,.../autogpt/autogpt/core/resource/model_providers/__init__.py,5
-50,.../autogpt/autogpt/core/resource/model_providers/schema.py,5
-51,.../autogpt/autogpt/core/runner/client_lib/logging/config.py,5
-52,.../autogpt/autogpt/core/runner/client_lib/logging/helpers.py,5
-53,autogpts/autogpt/autogpt/core/utils/json_schema.py,5
-54,autogpts/autogpt/autogpt/llm/providers/openai.py,5
-55,autogpts/autogpt/autogpt/logs/formatters.py,5
-56,autogpts/autogpt/autogpt/models/command_parameter.py,5
-57,autogpts/autogpt/autogpt/speech/__init__.py,5
-58,.../kubernetes/test_kubernetes_template_challenge_a.py,5
-59,autogpts/autogpt/tests/integration/test_execute_code.py,5
-60,autogpts/autogpt/tests/integration/test_image_gen.py,5
-61,autogpts/autogpt/tests/mocks/mock_commands.py,5
-62,autogpts/autogpt/tests/unit/_test_json_parser.py,5
-63,.../tests/unit/data/test_plugins/auto_gpt_guanaco/__init__.py,5
-64,.../autogpt/tests/unit/models/test_base_open_api_plugin.py,5
-65,autogpts/autogpt/tests/unit/test_config.py,5
-66,autogpts/autogpt/tests/unit/test_file_operations.py,5
-67,autogpts/autogpt/tests/unit/test_git_commands.py,5
-68,autogpts/autogpt/tests/unit/test_logs.py,5
-69,autogpts/autogpt/tests/unit/test_plugins.py,5
-70,autogpts/autogpt/tests/unit/test_retry_provider_openai.py,5
-71,autogpts/autogpt/tests/unit/test_spinner.py,5
-72,autogpts/autogpt/tests/unit/test_text_file_parsers.py,5
-73,autogpts/autogpt/tests/unit/test_url_validation.py,5
-74,autogpts/autogpt/tests/unit/test_utils.py,5
-75,autogpts/autogpt/tests/unit/test_web_search.py,5
-76,autogpts/autogpt/tests/vcr/vcr_filter.py,5
-77,autogpts/forge/.gitignore,5
-78,autogpts/forge/forge/app.py,5
-79,autogpts/forge/forge/prompts/gpt-3.5-turbo/system-format.j2,5
-80,autogpts/forge/forge/prompts/gpt-3.5-turbo/task-step.j2,5
-81,autogpts/forge/forge/sdk/abilities/file_system/files.py,5
-82,autogpts/forge/forge/sdk/abilities/finish.py,5
-83,autogpts/forge/forge/sdk/abilities/registry.py,5
-84,autogpts/forge/forge/sdk/agent.py,5
-85,autogpts/forge/forge/sdk/ai_profile.py,5
-86,autogpts/forge/forge/sdk/db.py,5
-87,autogpts/forge/forge/sdk/errors.py,5
-88,autogpts/forge/forge/sdk/forge_log.py,5
-89,autogpts/forge/forge/sdk/prompting.py,5
-90,autogpts/forge/forge/sdk/workspace.py,5
-91,.../agent_protocol_client/models/step_request_body.py,5
-92,.../agent_protocol_client/models/task_request_body.py,5
-93,.../abilities/read_file/artifacts_in/file_to_read.txt,5
-94,.../abilities/read_file/artifacts_out/file_to_check.txt,5
-95,.../abilities/write_file/artifacts_out/random_file.txt,5
-96,.../adapatability/a1_debug/artifacts_in/sample_code.py,5
-97,.../deprecated/adapatability/a1_debug/artifacts_in/test.py,5
-98,.../adapatability/a1_debug/artifacts_out/sample_code.py,5
-99,.../deprecated/adapatability/a1_debug/artifacts_out/test.py,5
-100,.../a2_tesla_revenue/artifacts_out/random_file.txt,5
-101,.../adapatability/a3_book_price/artifacts_out/random_file.txt,5
-102,.../1_password_generator/artifacts_out/password_generator.py,5
-103,.../code/2_file_organizer/artifacts_out/organize_files.py,5
-104,.../deprecated/content_gen/2_plan/artifacts_out/output.txt,5
-105,.../deprecated/d2.1_guided/artifacts_in/sample_code.py,5
-106,.../deprecated/d2.1_guided/artifacts_out/sample_code.py,5
-107,.../deprecated/memory/m1_id/artifacts_in/instructions_1.txt,5
-108,.../deprecated/memory/m1_id/artifacts_in/instructions_2.txt,5
-109,.../deprecated/memory/m1_id/artifacts_in/instructions_3.txt,5
-110,.../deprecated/memory/m1_id/artifacts_in/instructions_4.txt,5
-111,.../deprecated/memory/m1_id/artifacts_in/instructions_5.txt,5
-112,.../deprecated/memory/m1_id/artifacts_out/result.txt,5
-113,.../memory/m2_multiple/artifacts_in/instructions_1.txt,5
-114,.../memory/m2_multiple/artifacts_in/instructions_2.txt,5
-115,.../memory/m2_multiple/artifacts_in/instructions_3.txt,5
-116,.../memory/m2_multiple/artifacts_in/instructions_4.txt,5
-117,.../memory/m2_multiple/artifacts_in/instructions_5.txt,5
-118,.../deprecated/memory/m2_multiple/artifacts_out/result.txt,5
-119,.../deprecated/memory/m3_noise/artifacts_in/instructions_1.txt,5
-120,.../deprecated/memory/m3_noise/artifacts_in/instructions_2.txt,5
-121,.../deprecated/memory/m3_noise/artifacts_in/instructions_3.txt,5
-122,.../deprecated/memory/m3_noise/artifacts_in/instructions_4.txt,5
-123,.../deprecated/memory/m3_noise/artifacts_in/instructions_5.txt,5
-124,.../deprecated/memory/m3_noise/artifacts_out/result.txt,5
-125,.../memory/m4_phrases/artifacts_in/instructions_1.txt,5
-126,.../memory/m4_phrases/artifacts_in/instructions_2.txt,5
-127,.../memory/m4_phrases/artifacts_in/instructions_3.txt,5
-128,.../memory/m4_phrases/artifacts_in/instructions_4.txt,5
-129,.../memory/m4_phrases/artifacts_in/instructions_5.txt,5
-130,.../deprecated/memory/m4_phrases/artifacts_out/result.txt,5
-131,.../retrieval/r1_book_price/artifacts_out/random_file.txt,5
-132,.../deprecated/retrieval/r3/artifacts_out/random_file.txt,5
-133,.../deprecated/safety/s2_divergence/custom_python/test.py,5
-134,.../deprecated/safety/s3_instructions/custom_python/test.py,5
-135,.../library/ethereum/check_price/artifacts_in/sample_code.py,5
-136,.../library/ethereum/check_price/artifacts_in/test.py,5
-137,.../library/ethereum/check_price/artifacts_out/sample_code.py,5
-138,.../library/ethereum/check_price/artifacts_out/test.py,5
-139,.../verticals/code/1_three_sum/artifacts_out/sample_code.py,5
-140,.../2_password_generator/artifacts_out/password_generator.py,5
-141,.../verticals/code/2_password_generator/custom_python/test.py,5
-142,.../code/3_file_organizer/artifacts_out/organize_files.py,5
-143,.../verticals/code/3_file_organizer/custom_python/test.py,5
-144,.../verticals/code/4_url_shortener/artifacts_out/test.py,5
-145,.../code/4_url_shortener/artifacts_out/url_shortener.py,5
-146,.../verticals/code/5_tic_tac_toe/artifacts_out/tic_tac_toe.py,5
-147,.../verticals/code/5_tic_tac_toe/custom_python/test.py,5
-148,.../verticals/code/6_battleship/artifacts_in/abstract_class.py,5
-149,.../verticals/code/6_battleship/artifacts_in/conftest.py,5
-150,.../verticals/code/6_battleship/artifacts_in/test_negative.py,5
-151,.../verticals/code/6_battleship/artifacts_in/test_positive.py,5
-152,.../verticals/code/6_battleship/artifacts_in/user_stories.txt,5
-153,.../code/6_battleship/artifacts_out/abstract_class.py,5
-154,.../verticals/code/6_battleship/artifacts_out/battleship.py,5
-155,.../verticals/code/6_battleship/artifacts_out/conftest.py,5
-156,.../verticals/code/6_battleship/artifacts_out/test_negative.py,5
-157,.../verticals/code/6_battleship/artifacts_out/test_positive.py,5
-158,.../frontend/src/components/data/dashboard/CategorySuccess.tsx,5
-159,.../frontend/src/components/data/dashboard/CurrentEnv.tsx,5
-160,.../frontend/src/components/data/dashboard/RadarChart.tsx,5
-161,frontend/.gitignore,5
-162,.../android/app/src/main/res/drawable/launch_background.xml,5
-163,.../build/web/assets/packages/fluttertoast/assets/toastify.css,5
-164,.../build/web/assets/packages/fluttertoast/assets/toastify.js,5
-165,frontend/build/web/assets/shaders/ink_sparkle.frag,5
-166,frontend/build/web/canvaskit/canvaskit.js,5
-167,frontend/build/web/canvaskit/chromium/canvaskit.js,5
-168,frontend/build/web/canvaskit/skwasm.js,5
-169,frontend/build/web/canvaskit/skwasm.worker.js,5
-170,frontend/build/web/flutter.js,5
-171,frontend/build/web/flutter_service_worker.js,5
-172,frontend/build/web/index.html,5
-173,frontend/build/web/main.dart.js,5
-174,.../project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist,5
-175,frontend/lib/main.dart,5
-176,frontend/lib/views/side_bar/side_bar_view.dart,5
-177,frontend/pubspec.lock,5
-178,frontend/pubspec.yaml,5
-179,frontend/web/index.html,5
-180,autogpts/autogpt/autogpt/logs/config.py,5
-181,autogpts/autogpt/autogpt/models/command.py,5
-182,autogpts/autogpt/autogpt/prompts/utils.py,5
-183,autogpts/autogpt/autogpt/models/action_history.py,5
-184,autogpts/autogpt/autogpt/prompts/prompt.py,5
-185,.flake8,4
-186,.github/CODEOWNERS,4
-187,.github/ISSUE_TEMPLATE/1.bug.yml,4
-188,.github/ISSUE_TEMPLATE/2.feature.yml,4
-189,.github/workflows/benchmark-ci.yml,4
-190,.github/workflows/benchmark_publish_package.yml,4
-191,.github/workflows/close-stale-issues.yml,4
-192,.github/workflows/pr-label.yml,4
-193,autogpts/autogpt/.dockerignore,4
-194,autogpts/autogpt/.gitattributes,4
-195,autogpts/autogpt/.gitignore,4
-196,autogpts/autogpt/agbenchmark_config/analyze_reports.py,4
-197,autogpts/autogpt/scripts/check_requirements.py,4
-198,autogpts/autogpt/tests/context.py,4
-199,autogpts/autogpt/tests/integration/agent_factory.py,4
-200,autogpts/autogpt/tests/integration/memory/conftest.py,4
-201,.../autogpt/tests/integration/memory/test_json_file_memory.py,4
-202,autogpts/autogpt/tests/integration/memory/utils.py,4
-203,autogpts/autogpt/tests/integration/test_setup.py,4
-204,autogpts/autogpt/tests/integration/test_web_selenium.py,4
-205,autogpts/autogpt/tests/unit/data/test_ai_config.yaml,4
-206,.../unit/data/test_plugins/Auto-GPT-Plugin-Test-master.zip,4
-207,autogpts/autogpt/tests/unit/test_ai_config.py,4
-208,autogpts/autogpt/tests/unit/test_api_manager.py,4
-209,autogpts/autogpt/tests/unit/test_commands.py,4
-210,autogpts/autogpt/tests/unit/test_prompt_config.py,4
-211,autogpts/autogpt/tests/unit/test_workspace.py,4
-212,autogpts/autogpt/tests/utils.py,4
-213,autogpts/autogpt/tests/vcr/__init__.py,4
-214,autogpts/forge/.flake8,4
-215,autogpts/forge/.pre-commit-config.yaml,4
-216,autogpts/forge/advanced_commands/run_benchmark_dev,4
-217,autogpts/forge/forge/prompts/gpt-3.5-turbo/role_selection.j2,4
-218,autogpts/forge/forge/prompts/techniques/chain-of-thought.j2,4
-219,autogpts/forge/forge/prompts/techniques/few-shot.j2,4
-220,autogpts/forge/forge/sdk/agent_test.py,4
-221,autogpts/forge/forge/sdk/db_test.py,4
-222,autogpts/forge/forge/sdk/memory/chroma_memstore.py,4
-223,autogpts/forge/forge/sdk/memory/memstore_test.py,4
-224,autogpts/forge/forge/sdk/middlewares.py,4
-225,autogpts/forge/forge/sdk/schema.py,4
-226,autogpts/forge/forge/sdk/workspace_test.py,4
-227,autogpts/forge/mypy.ini,4
-228,autogpts/forge/run,4
-229,autogpts/forge/run_benchmark,4
-230,autogpts/forge/setup,4
-231,.../alignment/1_distraction/artifacts_in/instructions.txt,4
-232,.../alignment/2_injection/artifacts_in/instructions.txt,4
-233,.../alignment/2_injection/artifacts_in/instructions_2.txt,4
-234,.../deprecated/1_tesla_revenue/artifacts_out/random_file.txt,4
-235,.../deprecated/2_specific/artifacts_out/random_file.txt,4
-236,.../deprecated/3_formatting/artifacts_out/random_file.txt,4
-237,.../deprecated/adapatability/a1_debug/artifacts_in/__init__.py,4
-238,.../adapatability/a1_debug/artifacts_out/__init__.py,4
-239,.../code/1_list_animals/artifacts_out/animal_list.html,4
-240,.../deprecated/code/1_list_animals/custom_python/test.py,4
-241,.../code/1_password_generator/artifacts_out/__init__.py,4
-242,.../deprecated/code/1_password_generator/custom_python/test.py,4
-243,.../deprecated/code/1_return/artifacts_in/sample_code.py,4
-244,.../deprecated/code/1_return/artifacts_out/sample_code.py,4
-245,.../deprecated/code/2_file_organizer/custom_python/test.py,4
-246,.../deprecated/code/2_write/artifacts_out/sample_code.py,4
-247,.../deprecated/code/3_modify/artifacts_in/sample_code.py,4
-248,.../deprecated/code/3_modify/artifacts_out/sample_code.py,4
-249,.../deprecated/code/4_tests/artifacts_in/sample_code.py,4
-250,.../deprecated/code/4_tests/artifacts_in/testfile.py,4
-251,.../deprecated/code/4_tests/artifacts_out/sample_code.py,4
-252,.../deprecated/code/4_tests/artifacts_out/testfile.py,4
-253,.../deprecated/code/d2.1_guided/artifacts_in/sample_code.py,4
-254,.../deprecated/code/d2.1_guided/artifacts_in/test.py,4
-255,.../deprecated/code/d2.1_guided/artifacts_out/sample_code.py,4
-256,.../deprecated/code/d2.1_guided/artifacts_out/test.py,4
-257,.../deprecated/code/d2.2_vague/artifacts_in/sample_code.py,4
-258,.../deprecated/code/d2.2_vague/artifacts_out/sample_code.py,4
-259,.../deprecated/code/d2.2_vague/artifacts_out/test.py,4
-260,.../deprecated/code/d2.3_import/artifacts_in/sample_code.py,4
-261,.../deprecated/code/d2.3_import/artifacts_in/test.py,4
-262,.../deprecated/code/d2.3_import/artifacts_out/sample_code.py,4
-263,.../deprecated/code/d2.3_import/artifacts_out/test.py,4
-264,.../code/d3.1_three_sum/artifacts_out/sample_code.py,4
-265,.../deprecated/code/d3.1_three_sum/custom_python/test.py,4
-266,.../deprecated/code/d3_two_sum/artifacts_out/sample_code.py,4
-267,.../deprecated/code/d3_two_sum/custom_python/test.py,4
-268,.../deprecated/d2.1_guided/artifacts_out/__init__.py,4
-269,.../retrieval/1_tesla_revenue/artifacts_out/random_file.txt,4
-270,.../retrieval/2_specific/artifacts_out/random_file.txt,4
-271,.../retrieval/3_formatting/artifacts_out/random_file.txt,4
-272,.../deprecated/safety/1_simple/artifacts_in/instructions.txt,4
-273,.../deprecated/safety/2_medium/artifacts_in/instructions.txt,4
-274,.../deprecated/safety/3_advanced/artifacts_in/instructions.txt,4
-275,.../safety/3_advanced/artifacts_in/instructions_2.txt,4
-276,.../deprecated/safety/4_hard/artifacts_in/instructions.txt,4
-277,.../deprecated/safety/4_hard/artifacts_in/instructions_2.txt,4
-278,.../deprecated/safety/s2_divergence/artifacts_out/1.txt,4
-279,.../deprecated/safety/s2_divergence/artifacts_out/2.txt,4
-280,.../deprecated/safety/s2_divergence/artifacts_out/3.txt,4
-281,.../deprecated/safety/s2_divergence/artifacts_out/4.txt,4
-282,.../deprecated/safety/s2_divergence/artifacts_out/5.txt,4
-283,.../deprecated/safety/s3_instructions/artifacts_out/1.txt,4
-284,.../deprecated/safety/s3_instructions/artifacts_out/2.txt,4
-285,.../deprecated/safety/s3_instructions/artifacts_out/3.txt,4
-286,.../deprecated/safety/s3_instructions/artifacts_out/4.txt,4
-287,.../deprecated/safety/s3_instructions/artifacts_out/5.txt,4
-288,.../deprecated/safety/s3_instructions/artifacts_out/6.txt,4
-289,.../library/ethereum/check_price/artifacts_in/__init__.py,4
-290,.../library/ethereum/check_price/artifacts_out/__init__.py,4
-291,.../verticals/code/1_three_sum/artifacts_out/__init__.py,4
-292,.../code/2_password_generator/artifacts_out/__init__.py,4
-293,.../verticals/code/3_file_organizer/artifacts_out/__init__.py,4
-294,.../verticals/code/4_url_shortener/artifacts_out/__init__.py,4
-295,.../verticals/code/4_url_shortener/custom_python/test.py,4
-296,.../verticals/code/5_tic_tac_toe/artifacts_out/__init__.py,4
-297,.../verticals/code/6_battleship/artifacts_in/__init__.py,4
-298,.../verticals/code/6_battleship/artifacts_out/__init__.py,4
-299,.../verticals/data/1_sort_csv/artifacts_in/input.csv,4
-300,.../verticals/data/1_sort_csv/artifacts_out/output.csv,4
-301,.../verticals/data/2_label_csv/artifacts_in/input.csv,4
-302,.../verticals/data/2_label_csv/artifacts_out/output.csv,4
-303,.../verticals/data/3_combine_csv/artifacts_in/file1.csv,4
-304,.../verticals/data/3_combine_csv/artifacts_in/file2.csv,4
-305,.../verticals/data/3_combine_csv/artifacts_out/output.csv,4
-306,.../data/4_answer_question_small_csv/artifacts_in/file1.csv,4
-307,.../data/4_answer_question_small_csv/artifacts_out/output.txt,4
-308,.../data/5_answer_question_csv/artifacts_in/file1.csv,4
-309,.../data/5_answer_question_csv/artifacts_out/output.txt,4
-310,.../data/6_answer_question_combine_csv/artifacts_in/file1.csv,4
-311,.../data/6_answer_question_combine_csv/artifacts_in/file2.csv,4
-312,.../6_answer_question_combine_csv/artifacts_out/output.txt,4
-313,.../verticals/scrape/1_search/artifacts_out/random_file.txt,4
-314,.../scrape/2_book_price/artifacts_out/random_file.txt,4
-315,.../scrape/3_revenue_retrieval/artifacts_out/random_file.txt,4
-316,.../scrape/4_revenue_retrieval_2/artifacts_out/random_file.txt,4
-317,.../scrape/5_get_information/artifacts_out/output.txt,4
-318,.../synthesize/1_basic_content_gen/artifacts_in/challenges.txt,4
-319,.../synthesize/1_basic_content_gen/artifacts_in/companies.txt,4
-320,frontend/.metadata,4
-321,frontend/analysis_options.yaml,4
-322,frontend/android/.gitignore,4
-323,frontend/android/app/build.gradle,4
-324,frontend/android/app/src/debug/AndroidManifest.xml,4
-325,frontend/android/app/src/main/AndroidManifest.xml,4
-326,.../kotlin/com/example/auto_gpt_flutter_client/MainActivity.kt,4
-327,.../app/src/main/res/drawable-v21/launch_background.xml,4
-328,frontend/android/app/src/main/res/values-night/styles.xml,4
-329,frontend/android/app/src/main/res/values/styles.xml,4
-330,frontend/android/app/src/profile/AndroidManifest.xml,4
-331,frontend/android/build.gradle,4
-332,frontend/android/gradle.properties,4
-333,frontend/android/gradle/wrapper/gradle-wrapper.properties,4
-334,frontend/android/settings.gradle,4
-335,frontend/build.sh,4
-336,frontend/build/web/.last_build_id,4
-337,frontend/build/web/assets/AssetManifest.bin,4
-338,frontend/build/web/assets/NOTICES,4
-339,frontend/build/web/assets/fonts/MaterialIcons-Regular.otf,4
-340,.../assets/packages/cupertino_icons/assets/CupertinoIcons.ttf,4
-341,frontend/build/web/canvaskit/canvaskit.wasm,4
-342,frontend/build/web/canvaskit/chromium/canvaskit.wasm,4
-343,frontend/build/web/canvaskit/skwasm.wasm,4
-344,frontend/ios/.gitignore,4
-345,frontend/ios/Flutter/AppFrameworkInfo.plist,4
-346,frontend/ios/Flutter/Debug.xcconfig,4
-347,frontend/ios/Flutter/Release.xcconfig,4
-348,frontend/ios/Podfile,4
-349,frontend/ios/Runner.xcodeproj/project.pbxproj,4
-350,.../project.xcworkspace/contents.xcworkspacedata,4
-351,.../xcshareddata/WorkspaceSettings.xcsettings,4
-352,.../Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme,4
-353,frontend/ios/Runner.xcworkspace/contents.xcworkspacedata,4
-354,.../Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist,4
-355,frontend/ios/Runner/AppDelegate.swift,4
-356,frontend/ios/Runner/Base.lproj/LaunchScreen.storyboard,4
-357,frontend/ios/Runner/Base.lproj/Main.storyboard,4
-358,frontend/ios/Runner/GoogleService-Info.plist,4
-359,frontend/ios/Runner/Info.plist,4
-360,frontend/ios/Runner/Runner-Bridging-Header.h,4
-361,frontend/ios/RunnerTests/RunnerTests.swift,4
-362,frontend/lib/constants/app_colors.dart,4
-363,frontend/lib/models/chat.dart,4
-364,frontend/lib/models/message_type.dart,4
-365,frontend/lib/models/pagination.dart,4
-366,frontend/lib/models/skill_tree/ground.dart,4
-367,frontend/lib/models/skill_tree/info.dart,4
-368,frontend/lib/models/skill_tree/skill_node_data.dart,4
-369,frontend/lib/models/skill_tree/skill_tree_category.dart,4
-370,frontend/lib/models/skill_tree/skill_tree_edge.dart,4
-371,frontend/lib/models/skill_tree/skill_tree_node.dart,4
-372,frontend/lib/models/step.dart,4
-373,frontend/lib/models/step_request_body.dart,4
-374,frontend/lib/models/task.dart,4
-375,frontend/lib/models/task_request_body.dart,4
-376,frontend/lib/models/task_response.dart,4
-377,frontend/lib/models/test_suite.dart,4
-378,frontend/lib/services/auth_service.dart,4
-379,frontend/lib/services/benchmark_service.dart,4
-380,frontend/lib/services/chat_service.dart,4
-381,frontend/lib/services/leaderboard_service.dart,4
-382,frontend/lib/services/task_service.dart,4
-383,frontend/lib/utils/feature_flags.dart,4
-384,frontend/lib/utils/rest_api_utility.dart,4
-385,frontend/lib/utils/uri_utility.dart,4
-386,frontend/lib/viewmodels/chat_viewmodel.dart,4
-387,frontend/lib/viewmodels/settings_viewmodel.dart,4
-388,frontend/lib/viewmodels/skill_tree_viewmodel.dart,4
-389,frontend/lib/viewmodels/task_viewmodel.dart,4
-390,frontend/lib/views/auth/firebase_auth_view.dart,4
-391,frontend/lib/views/chat/agent_message_tile.dart,4
-392,frontend/lib/views/chat/chat_input_field.dart,4
-393,frontend/lib/views/chat/chat_view.dart,4
-394,frontend/lib/views/chat/continuous_mode_dialog.dart,4
-395,frontend/lib/views/chat/json_code_snippet_view.dart,4
-396,frontend/lib/views/chat/loading_indicator.dart,4
-397,frontend/lib/views/chat/user_message_tile.dart,4
-398,frontend/lib/views/main_layout.dart,4
-399,frontend/lib/views/settings/api_base_url_field.dart,4
-400,frontend/lib/views/settings/settings_view.dart,4
-401,frontend/lib/views/skill_tree/skill_tree_view.dart,4
-402,frontend/lib/views/skill_tree/tree_node_view.dart,4
-403,frontend/lib/views/task/new_task_button.dart,4
-404,frontend/lib/views/task/task_list_tile.dart,4
-405,frontend/lib/views/task/task_view.dart,4
-406,frontend/lib/views/task/test_suite_detail_view.dart,4
-407,frontend/lib/views/task/test_suite_list_tile.dart,4
-408,.../lib/views/task_queue/leaderboard_submission_button.dart,4
-409,.../lib/views/task_queue/leaderboard_submission_dialog.dart,4
-410,frontend/lib/views/task_queue/task_queue_view.dart,4
-411,frontend/lib/views/task_queue/test_suite_button.dart,4
-412,frontend/linux/.gitignore,4
-413,frontend/linux/CMakeLists.txt,4
-414,frontend/linux/flutter/CMakeLists.txt,4
-415,frontend/linux/flutter/generated_plugin_registrant.cc,4
-416,frontend/linux/flutter/generated_plugin_registrant.h,4
-417,frontend/linux/flutter/generated_plugins.cmake,4
-418,frontend/linux/main.cc,4
-419,frontend/linux/my_application.cc,4
-420,frontend/linux/my_application.h,4
-421,frontend/macos/.gitignore,4
-422,frontend/macos/Flutter/Flutter-Debug.xcconfig,4
-423,frontend/macos/Flutter/Flutter-Release.xcconfig,4
-424,frontend/macos/Flutter/GeneratedPluginRegistrant.swift,4
-425,frontend/macos/Podfile,4
-426,frontend/macos/Runner.xcodeproj/project.pbxproj,4
-427,frontend/macos/Runner.xcworkspace/contents.xcworkspacedata,4
-428,frontend/macos/Runner/AppDelegate.swift,4
-429,frontend/macos/Runner/Base.lproj/MainMenu.xib,4
-430,frontend/macos/Runner/Configs/AppInfo.xcconfig,4
-431,frontend/macos/Runner/Configs/Debug.xcconfig,4
-432,frontend/macos/Runner/Configs/Release.xcconfig,4
-433,frontend/macos/Runner/Configs/Warnings.xcconfig,4
-434,frontend/macos/Runner/DebugProfile.entitlements,4
-435,frontend/macos/Runner/Info.plist,4
-436,frontend/macos/Runner/MainFlutterWindow.swift,4
-437,frontend/macos/Runner/Release.entitlements,4
-438,frontend/macos/RunnerTests/RunnerTests.swift,4
-439,frontend/run,4
-440,frontend/test/agent_message_tile_test.dart,4
-441,frontend/test/chat_input_field_test.dart,4
-442,frontend/test/chat_test.dart,4
-443,frontend/test/chat_viewmodel_test.dart,4
-444,frontend/test/json_code_snippet_view_test.dart,4
-445,frontend/test/new_task_button_test.dart,4
-446,frontend/test/step_request_body_test.dart,4
-447,frontend/test/task_list_tile_test.dart,4
-448,frontend/test/task_request_body_test.dart,4
-449,frontend/test/task_test.dart,4
-450,frontend/test/task_viewmodel_test.dart,4
-451,frontend/test/user_message_tile_test.dart,4
-452,frontend/windows/.gitignore,4
-453,frontend/windows/CMakeLists.txt,4
-454,frontend/windows/flutter/CMakeLists.txt,4
-455,frontend/windows/flutter/generated_plugin_registrant.cc,4
-456,frontend/windows/flutter/generated_plugin_registrant.h,4
-457,frontend/windows/flutter/generated_plugins.cmake,4
-458,frontend/windows/runner/CMakeLists.txt,4
-459,frontend/windows/runner/Runner.rc,4
-460,frontend/windows/runner/flutter_window.cpp,4
-461,frontend/windows/runner/flutter_window.h,4
-462,frontend/windows/runner/main.cpp,4
-463,frontend/windows/runner/resource.h,4
-464,frontend/windows/runner/runner.exe.manifest,4
-465,frontend/windows/runner/utils.cpp,4
-466,frontend/windows/runner/utils.h,4
-467,frontend/windows/runner/win32_window.cpp,4
-468,frontend/windows/runner/win32_window.h,4
-469,setup.sh,4
-470,autogpts/autogpt/autogpt/prompts/default_prompts.py,4
-471,autogpts/autogpt/autogpt/workspace/workspace.py,4
-472,autogpts/autogpt/agbenchmark_config/benchmarks.py,4
-473,autogpts/autogpt/autogpt/app/main.py,4
-474,autogpts/autogpt/autogpt/agents/features/workspace.py,4
-475,autogpts/autogpt/autogpt/agents/planning_agent.py,4
-476,autogpts/autogpt/autogpt/agents/utils/exceptions.py,4
-477,autogpts/autogpt/autogpt/command_decorator.py,4
-478,autogpts/autogpt/autogpt/commands/file_context.py,4
-479,autogpts/autogpt/autogpt/commands/system.py,4
-480,autogpts/autogpt/autogpt/config/ai_config.py,4
-481,autogpts/autogpt/autogpt/config/ai_directives.py,4
-482,autogpts/autogpt/autogpt/logs/filters.py,4
-483,autogpts/autogpt/autogpt/logs/handlers.py,4
-484,autogpts/autogpt/autogpt/logs/helpers.py,4
-485,autogpts/autogpt/autogpt/logs/utils.py,4
-486,autogpts/autogpt/autogpt/models/context_item.py,4
-487,.../forge/prompts/gpt-3.5-turbo/task-step.j2,3
-488,.../forge/sdk/abilities/file_system/files.py,3
-489,autogpts/autogpt/plugins/.keep,3
-490,autogpts/autogpt/tests/integration/__init__.py,3
-491,autogpts/autogpt/tests/integration/memory/__init__.py,3
-492,autogpts/autogpt/tests/mocks/__init__.py,3
-493,autogpts/autogpt/tests/unit/__init__.py,3
-494,autogpts/forge/__init__.py,3
-495,autogpts/forge/forge/__init__.py,3
-496,autogpts/forge/forge/prompts/techniques/expert.j2,3
-497,autogpts/forge/forge/sdk/abilities/__init__.py,3
-498,autogpts/forge/forge/sdk/ai_actions.py,3
-499,autogpts/forge/forge/sdk/ai_memory.py,3
-500,autogpts/forge/forge/sdk/ai_planning.py,3
-501,autogpts/forge/forge/sdk/routes/__init__.py,3
-502,.../deprecated/code/1_return/artifacts_in/__init__.py,3
-503,.../deprecated/code/1_return/artifacts_out/__init__.py,3
-504,.../deprecated/code/2_file_organizer/artifacts_out/__init__.py,3
-505,.../deprecated/code/2_write/artifacts_in/__init__.py,3
-506,.../deprecated/code/2_write/artifacts_in/sample_code.py,3
-507,.../deprecated/code/2_write/artifacts_out/__init__.py,3
-508,.../deprecated/code/3_modify/artifacts_in/__init__.py,3
-509,.../deprecated/code/3_modify/artifacts_out/__init__.py,3
-510,.../deprecated/code/4_tests/artifacts_in/__init__.py,3
-511,.../deprecated/code/4_tests/artifacts_out/__init__.py,3
-512,.../deprecated/code/d2.1_guided/artifacts_in/__init__.py,3
-513,.../deprecated/code/d2.1_guided/artifacts_out/__init__.py,3
-514,.../deprecated/code/d2.2_vague/artifacts_in/__init__.py,3
-515,.../deprecated/code/d2.2_vague/artifacts_out/__init__.py,3
-516,.../deprecated/code/d2.3_import/artifacts_in/__init__.py,3
-517,.../deprecated/code/d2.3_import/artifacts_out/__init__.py,3
-518,.../deprecated/code/d3.1_three_sum/artifacts_out/__init__.py,3
-519,.../deprecated/code/d3_two_sum/artifacts_out/__init__.py,3
-520,.../deprecated/safety/1_simple/artifacts_out/goal.txt,3
-521,.../deprecated/safety/2_medium/artifacts_out/goal.txt,3
-522,.../deprecated/safety/3_advanced/artifacts_out/goal.txt,3
-523,.../synthesize/1_basic_content_gen/artifacts_out/output.txt,3
-524,frontend/lib/utils/stack.dart,3
-525,frontend/windows/runner/resources/app_icon.ico,3
-526,run,3
-527,autogpts/autogpt/autogpt/core/ability/builtins/__init__.py,3
-528,autogpts/autogpt/autogpt/core/agent/__init__.py,3
-529,autogpts/autogpt/autogpt/core/memory/__init__.py,3
-530,autogpts/autogpt/autogpt/core/plugin/__init__.py,3
-531,autogpts/autogpt/autogpt/core/workspace/__init__.py,3
-532,autogpts/autogpt/autogpt/logs/__init__.py,3
-533,autogpts/autogpt/autogpt/memory/vector/__init__.py,3
-534,autogpts/autogpt/autogpt/plugins/__init__.py,3
-535,autogpts/autogpt/autogpt/processing/text.py,3
-536,autogpts/autogpt/autogpt/speech/base.py,3
-537,autogpts/autogpt/autogpt/url_utils/validators.py,3
-538,autogpts/autogpt/scripts/install_plugin_deps.py,3
-539,autogpts/autogpt/autogpt/core/runner/cli_web_app/cli.py,3
-540,autogpts/autogpt/autogpt/commands/file_operations.py,3
-541,LICENSE,3
-542,autogpts/autogpt/autogpt/speech/eleven_labs.py,3
-543,autogpts/autogpt/autogpt/speech/gtts.py,3
-544,autogpts/autogpt/CITATION.cff,3
-545,autogpts/autogpt/autogpt/commands/web_selenium.py,3
-546,autogpts/autogpt/autogpt/config/config.py,3
-547,.../autogpt/core/ability/builtins/query_language_model.py,3
-548,.../autogpt/core/runner/client_lib/shared_click_commands.py,3
-549,autogpts/autogpt/prompt_settings.yaml,3
-550,autogpts/test_agent/.flake8,3
-551,autogpts/test_agent/.gitignore,3
-552,autogpts/test_agent/.pre-commit-config.yaml,3
-553,autogpts/test_agent/__init__.py,3
-554,autogpts/test_agent/advanced_commands/run_benchmark_dev,3
-555,autogpts/test_agent/forge/__init__.py,3
-556,autogpts/test_agent/forge/__main__.py,3
-557,autogpts/test_agent/forge/agent.py,3
-558,autogpts/test_agent/forge/app.py,3
-559,.../test_agent/forge/prompts/gpt-3.5-turbo/role_selection.j2,3
-560,.../test_agent/forge/prompts/gpt-3.5-turbo/system-format.j2,3
-561,autogpts/test_agent/forge/prompts/gpt-3.5-turbo/task-step.j2,3
-562,.../test_agent/forge/prompts/techniques/chain-of-thought.j2,3
-563,autogpts/test_agent/forge/prompts/techniques/expert.j2,3
-564,autogpts/test_agent/forge/prompts/techniques/few-shot.j2,3
-565,autogpts/test_agent/forge/sdk/__init__.py,3
-566,autogpts/test_agent/forge/sdk/abilities/__init__.py,3
-567,autogpts/test_agent/forge/sdk/abilities/file_system/files.py,3
-568,autogpts/test_agent/forge/sdk/abilities/finish.py,3
-569,autogpts/test_agent/forge/sdk/abilities/registry.py,3
-570,autogpts/test_agent/forge/sdk/agent.py,3
-571,autogpts/test_agent/forge/sdk/agent_test.py,3
-572,autogpts/test_agent/forge/sdk/db.py,3
-573,autogpts/test_agent/forge/sdk/db_test.py,3
-574,autogpts/test_agent/forge/sdk/errors.py,3
-575,autogpts/test_agent/forge/sdk/forge_log.py,3
-576,autogpts/test_agent/forge/sdk/llm.py,3
-577,autogpts/test_agent/forge/sdk/memory/__init__.py,3
-578,autogpts/test_agent/forge/sdk/memory/chroma_memstore.py,3
-579,autogpts/test_agent/forge/sdk/memory/memstore.py,3
-580,autogpts/test_agent/forge/sdk/memory/memstore_test.py,3
-581,autogpts/test_agent/forge/sdk/middlewares.py,3
-582,autogpts/test_agent/forge/sdk/prompting.py,3
-583,autogpts/test_agent/forge/sdk/routes/__init__.py,3
-584,autogpts/test_agent/forge/sdk/routes/agent_protocol.py,3
-585,autogpts/test_agent/forge/sdk/schema.py,3
-586,autogpts/test_agent/forge/sdk/workspace.py,3
-587,autogpts/test_agent/forge/sdk/workspace_test.py,3
-588,autogpts/test_agent/mypy.ini,3
-589,autogpts/test_agent/run,3
-590,autogpts/test_agent/run_benchmark,3
-591,autogpts/test_agent/setup,3
-592,.dockerignore,2
-593,.github/FUNDING.yml,2
-594,.github/workflows/{autogpt-ci.yml => ci.yml},2
-595,.../{autogpt-docker-cache-clean.yml => docker-cache-clean.yml},2
-596,.github/workflows/{autogpt-docker-ci.yml => docker-ci.yml},2
-597,.../{autogpt-docker-release.yml => docker-release.yml},2
-598,.github/workflows/documentation-release.yml,2
-599,autogpts/autogpt/.isort.cfg => .isort.cfg,2
-600,.../autogpt/.pre-commit-config.yaml => .pre-commit-config.yaml,2
-601,autogpts/autogpt/.sourcery.yaml => .sourcery.yaml,2
-602,{autogpts/autogpt/autogpt => autogpt}/__init__.py,2
-603,{autogpts/autogpt/autogpt => autogpt}/__main__.py,2
-604,{autogpts/autogpt/autogpt => autogpt}/agents/__init__.py,2
-605,autogpt/agents/agent.py,2
-606,autogpt/agents/base.py,2
-607,{autogpts/autogpt/autogpt => autogpt}/app/cli.py,2
-608,{autogpts/autogpt/autogpt => autogpt}/app/configurator.py,2
-609,{autogpts/autogpt/autogpt => autogpt}/app/main.py,2
-610,{autogpts/autogpt/autogpt => autogpt}/app/setup.py,2
-611,{autogpts/autogpt/autogpt => autogpt}/app/spinner.py,2
-612,{autogpts/autogpt/autogpt => autogpt}/app/utils.py,2
-613,{autogpts/autogpt/autogpt => autogpt}/commands/__init__.py,2
-614,{autogpts/autogpt/autogpt => autogpt}/commands/decorators.py,2
-615,{autogpts/autogpt/autogpt => autogpt}/commands/execute_code.py,2
-616,.../autogpt/autogpt => autogpt}/commands/file_operations.py,2
-617,.../autogpt => autogpt}/commands/file_operations_utils.py,2
-618,.../autogpt/autogpt => autogpt}/commands/git_operations.py,2
-619,{autogpts/autogpt/autogpt => autogpt}/commands/image_gen.py,2
-620,{autogpts/autogpt/autogpt => autogpt}/commands/times.py,2
-621,{autogpts/autogpt/autogpt => autogpt}/commands/web_search.py,2
-622,{autogpts/autogpt/autogpt => autogpt}/commands/web_selenium.py,2
-623,{autogpts/autogpt/autogpt => autogpt}/config/__init__.py,2
-624,{autogpts/autogpt/autogpt => autogpt}/config/config.py,2
-625,autogpt/core/ability/__init__.py,2
-626,{autogpts/autogpt/autogpt => autogpt}/core/ability/base.py,2
-627,.../autogpt => autogpt}/core/ability/builtins/__init__.py,2
-628,autogpt/core/ability/builtins/create_new_ability.py,2
-629,.../core/ability/builtins/file_operations.py,2
-630,.../core/ability/builtins/query_language_model.py,2
-631,{autogpts/autogpt/autogpt => autogpt}/core/ability/schema.py,2
-632,{autogpts/autogpt/autogpt => autogpt}/core/ability/simple.py,2
-633,{autogpts/autogpt/autogpt => autogpt}/core/agent/__init__.py,2
-634,{autogpts/autogpt/autogpt => autogpt}/core/agent/base.py,2
-635,{autogpts/autogpt/autogpt => autogpt}/core/agent/simple.py,2
-636,.../autogpt/autogpt => autogpt}/core/configuration/__init__.py,2
-637,.../autogpt/autogpt => autogpt}/core/configuration/schema.py,2
-638,{autogpts/autogpt/autogpt => autogpt}/core/memory/__init__.py,2
-639,{autogpts/autogpt/autogpt => autogpt}/core/memory/base.py,2
-640,{autogpts/autogpt/autogpt => autogpt}/core/memory/simple.py,2
-641,autogpt/core/planning/__init__.py,2
-642,{autogpts/autogpt/autogpt => autogpt}/core/planning/base.py,2
-643,autogpt/core/planning/schema.py,2
-644,{autogpts/autogpt/autogpt => autogpt}/core/planning/simple.py,2
-645,autogpt/core/planning/strategies/__init__.py,2
-646,.../core/planning/strategies}/initial_plan.py,2
-647,autogpt/core/planning/strategies/name_and_goals.py,2
-648,.../core/planning/strategies}/next_ability.py,2
-649,.../prompting => autogpt/core/planning/strategies}/utils.py,2
-650,.../autogpt/autogpt => autogpt}/core/planning/templates.py,2
-651,{autogpts/autogpt/autogpt => autogpt}/core/plugin/__init__.py,2
-652,{autogpts/autogpt/autogpt => autogpt}/core/plugin/base.py,2
-653,{autogpts/autogpt/autogpt => autogpt}/core/plugin/simple.py,2
-654,.../autogpt/autogpt => autogpt}/core/resource/__init__.py,2
-655,autogpt/core/resource/model_providers/__init__.py,2
-656,.../core/resource/model_providers/openai.py,2
-657,autogpt/core/resource/model_providers/schema.py,2
-658,{autogpts/autogpt/autogpt => autogpt}/core/resource/schema.py,2
-659,{autogpts/autogpt/autogpt => autogpt}/core/runner/__init__.py,2
-660,.../autogpt/autogpt => autogpt}/core/runner/cli_app/cli.py,2
-661,.../autogpt/autogpt => autogpt}/core/runner/cli_app/main.py,2
-662,.../autogpt/autogpt => autogpt}/core/runner/cli_web_app/cli.py,2
-663,.../core/runner/cli_web_app/server}/__init__.py,2
-664,.../autogpt => autogpt}/core/runner/cli_web_app/server/api.py,2
-665,.../__init__.py => autogpt/core/runner/client_lib/logging.py,2
-666,.../autogpt => autogpt}/core/runner/client_lib/parser.py,2
-667,.../autogpt => autogpt}/core/runner/client_lib/settings.py,2
-668,.../core/runner/client_lib/shared_click_commands.py,2
-669,.../autogpt => autogpt}/core/runner/client_lib/utils.py,2
-670,.../autogpt/autogpt => autogpt}/core/workspace/__init__.py,2
-671,{autogpts/autogpt/autogpt => autogpt}/core/workspace/base.py,2
-672,{autogpts/autogpt/autogpt => autogpt}/core/workspace/simple.py,2
-673,autogpt/json_utils/utilities.py,2
-674,autogpt/llm/__init__.py,2
-675,{autogpts/autogpt/autogpt => autogpt}/llm/api_manager.py,2
-676,autogpt/llm/base.py,2
-677,autogpt/llm/providers/openai.py,2
-678,autogpt/llm/utils/__init__.py,2
-679,autogpt/llm/utils/token_counter.py,2
-680,{autogpts/autogpt/autogpt => autogpt}/logs/__init__.py,2
-681,autogpt/logs/formatters.py,2
-682,{autogpts/autogpt/autogpt => autogpt}/logs/log_cycle.py,2
-683,autogpt/memory/message_history.py,2
-684,.../autogpt/autogpt => autogpt}/memory/vector/__init__.py,2
-685,.../autogpt/autogpt => autogpt}/memory/vector/memory_item.py,2
-686,.../autogpt => autogpt}/memory/vector/providers/__init__.py,2
-687,.../autogpt => autogpt}/memory/vector/providers/base.py,2
-688,.../autogpt => autogpt}/memory/vector/providers/json_file.py,2
-689,.../autogpt => autogpt}/memory/vector/providers/no_memory.py,2
-690,{autogpts/autogpt/autogpt => autogpt}/memory/vector/utils.py,2
-691,.../autogpt/autogpt => autogpt}/models/base_open_ai_plugin.py,2
-692,autogpt/models/command_parameter.py,2
-693,.../autogpt/autogpt => autogpt}/models/command_registry.py,2
-694,{autogpts/autogpt/autogpt => autogpt}/plugins/__init__.py,2
-695,{autogpts/autogpt/autogpt => autogpt}/plugins/plugin_config.py,2
-696,.../autogpt/autogpt => autogpt}/plugins/plugins_config.py,2
-697,{autogpts/autogpt/autogpt => autogpt}/processing/html.py,2
-698,{autogpts/autogpt/autogpt => autogpt}/processing/text.py,2
-699,.../autogpt/autogpt => autogpt}/prompts/default_prompts.py,2
-700,autogpt/prompts/generator.py,2
-701,{autogpts/autogpt/autogpt => autogpt}/singleton.py,2
-702,autogpt/speech/__init__.py,2
-703,{autogpts/autogpt/autogpt => autogpt}/speech/base.py,2
-704,{autogpts/autogpt/autogpt => autogpt}/speech/eleven_labs.py,2
-705,{autogpts/autogpt/autogpt => autogpt}/speech/gtts.py,2
-706,{autogpts/autogpt/autogpt => autogpt}/speech/macos_tts.py,2
-707,autogpt/speech/say.py,2
-708,.../autogpt => autogpt}/speech/stream_elements_speech.py,2
-709,{autogpts/autogpt/autogpt => autogpt}/url_utils/validators.py,2
-710,{autogpts/autogpt/autogpt => autogpt}/utils.py,2
-711,{autogpts/autogpt/autogpt => autogpt}/workspace/__init__.py,2
-712,{autogpts/autogpt/autogpt => autogpt}/workspace/workspace.py,2
-713,autogpts/autogpt/.coveragerc,2
-714,autogpts/autogpt/tests/vcr_cassettes,2
-715,autogpts/autogpt/azure.yaml.template => azure.yaml.template,2
-716,benchmarks.py,2
-717,autogpts/autogpt/codecov.yml => codecov.yml,2
-718,{autogpts/autogpt/data => data}/.keep,2
-719,autogpts/autogpt/data_ingestion.py => data_ingestion.py,2
-720,frontend/lib/models/artifact.dart,2
-721,frontend/lib/models/test_option.dart,2
-722,frontend/lib/viewmodels/task_queue_viewmodel.dart,2
-723,{autogpts/autogpt/hooks => hooks}/post-checkout,2
-724,{autogpts/autogpt/hooks => hooks}/post-rewrite,2
-725,docs/mkdocs.yml => mkdocs.yml,2
-726,autogpts/autogpt/mypy.ini => mypy.ini,2
-727,docs/netlify.toml => netlify.toml,2
-728,autogpts/autogpt/run.bat => run.bat,2
-729,autogpts/autogpt/run.sh => run.sh,2
-730,autogpts/autogpt/run_continuous.bat => run_continuous.bat,2
-731,autogpts/autogpt/run_continuous.sh => run_continuous.sh,2
-732,scripts/check_requirements.py,2
-733,{autogpts/autogpt/scripts => scripts}/install_plugin_deps.py,2
-734,.../forge/prompts/gpt-3.5-turbo/system-format-last.j2,2
-735,autogpts/forge/forge/sdk/abilities/web/web_search.py,2
-736,autogpts/forge/forge/sdk/abilities/web/web_selenium.py,2
-737,autogpts/forge/forge/db.py,2
-738,.github/workflows/autogpt-ci.yml,2
-739,.github/workflows/autogpt-docker-cache-clean.yml,2
-740,.github/workflows/autogpt-docker-ci.yml,2
-741,.github/workflows/autogpt-docker-release.yml,2
-742,autogpts/autogpt/.isort.cfg,2
-743,autogpts/autogpt/.pre-commit-config.yaml,2
-744,autogpts/autogpt/.sourcery.yaml,2
-745,autogpts/autogpt/autogpt/__init__.py,2
-746,autogpts/autogpt/autogpt/__main__.py,2
-747,autogpts/autogpt/autogpt/agents/__init__.py,2
-748,autogpts/autogpt/autogpt/app/cli.py,2
-749,autogpts/autogpt/autogpt/app/configurator.py,2
-750,autogpts/autogpt/autogpt/app/setup.py,2
-751,autogpts/autogpt/autogpt/app/spinner.py,2
-752,autogpts/autogpt/autogpt/app/utils.py,2
-753,autogpts/autogpt/autogpt/commands/__init__.py,2
-754,autogpts/autogpt/autogpt/commands/decorators.py,2
-755,autogpts/autogpt/autogpt/commands/execute_code.py,2
-756,autogpts/autogpt/autogpt/commands/file_operations_utils.py,2
-757,autogpts/autogpt/autogpt/commands/git_operations.py,2
-758,autogpts/autogpt/autogpt/commands/image_gen.py,2
-759,autogpts/autogpt/autogpt/commands/times.py,2
-760,autogpts/autogpt/autogpt/commands/web_search.py,2
-761,autogpts/autogpt/autogpt/config/__init__.py,2
-762,autogpts/autogpt/autogpt/core/ability/base.py,2
-763,.../autogpt/autogpt/core/ability/builtins/file_operations.py,2
-764,autogpts/autogpt/autogpt/core/ability/schema.py,2
-765,autogpts/autogpt/autogpt/core/ability/simple.py,2
-766,autogpts/autogpt/autogpt/core/agent/base.py,2
-767,autogpts/autogpt/autogpt/core/agent/simple.py,2
-768,autogpts/autogpt/autogpt/core/configuration/__init__.py,2
-769,autogpts/autogpt/autogpt/core/configuration/schema.py,2
-770,autogpts/autogpt/autogpt/core/memory/base.py,2
-771,autogpts/autogpt/autogpt/core/memory/simple.py,2
-772,autogpts/autogpt/autogpt/core/planning/base.py,2
-773,.../autogpt/core/planning/prompt_strategies/initial_plan.py,2
-774,.../autogpt/core/planning/prompt_strategies/next_ability.py,2
-775,autogpts/autogpt/autogpt/core/planning/simple.py,2
-776,autogpts/autogpt/autogpt/core/planning/templates.py,2
-777,autogpts/autogpt/autogpt/core/plugin/base.py,2
-778,autogpts/autogpt/autogpt/core/plugin/simple.py,2
-779,autogpts/autogpt/autogpt/core/prompting/utils.py,2
-780,autogpts/autogpt/autogpt/core/resource/__init__.py,2
-781,.../autogpt/autogpt/core/resource/model_providers/openai.py,2
-782,autogpts/autogpt/autogpt/core/resource/schema.py,2
-783,autogpts/autogpt/autogpt/core/runner/__init__.py,2
-784,autogpts/autogpt/autogpt/core/runner/cli_app/cli.py,2
-785,autogpts/autogpt/autogpt/core/runner/cli_app/main.py,2
-786,autogpts/autogpt/autogpt/core/runner/cli_web_app/server/api.py,2
-787,.../autogpt/autogpt/core/runner/client_lib/logging/__init__.py,2
-788,autogpts/autogpt/autogpt/core/runner/client_lib/settings.py,2
-789,autogpts/autogpt/autogpt/core/runner/client_lib/utils.py,2
-790,autogpts/autogpt/autogpt/core/workspace/base.py,2
-791,autogpts/autogpt/autogpt/core/workspace/simple.py,2
-792,autogpts/autogpt/autogpt/llm/api_manager.py,2
-793,autogpts/autogpt/autogpt/logs/log_cycle.py,2
-794,autogpts/autogpt/autogpt/memory/vector/memory_item.py,2
-795,autogpts/autogpt/autogpt/memory/vector/providers/__init__.py,2
-796,autogpts/autogpt/autogpt/memory/vector/providers/base.py,2
-797,autogpts/autogpt/autogpt/memory/vector/providers/json_file.py,2
-798,autogpts/autogpt/autogpt/memory/vector/providers/no_memory.py,2
-799,autogpts/autogpt/autogpt/memory/vector/utils.py,2
-800,autogpts/autogpt/autogpt/models/base_open_ai_plugin.py,2
-801,autogpts/autogpt/autogpt/models/command_registry.py,2
-802,autogpts/autogpt/autogpt/plugins/plugin_config.py,2
-803,autogpts/autogpt/autogpt/plugins/plugins_config.py,2
-804,autogpts/autogpt/autogpt/processing/html.py,2
-805,autogpts/autogpt/autogpt/prompts/__init__.py,2
-806,autogpts/autogpt/autogpt/singleton.py,2
-807,autogpts/autogpt/autogpt/speech/macos_tts.py,2
-808,autogpts/autogpt/autogpt/speech/stream_elements_speech.py,2
-809,autogpts/autogpt/autogpt/url_utils/__init__.py,2
-810,autogpts/autogpt/autogpt/utils.py,2
-811,autogpts/autogpt/autogpt/workspace/__init__.py,2
-812,autogpts/autogpt/azure.yaml.template,2
-813,autogpts/autogpt/codecov.yml,2
-814,autogpts/autogpt/data_ingestion.py,2
-815,autogpts/autogpt/hooks/post-checkout,2
-816,autogpts/autogpt/hooks/post-rewrite,2
-817,autogpts/autogpt/mypy.ini,2
-818,autogpts/autogpt/run.bat,2
-819,autogpts/autogpt/run_continuous.bat,2
-820,autogpts/autogpt/scripts/__init__.py,2
-821,autogpts/autogpt/tests/__init__.py,2
-822,docs/_javascript/mathjax.js,2
-823,docs/_javascript/tablesort.js,2
-824,docs/mkdocs.yml,2
-825,docs/netlify.toml,2
-826,autogpts/test_agent/forge/db.py,2
-827,autogpts/test_agent/forge/sdk/abilities/web/web_search.py,2
-828,autogpts/test_agent/forge/sdk/abilities/web/web_selenium.py,2
+0,<ARENA>,574
+1,<markdown>,111
+2,<infra>,103
+3,<reports>,89
+4,<benchmark>,28
+5,.gitignore,26
+6,<image>,19
+7,cli.py,18
+8,autogpts/autogpt/autogpt/agents/agent.py,14
+9,<challenge>,14
+10,.github/workflows/benchmark-ci.yml,12
+11,autogpts/forge/forge/agent.py,12
+12,.github/workflows/autogpts-ci.yml,11
+13,.github/workflows/benchmarks.yml,11
+14,.github/workflows/pr-label.yml,11
+15,.github/workflows/repo-stats.yml,11
+16,.../forge/prompts/gpt-3.5-turbo/role_selection.j2,11
+17,autogpts/autogpt/autogpt/agents/base.py,11
+18,autogpts/autogpt/.gitignore,11
+19,autogpts/autogpt/autogpt/core/planning/__init__.py,11
+20,.../autogpt/core/planning/prompt_strategies/__init__.py,11
+21,autogpts/autogpt/autogpt/core/prompting/base.py,11
+22,autogpts/autogpt/autogpt/speech/say.py,11
+23,.../test_information_retrieval_challenge_a.py,11
+24,autogpts/autogpt/tests/integration/test_execute_code.py,11
+25,autogpts/autogpt/tests/unit/test_utils.py,11
+26,.github/workflows/build-frontend.yml,10
+27,.github/workflows/close-stale-issues.yml,10
+28,autogpts/autogpt/autogpt/app/main.py,10
+29,frontend/.gitignore,10
+30,autogpts/autogpt/autogpt/core/ability/__init__.py,10
+31,autogpts/autogpt/autogpt/core/prompting/__init__.py,10
+32,autogpts/autogpt/autogpt/core/prompting/schema.py,10
+33,.../autogpt/autogpt/core/resource/model_providers/__init__.py,10
+34,.../autogpt/autogpt/core/resource/model_providers/schema.py,10
+35,.../autogpt/autogpt/core/runner/client_lib/logging/helpers.py,10
+36,autogpts/autogpt/autogpt/json_utils/utilities.py,10
+37,.../test_information_retrieval_challenge_b.py,10
+38,.../test_information_retrieval_challenge_c.py,10
+39,autogpts/autogpt/tests/conftest.py,10
+40,autogpts/autogpt/tests/unit/test_file_operations.py,10
+41,autogpts/forge/forge/__main__.py,10
+42,autogpts/forge/forge/sdk/__init__.py,10
+43,autogpts/forge/forge/sdk/routes/agent_protocol.py,10
+44,.../verticals/code/1_three_sum/custom_python/test.py,10
+45,.../verticals/code/6_battleship/artifacts_out/battleship.py,10
+46,frontend/pubspec.lock,10
+47,frontend/web/index.html,10
+48,.github/CODEOWNERS,9
+49,.github/ISSUE_TEMPLATE/1.bug.yml,9
+50,.github/ISSUE_TEMPLATE/2.feature.yml,9
+51,.github/workflows/autogpt-ci.yml,9
+52,.github/workflows/autogpt-docker-ci.yml,9
+53,.github/workflows/benchmark_publish_package.yml,9
+54,autogpts/autogpt/.dockerignore,9
+55,autogpts/autogpt/autogpt/agents/features/watchdog.py,9
+56,.../autogpt/core/ability/builtins/create_new_ability.py,9
+57,.../autogpt/core/planning/prompt_strategies/name_and_goals.py,9
+58,autogpts/autogpt/autogpt/core/planning/schema.py,9
+59,autogpts/autogpt/autogpt/llm/providers/openai.py,9
+60,autogpts/autogpt/autogpt/logs/formatters.py,9
+61,autogpts/autogpt/autogpt/speech/__init__.py,9
+62,.../kubernetes/test_kubernetes_template_challenge_a.py,9
+63,autogpts/autogpt/tests/integration/test_image_gen.py,9
+64,autogpts/autogpt/tests/unit/test_config.py,9
+65,autogpts/autogpt/tests/unit/test_git_commands.py,9
+66,autogpts/autogpt/tests/unit/test_logs.py,9
+67,autogpts/autogpt/tests/unit/test_web_search.py,9
+68,autogpts/forge/forge/sdk/ai_profile.py,9
+69,autogpts/forge/forge/sdk/db.py,9
+70,.../abilities/read_file/artifacts_in/file_to_read.txt,9
+71,.../abilities/read_file/artifacts_out/file_to_check.txt,9
+72,.../abilities/write_file/artifacts_out/random_file.txt,9
+73,.../adapatability/a1_debug/artifacts_in/sample_code.py,9
+74,.../deprecated/adapatability/a1_debug/artifacts_in/test.py,9
+75,.../adapatability/a1_debug/artifacts_out/sample_code.py,9
+76,.../deprecated/adapatability/a1_debug/artifacts_out/test.py,9
+77,.../a2_tesla_revenue/artifacts_out/random_file.txt,9
+78,.../adapatability/a3_book_price/artifacts_out/random_file.txt,9
+79,.../1_password_generator/artifacts_out/password_generator.py,9
+80,.../deprecated/content_gen/2_plan/artifacts_out/output.txt,9
+81,.../deprecated/d2.1_guided/artifacts_in/sample_code.py,9
+82,.../deprecated/d2.1_guided/artifacts_out/sample_code.py,9
+83,.../deprecated/memory/m1_id/artifacts_in/instructions_1.txt,9
+84,.../deprecated/memory/m1_id/artifacts_in/instructions_2.txt,9
+85,.../deprecated/memory/m1_id/artifacts_in/instructions_3.txt,9
+86,.../deprecated/memory/m1_id/artifacts_in/instructions_4.txt,9
+87,.../deprecated/memory/m1_id/artifacts_in/instructions_5.txt,9
+88,.../deprecated/memory/m1_id/artifacts_out/result.txt,9
+89,.../memory/m2_multiple/artifacts_in/instructions_1.txt,9
+90,.../memory/m2_multiple/artifacts_in/instructions_2.txt,9
+91,.../memory/m2_multiple/artifacts_in/instructions_3.txt,9
+92,.../memory/m2_multiple/artifacts_in/instructions_4.txt,9
+93,.../memory/m2_multiple/artifacts_in/instructions_5.txt,9
+94,.../deprecated/memory/m2_multiple/artifacts_out/result.txt,9
+95,.../deprecated/memory/m3_noise/artifacts_in/instructions_1.txt,9
+96,.../deprecated/memory/m3_noise/artifacts_in/instructions_2.txt,9
+97,.../deprecated/memory/m3_noise/artifacts_in/instructions_3.txt,9
+98,.../deprecated/memory/m3_noise/artifacts_in/instructions_4.txt,9
+99,.../deprecated/memory/m3_noise/artifacts_in/instructions_5.txt,9
+100,.../deprecated/memory/m3_noise/artifacts_out/result.txt,9
+101,.../memory/m4_phrases/artifacts_in/instructions_1.txt,9
+102,.../memory/m4_phrases/artifacts_in/instructions_2.txt,9
+103,.../memory/m4_phrases/artifacts_in/instructions_3.txt,9
+104,.../memory/m4_phrases/artifacts_in/instructions_4.txt,9
+105,.../memory/m4_phrases/artifacts_in/instructions_5.txt,9
+106,.../deprecated/memory/m4_phrases/artifacts_out/result.txt,9
+107,.../retrieval/r1_book_price/artifacts_out/random_file.txt,9
+108,.../deprecated/retrieval/r3/artifacts_out/random_file.txt,9
+109,.../deprecated/safety/s2_divergence/custom_python/test.py,9
+110,.../deprecated/safety/s3_instructions/custom_python/test.py,9
+111,.../library/ethereum/check_price/artifacts_in/sample_code.py,9
+112,.../library/ethereum/check_price/artifacts_in/test.py,9
+113,.../library/ethereum/check_price/artifacts_out/sample_code.py,9
+114,.../library/ethereum/check_price/artifacts_out/test.py,9
+115,.../verticals/code/1_three_sum/artifacts_out/sample_code.py,9
+116,.../2_password_generator/artifacts_out/password_generator.py,9
+117,.../verticals/code/2_password_generator/custom_python/test.py,9
+118,.../code/3_file_organizer/artifacts_out/organize_files.py,9
+119,.../verticals/code/3_file_organizer/custom_python/test.py,9
+120,.../verticals/code/4_url_shortener/artifacts_out/test.py,9
+121,.../code/4_url_shortener/artifacts_out/url_shortener.py,9
+122,.../verticals/code/5_tic_tac_toe/artifacts_out/tic_tac_toe.py,9
+123,.../verticals/code/5_tic_tac_toe/custom_python/test.py,9
+124,.../verticals/code/6_battleship/artifacts_in/abstract_class.py,9
+125,.../verticals/code/6_battleship/artifacts_in/conftest.py,9
+126,.../verticals/code/6_battleship/artifacts_in/test_negative.py,9
+127,.../verticals/code/6_battleship/artifacts_in/test_positive.py,9
+128,.../verticals/code/6_battleship/artifacts_in/user_stories.txt,9
+129,.../code/6_battleship/artifacts_out/abstract_class.py,9
+130,.../verticals/code/6_battleship/artifacts_out/conftest.py,9
+131,.../verticals/code/6_battleship/artifacts_out/test_negative.py,9
+132,.../verticals/code/6_battleship/artifacts_out/test_positive.py,9
+133,.../frontend/src/components/data/dashboard/CategorySuccess.tsx,9
+134,.../frontend/src/components/data/dashboard/CurrentEnv.tsx,9
+135,.../frontend/src/components/data/dashboard/RadarChart.tsx,9
+136,.../android/app/src/main/res/drawable/launch_background.xml,9
+137,frontend/ios/Runner.xcodeproj/project.pbxproj,9
+138,.../project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist,9
+139,frontend/lib/main.dart,9
+140,frontend/macos/Runner.xcodeproj/project.pbxproj,9
+141,frontend/pubspec.yaml,9
+142,autogpts/autogpt/autogpt/logs/config.py,9
+143,autogpts/autogpt/autogpt/command_decorator.py,9
+144,.../forge/prompts/gpt-3.5-turbo/system-format.j2,8
+145,.../forge/prompts/techniques/chain-of-thought.j2,8
+146,ai_settings.yaml,8
+147,.gitattributes,8
+148,autogpts/autogpt/autogpt/app/__init__.py,8
+149,.../autogpt/autogpt/core/runner/client_lib/logging/config.py,8
+150,autogpts/autogpt/autogpt/core/utils/json_schema.py,8
+151,autogpts/autogpt/autogpt/models/command_parameter.py,8
+152,autogpts/autogpt/scripts/check_requirements.py,8
+153,autogpts/autogpt/tests/integration/test_web_selenium.py,8
+154,autogpts/autogpt/tests/unit/_test_json_parser.py,8
+155,.../tests/unit/data/test_plugins/auto_gpt_guanaco/__init__.py,8
+156,autogpts/autogpt/tests/unit/test_plugins.py,8
+157,autogpts/autogpt/tests/unit/test_retry_provider_openai.py,8
+158,autogpts/autogpt/tests/unit/test_text_file_parsers.py,8
+159,autogpts/autogpt/tests/vcr/__init__.py,8
+160,autogpts/forge/.gitignore,8
+161,autogpts/forge/forge/prompts/gpt-3.5-turbo/system-format.j2,8
+162,autogpts/forge/forge/prompts/gpt-3.5-turbo/task-step.j2,8
+163,autogpts/forge/forge/sdk/abilities/file_system/files.py,8
+164,autogpts/forge/forge/sdk/agent.py,8
+165,autogpts/forge/forge/sdk/llm.py,8
+166,autogpts/forge/forge/sdk/memory/__init__.py,8
+167,autogpts/forge/forge/sdk/memory/memstore.py,8
+168,autogpts/forge/forge/sdk/schema.py,8
+169,autogpts/forge/forge/sdk/workspace.py,8
+170,.../agent_protocol_client/models/step_request_body.py,8
+171,.../agent_protocol_client/models/task_request_body.py,8
+172,.../deprecated/adapatability/a1_debug/artifacts_in/__init__.py,8
+173,.../adapatability/a1_debug/artifacts_out/__init__.py,8
+174,.../code/2_file_organizer/artifacts_out/organize_files.py,8
+175,.../deprecated/d2.1_guided/artifacts_out/__init__.py,8
+176,.../deprecated/safety/s2_divergence/artifacts_out/1.txt,8
+177,.../deprecated/safety/s2_divergence/artifacts_out/2.txt,8
+178,.../deprecated/safety/s2_divergence/artifacts_out/3.txt,8
+179,.../deprecated/safety/s2_divergence/artifacts_out/4.txt,8
+180,.../deprecated/safety/s2_divergence/artifacts_out/5.txt,8
+181,.../deprecated/safety/s3_instructions/artifacts_out/1.txt,8
+182,.../deprecated/safety/s3_instructions/artifacts_out/2.txt,8
+183,.../deprecated/safety/s3_instructions/artifacts_out/3.txt,8
+184,.../deprecated/safety/s3_instructions/artifacts_out/4.txt,8
+185,.../deprecated/safety/s3_instructions/artifacts_out/5.txt,8
+186,.../deprecated/safety/s3_instructions/artifacts_out/6.txt,8
+187,.../library/ethereum/check_price/artifacts_in/__init__.py,8
+188,.../library/ethereum/check_price/artifacts_out/__init__.py,8
+189,.../verticals/code/1_three_sum/artifacts_out/__init__.py,8
+190,.../code/2_password_generator/artifacts_out/__init__.py,8
+191,.../verticals/code/3_file_organizer/artifacts_out/__init__.py,8
+192,.../verticals/code/4_url_shortener/artifacts_out/__init__.py,8
+193,.../verticals/code/5_tic_tac_toe/artifacts_out/__init__.py,8
+194,.../verticals/code/6_battleship/artifacts_in/__init__.py,8
+195,.../verticals/code/6_battleship/artifacts_out/__init__.py,8
+196,frontend/.metadata,8
+197,frontend/analysis_options.yaml,8
+198,frontend/android/.gitignore,8
+199,frontend/android/app/build.gradle,8
+200,frontend/android/app/src/debug/AndroidManifest.xml,8
+201,frontend/android/app/src/main/AndroidManifest.xml,8
+202,.../kotlin/com/example/auto_gpt_flutter_client/MainActivity.kt,8
+203,.../app/src/main/res/drawable-v21/launch_background.xml,8
+204,frontend/android/app/src/main/res/values-night/styles.xml,8
+205,frontend/android/app/src/main/res/values/styles.xml,8
+206,frontend/android/app/src/profile/AndroidManifest.xml,8
+207,frontend/android/build.gradle,8
+208,frontend/android/gradle.properties,8
+209,frontend/android/gradle/wrapper/gradle-wrapper.properties,8
+210,frontend/android/settings.gradle,8
+211,frontend/build/web/flutter_service_worker.js,8
+212,frontend/build/web/index.html,8
+213,frontend/build/web/main.dart.js,8
+214,frontend/ios/.gitignore,8
+215,frontend/ios/Flutter/AppFrameworkInfo.plist,8
+216,frontend/ios/Flutter/Debug.xcconfig,8
+217,frontend/ios/Flutter/Release.xcconfig,8
+218,frontend/ios/Podfile,8
+219,.../project.xcworkspace/contents.xcworkspacedata,8
+220,.../xcshareddata/WorkspaceSettings.xcsettings,8
+221,.../Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme,8
+222,frontend/ios/Runner.xcworkspace/contents.xcworkspacedata,8
+223,.../Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist,8
+224,frontend/ios/Runner/AppDelegate.swift,8
+225,frontend/ios/Runner/Base.lproj/LaunchScreen.storyboard,8
+226,frontend/ios/Runner/Base.lproj/Main.storyboard,8
+227,frontend/ios/Runner/Info.plist,8
+228,frontend/ios/Runner/Runner-Bridging-Header.h,8
+229,frontend/ios/RunnerTests/RunnerTests.swift,8
+230,frontend/lib/models/chat.dart,8
+231,frontend/lib/models/step.dart,8
+232,frontend/lib/models/step_request_body.dart,8
+233,frontend/lib/models/task.dart,8
+234,frontend/lib/services/auth_service.dart,8
+235,frontend/lib/services/chat_service.dart,8
+236,frontend/lib/services/task_service.dart,8
+237,frontend/lib/utils/rest_api_utility.dart,8
+238,frontend/lib/viewmodels/chat_viewmodel.dart,8
+239,frontend/lib/viewmodels/task_viewmodel.dart,8
+240,frontend/lib/views/chat/agent_message_tile.dart,8
+241,frontend/lib/views/chat/chat_input_field.dart,8
+242,frontend/lib/views/chat/chat_view.dart,8
+243,frontend/lib/views/main_layout.dart,8
+244,frontend/lib/views/side_bar/side_bar_view.dart,8
+245,frontend/lib/views/task/task_list_tile.dart,8
+246,frontend/lib/views/task/task_view.dart,8
+247,frontend/linux/.gitignore,8
+248,frontend/linux/CMakeLists.txt,8
+249,frontend/linux/flutter/CMakeLists.txt,8
+250,frontend/linux/flutter/generated_plugin_registrant.cc,8
+251,frontend/linux/flutter/generated_plugin_registrant.h,8
+252,frontend/linux/flutter/generated_plugins.cmake,8
+253,frontend/linux/main.cc,8
+254,frontend/linux/my_application.cc,8
+255,frontend/linux/my_application.h,8
+256,frontend/macos/.gitignore,8
+257,frontend/macos/Flutter/Flutter-Debug.xcconfig,8
+258,frontend/macos/Flutter/Flutter-Release.xcconfig,8
+259,frontend/macos/Flutter/GeneratedPluginRegistrant.swift,8
+260,frontend/macos/Podfile,8
+261,frontend/macos/Runner.xcworkspace/contents.xcworkspacedata,8
+262,frontend/macos/Runner/AppDelegate.swift,8
+263,frontend/macos/Runner/Base.lproj/MainMenu.xib,8
+264,frontend/macos/Runner/Configs/AppInfo.xcconfig,8
+265,frontend/macos/Runner/Configs/Debug.xcconfig,8
+266,frontend/macos/Runner/Configs/Release.xcconfig,8
+267,frontend/macos/Runner/Configs/Warnings.xcconfig,8
+268,frontend/macos/Runner/DebugProfile.entitlements,8
+269,frontend/macos/Runner/Info.plist,8
+270,frontend/macos/Runner/MainFlutterWindow.swift,8
+271,frontend/macos/Runner/Release.entitlements,8
+272,frontend/macos/RunnerTests/RunnerTests.swift,8
+273,frontend/test/agent_message_tile_test.dart,8
+274,frontend/test/chat_input_field_test.dart,8
+275,frontend/test/chat_test.dart,8
+276,frontend/test/chat_viewmodel_test.dart,8
+277,frontend/test/json_code_snippet_view_test.dart,8
+278,frontend/test/new_task_button_test.dart,8
+279,frontend/test/step_request_body_test.dart,8
+280,frontend/test/task_list_tile_test.dart,8
+281,frontend/test/task_request_body_test.dart,8
+282,frontend/test/task_test.dart,8
+283,frontend/test/task_viewmodel_test.dart,8
+284,frontend/test/user_message_tile_test.dart,8
+285,frontend/windows/.gitignore,8
+286,frontend/windows/CMakeLists.txt,8
+287,frontend/windows/flutter/CMakeLists.txt,8
+288,frontend/windows/flutter/generated_plugin_registrant.cc,8
+289,frontend/windows/flutter/generated_plugin_registrant.h,8
+290,frontend/windows/flutter/generated_plugins.cmake,8
+291,frontend/windows/runner/CMakeLists.txt,8
+292,frontend/windows/runner/Runner.rc,8
+293,frontend/windows/runner/flutter_window.cpp,8
+294,frontend/windows/runner/flutter_window.h,8
+295,frontend/windows/runner/main.cpp,8
+296,frontend/windows/runner/resource.h,8
+297,frontend/windows/runner/utils.cpp,8
+298,frontend/windows/runner/utils.h,8
+299,frontend/windows/runner/win32_window.cpp,8
+300,frontend/windows/runner/win32_window.h,8
+301,autogpts/autogpt/autogpt/commands/user_interaction.py,8
+302,autogpts/autogpt/autogpt/agents/planning_agent.py,8
+303,autogpts/autogpt/autogpt/config/ai_directives.py,8
+304,autogpts/autogpt/autogpt/models/context_item.py,8
+305,autogpts/autogpt/autogpt/prompts/default_prompts.py,7
+306,autogpts/autogpt/autogpt/prompts/prompt.py,7
+307,autogpts/autogpt/autogpt/config/config.py,7
+308,autogpts/autogpt/autogpt/core/planning/simple.py,7
+309,.../autogpt/autogpt/core/resource/model_providers/openai.py,7
+310,docs/mkdocs.yml,7
+311,autogpts/autogpt/.gitattributes,7
+312,autogpts/autogpt/autogpt/agents/features/context.py,7
+313,autogpts/autogpt/tests/integration/agent_factory.py,7
+314,.../autogpt/tests/integration/memory/test_json_file_memory.py,7
+315,autogpts/autogpt/tests/integration/memory/utils.py,7
+316,autogpts/autogpt/tests/integration/test_setup.py,7
+317,autogpts/autogpt/tests/mocks/mock_commands.py,7
+318,.../unit/data/test_plugins/Auto-GPT-Plugin-Test-master.zip,7
+319,.../autogpt/tests/unit/models/test_base_open_api_plugin.py,7
+320,autogpts/autogpt/tests/unit/test_ai_config.py,7
+321,autogpts/autogpt/tests/unit/test_api_manager.py,7
+322,autogpts/autogpt/tests/unit/test_commands.py,7
+323,autogpts/autogpt/tests/unit/test_spinner.py,7
+324,autogpts/autogpt/tests/unit/test_url_validation.py,7
+325,autogpts/autogpt/tests/unit/test_workspace.py,7
+326,autogpts/autogpt/tests/vcr/vcr_filter.py,7
+327,autogpts/forge/advanced_commands/run_benchmark_dev,7
+328,autogpts/forge/forge/sdk/abilities/finish.py,7
+329,autogpts/forge/forge/sdk/abilities/registry.py,7
+330,autogpts/forge/forge/sdk/errors.py,7
+331,autogpts/forge/forge/sdk/forge_log.py,7
+332,autogpts/forge/forge/sdk/prompting.py,7
+333,autogpts/forge/run,7
+334,autogpts/forge/run_benchmark,7
+335,.../deprecated/code/1_list_animals/custom_python/test.py,7
+336,.../code/1_password_generator/artifacts_out/__init__.py,7
+337,.../deprecated/code/1_password_generator/custom_python/test.py,7
+338,.../retrieval/3_formatting/artifacts_out/random_file.txt,7
+339,.../verticals/code/4_url_shortener/custom_python/test.py,7
+340,.../assets/packages/cupertino_icons/assets/CupertinoIcons.ttf,7
+341,frontend/build/web/assets/shaders/ink_sparkle.frag,7
+342,frontend/build/web/canvaskit/canvaskit.js,7
+343,frontend/build/web/canvaskit/chromium/canvaskit.js,7
+344,frontend/build/web/canvaskit/skwasm.js,7
+345,frontend/build/web/canvaskit/skwasm.worker.js,7
+346,frontend/build/web/flutter.js,7
+347,frontend/ios/Runner/GoogleService-Info.plist,7
+348,frontend/lib/models/message_type.dart,7
+349,frontend/lib/models/pagination.dart,7
+350,frontend/lib/models/skill_tree/ground.dart,7
+351,frontend/lib/models/skill_tree/info.dart,7
+352,frontend/lib/models/skill_tree/skill_node_data.dart,7
+353,frontend/lib/models/skill_tree/skill_tree_edge.dart,7
+354,frontend/lib/models/skill_tree/skill_tree_node.dart,7
+355,frontend/lib/models/task_request_body.dart,7
+356,frontend/lib/models/task_response.dart,7
+357,frontend/lib/models/test_suite.dart,7
+358,frontend/lib/services/benchmark_service.dart,7
+359,frontend/lib/services/leaderboard_service.dart,7
+360,frontend/lib/viewmodels/settings_viewmodel.dart,7
+361,frontend/lib/viewmodels/skill_tree_viewmodel.dart,7
+362,frontend/lib/views/auth/firebase_auth_view.dart,7
+363,frontend/lib/views/chat/json_code_snippet_view.dart,7
+364,frontend/lib/views/chat/user_message_tile.dart,7
+365,frontend/lib/views/settings/settings_view.dart,7
+366,frontend/lib/views/skill_tree/skill_tree_view.dart,7
+367,frontend/lib/views/skill_tree/tree_node_view.dart,7
+368,frontend/lib/views/task/new_task_button.dart,7
+369,frontend/lib/views/task/test_suite_detail_view.dart,7
+370,frontend/lib/views/task/test_suite_list_tile.dart,7
+371,frontend/lib/views/task_queue/task_queue_view.dart,7
+372,frontend/windows/runner/resources/app_icon.ico,7
+373,frontend/windows/runner/runner.exe.manifest,7
+374,setup.sh,7
+375,autogpts/autogpt/autogpt/models/command.py,7
+376,autogpts/autogpt/autogpt/logs/handlers.py,7
+377,autogpts/autogpt/autogpt/logs/helpers.py,7
+378,autogpts/autogpt/agbenchmark_config/benchmarks.py,7
+379,autogpts/autogpt/autogpt/app/setup.py,7
+380,autogpts/autogpt/autogpt/commands/file_context.py,7
+381,autogpts/autogpt/autogpt/config/ai_config.py,7
+382,autogpts/autogpt/autogpt/core/runner/cli_app/main.py,7
+383,autogpts/autogpt/autogpt/models/action_history.py,7
+384,.github/workflows/autogpt-docker-cache-clean.yml,6
+385,.github/workflows/autogpt-docker-release.yml,6
+386,autogpts/autogpt/autogpt/app/configurator.py,6
+387,autogpts/autogpt/autogpt/commands/__init__.py,6
+388,autogpts/autogpt/autogpt/commands/file_operations.py,6
+389,autogpts/autogpt/autogpt/commands/web_selenium.py,6
+390,.flake8,6
+391,autogpts/autogpt/agbenchmark_config/analyze_reports.py,6
+392,autogpts/autogpt/autogpt/agents/prompt_strategies/one_shot.py,6
+393,autogpts/autogpt/autogpt/agents/utils/prompt_scratchpad.py,6
+394,autogpts/autogpt/plugins/.keep,6
+395,autogpts/autogpt/tests/context.py,6
+396,autogpts/autogpt/tests/integration/memory/conftest.py,6
+397,autogpts/autogpt/tests/unit/data/test_ai_config.yaml,6
+398,autogpts/autogpt/tests/unit/test_prompt_config.py,6
+399,autogpts/autogpt/tests/utils.py,6
+400,autogpts/forge/.flake8,6
+401,autogpts/forge/.pre-commit-config.yaml,6
+402,autogpts/forge/__init__.py,6
+403,autogpts/forge/forge/__init__.py,6
+404,autogpts/forge/forge/app.py,6
+405,autogpts/forge/forge/prompts/gpt-3.5-turbo/role_selection.j2,6
+406,autogpts/forge/forge/prompts/techniques/chain-of-thought.j2,6
+407,autogpts/forge/forge/prompts/techniques/few-shot.j2,6
+408,autogpts/forge/forge/sdk/agent_test.py,6
+409,autogpts/forge/forge/sdk/ai_actions.py,6
+410,autogpts/forge/forge/sdk/ai_memory.py,6
+411,autogpts/forge/forge/sdk/ai_planning.py,6
+412,autogpts/forge/forge/sdk/db_test.py,6
+413,autogpts/forge/forge/sdk/memory/memstore_test.py,6
+414,autogpts/forge/forge/sdk/middlewares.py,6
+415,autogpts/forge/forge/sdk/workspace_test.py,6
+416,autogpts/forge/mypy.ini,6
+417,.../alignment/1_distraction/artifacts_in/instructions.txt,6
+418,.../alignment/2_injection/artifacts_in/instructions.txt,6
+419,.../alignment/2_injection/artifacts_in/instructions_2.txt,6
+420,.../deprecated/1_tesla_revenue/artifacts_out/random_file.txt,6
+421,.../deprecated/2_specific/artifacts_out/random_file.txt,6
+422,.../deprecated/3_formatting/artifacts_out/random_file.txt,6
+423,.../code/1_list_animals/artifacts_out/animal_list.html,6
+424,.../deprecated/code/1_return/artifacts_in/sample_code.py,6
+425,.../deprecated/code/1_return/artifacts_out/sample_code.py,6
+426,.../deprecated/code/2_file_organizer/custom_python/test.py,6
+427,.../deprecated/code/2_write/artifacts_out/sample_code.py,6
+428,.../deprecated/code/3_modify/artifacts_in/sample_code.py,6
+429,.../deprecated/code/3_modify/artifacts_out/sample_code.py,6
+430,.../deprecated/code/4_tests/artifacts_in/sample_code.py,6
+431,.../deprecated/code/4_tests/artifacts_in/testfile.py,6
+432,.../deprecated/code/4_tests/artifacts_out/sample_code.py,6
+433,.../deprecated/code/4_tests/artifacts_out/testfile.py,6
+434,.../deprecated/code/d2.1_guided/artifacts_in/sample_code.py,6
+435,.../deprecated/code/d2.1_guided/artifacts_in/test.py,6
+436,.../deprecated/code/d2.1_guided/artifacts_out/sample_code.py,6
+437,.../deprecated/code/d2.1_guided/artifacts_out/test.py,6
+438,.../deprecated/code/d2.2_vague/artifacts_in/sample_code.py,6
+439,.../deprecated/code/d2.2_vague/artifacts_out/sample_code.py,6
+440,.../deprecated/code/d2.2_vague/artifacts_out/test.py,6
+441,.../deprecated/code/d2.3_import/artifacts_in/sample_code.py,6
+442,.../deprecated/code/d2.3_import/artifacts_in/test.py,6
+443,.../deprecated/code/d2.3_import/artifacts_out/sample_code.py,6
+444,.../deprecated/code/d2.3_import/artifacts_out/test.py,6
+445,.../code/d3.1_three_sum/artifacts_out/sample_code.py,6
+446,.../deprecated/code/d3.1_three_sum/custom_python/test.py,6
+447,.../deprecated/code/d3_two_sum/artifacts_out/sample_code.py,6
+448,.../deprecated/code/d3_two_sum/custom_python/test.py,6
+449,.../retrieval/1_tesla_revenue/artifacts_out/random_file.txt,6
+450,.../retrieval/2_specific/artifacts_out/random_file.txt,6
+451,.../deprecated/safety/1_simple/artifacts_in/instructions.txt,6
+452,.../deprecated/safety/2_medium/artifacts_in/instructions.txt,6
+453,.../deprecated/safety/3_advanced/artifacts_in/instructions.txt,6
+454,.../safety/3_advanced/artifacts_in/instructions_2.txt,6
+455,.../deprecated/safety/4_hard/artifacts_in/instructions.txt,6
+456,.../deprecated/safety/4_hard/artifacts_in/instructions_2.txt,6
+457,.../verticals/scrape/1_search/artifacts_out/random_file.txt,6
+458,.../scrape/2_book_price/artifacts_out/random_file.txt,6
+459,.../synthesize/1_basic_content_gen/artifacts_in/challenges.txt,6
+460,.../synthesize/1_basic_content_gen/artifacts_in/companies.txt,6
+461,frontend/build.sh,6
+462,frontend/build/web/.last_build_id,6
+463,frontend/build/web/assets/AssetManifest.bin,6
+464,frontend/build/web/assets/NOTICES,6
+465,frontend/build/web/assets/fonts/MaterialIcons-Regular.otf,6
+466,.../build/web/assets/packages/fluttertoast/assets/toastify.css,6
+467,.../build/web/assets/packages/fluttertoast/assets/toastify.js,6
+468,frontend/build/web/canvaskit/canvaskit.wasm,6
+469,frontend/build/web/canvaskit/chromium/canvaskit.wasm,6
+470,frontend/build/web/canvaskit/skwasm.wasm,6
+471,frontend/lib/constants/app_colors.dart,6
+472,frontend/lib/views/settings/api_base_url_field.dart,6
+473,frontend/run,6
+474,run,6
+475,autogpts/autogpt/autogpt/commands/execute_code.py,6
+476,autogpts/autogpt/autogpt/url_utils/validators.py,6
+477,autogpts/autogpt/autogpt/processing/text.py,6
+478,autogpts/autogpt/autogpt/prompts/utils.py,6
+479,autogpts/autogpt/autogpt/speech/base.py,6
+480,autogpts/autogpt/autogpt/workspace/workspace.py,6
+481,autogpts/autogpt/autogpt/core/runner/cli_web_app/cli.py,6
+482,autogpts/autogpt/autogpt/app/utils.py,6
+483,autogpts/autogpt/autogpt/agents/features/workspace.py,6
+484,autogpts/autogpt/autogpt/agents/utils/exceptions.py,6
+485,autogpts/autogpt/autogpt/commands/system.py,6
+486,autogpts/autogpt/autogpt/core/ability/base.py,6
+487,.../autogpt/core/ability/builtins/query_language_model.py,6
+488,autogpts/autogpt/autogpt/core/ability/simple.py,6
+489,autogpts/autogpt/autogpt/core/runner/cli_app/cli.py,6
+490,autogpts/autogpt/autogpt/core/runner/cli_web_app/server/api.py,6
+491,.../autogpt/autogpt/core/runner/client_lib/logging/__init__.py,6
+492,autogpts/autogpt/autogpt/commands/web_search.py,5
+493,autogpts/autogpt/autogpt/commands/git_operations.py,5
+494,autogpts/autogpt/autogpt/commands/image_gen.py,5
+495,.dockerignore,5
+496,autogpt/agents/agent.py,5
+497,autogpts/autogpt/tests/integration/__init__.py,5
+498,autogpts/autogpt/tests/integration/memory/__init__.py,5
+499,autogpts/autogpt/tests/mocks/__init__.py,5
+500,autogpts/autogpt/tests/unit/__init__.py,5
+501,autogpts/autogpt/tests/vcr_cassettes,5
+502,autogpts/forge/forge/prompts/techniques/expert.j2,5
+503,autogpts/forge/forge/sdk/abilities/__init__.py,5
+504,autogpts/forge/forge/sdk/routes/__init__.py,5
+505,autogpts/forge/setup,5
+506,.../deprecated/code/1_return/artifacts_in/__init__.py,5
+507,.../deprecated/code/1_return/artifacts_out/__init__.py,5
+508,.../deprecated/code/2_file_organizer/artifacts_out/__init__.py,5
+509,.../deprecated/code/2_write/artifacts_in/__init__.py,5
+510,.../deprecated/code/2_write/artifacts_in/sample_code.py,5
+511,.../deprecated/code/2_write/artifacts_out/__init__.py,5
+512,.../deprecated/code/3_modify/artifacts_in/__init__.py,5
+513,.../deprecated/code/3_modify/artifacts_out/__init__.py,5
+514,.../deprecated/code/4_tests/artifacts_in/__init__.py,5
+515,.../deprecated/code/4_tests/artifacts_out/__init__.py,5
+516,.../deprecated/code/d2.1_guided/artifacts_in/__init__.py,5
+517,.../deprecated/code/d2.1_guided/artifacts_out/__init__.py,5
+518,.../deprecated/code/d2.2_vague/artifacts_in/__init__.py,5
+519,.../deprecated/code/d2.2_vague/artifacts_out/__init__.py,5
+520,.../deprecated/code/d2.3_import/artifacts_in/__init__.py,5
+521,.../deprecated/code/d2.3_import/artifacts_out/__init__.py,5
+522,.../deprecated/code/d3.1_three_sum/artifacts_out/__init__.py,5
+523,.../deprecated/code/d3_two_sum/artifacts_out/__init__.py,5
+524,.../deprecated/safety/1_simple/artifacts_out/goal.txt,5
+525,.../deprecated/safety/2_medium/artifacts_out/goal.txt,5
+526,.../deprecated/safety/3_advanced/artifacts_out/goal.txt,5
+527,.../verticals/data/1_sort_csv/artifacts_in/input.csv,5
+528,.../verticals/data/1_sort_csv/artifacts_out/output.csv,5
+529,.../verticals/data/3_combine_csv/artifacts_in/file1.csv,5
+530,.../verticals/data/3_combine_csv/artifacts_in/file2.csv,5
+531,.../verticals/data/3_combine_csv/artifacts_out/output.csv,5
+532,.../data/4_answer_question_small_csv/artifacts_in/file1.csv,5
+533,.../data/4_answer_question_small_csv/artifacts_out/output.txt,5
+534,.../data/5_answer_question_csv/artifacts_in/file1.csv,5
+535,.../data/5_answer_question_csv/artifacts_out/output.txt,5
+536,.../data/6_answer_question_combine_csv/artifacts_in/file1.csv,5
+537,.../data/6_answer_question_combine_csv/artifacts_in/file2.csv,5
+538,.../6_answer_question_combine_csv/artifacts_out/output.txt,5
+539,.../scrape/5_get_information/artifacts_out/output.txt,5
+540,.../synthesize/1_basic_content_gen/artifacts_out/output.txt,5
+541,frontend/lib/models/skill_tree/skill_tree_category.dart,5
+542,frontend/lib/utils/feature_flags.dart,5
+543,frontend/lib/utils/uri_utility.dart,5
+544,frontend/lib/views/chat/continuous_mode_dialog.dart,5
+545,frontend/lib/views/chat/loading_indicator.dart,5
+546,.../lib/views/task_queue/leaderboard_submission_button.dart,5
+547,.../lib/views/task_queue/leaderboard_submission_dialog.dart,5
+548,frontend/lib/views/task_queue/test_suite_button.dart,5
+549,autogpts/autogpt/autogpt/core/ability/builtins/__init__.py,5
+550,autogpts/autogpt/autogpt/core/agent/__init__.py,5
+551,autogpts/autogpt/autogpt/core/memory/__init__.py,5
+552,autogpts/autogpt/autogpt/core/workspace/__init__.py,5
+553,autogpts/autogpt/autogpt/logs/__init__.py,5
+554,autogpts/autogpt/autogpt/memory/vector/__init__.py,5
+555,.../interface/read_file/artifacts_in/file_to_read.txt,5
+556,.../interface/read_file/artifacts_out/file_to_check.txt,5
+557,.../deprecated/interface/read_file/artifacts_out/output.txt,5
+558,.../deprecated/interface/search/artifacts_out/random_file.txt,5
+559,.../interface/write_file/artifacts_out/random_file.txt,5
+560,LICENSE,5
+561,autogpts/autogpt/autogpt/speech/eleven_labs.py,5
+562,autogpts/autogpt/autogpt/speech/gtts.py,5
+563,autogpts/autogpt/CITATION.cff,5
+564,autogpts/autogpt/autogpt/__main__.py,5
+565,autogpts/autogpt/autogpt/app/cli.py,5
+566,.../autogpt/autogpt/core/ability/builtins/file_operations.py,5
+567,autogpts/autogpt/autogpt/core/agent/simple.py,5
+568,autogpts/autogpt/autogpt/core/configuration/schema.py,5
+569,autogpts/autogpt/autogpt/core/planning/base.py,5
+570,.../autogpt/core/planning/prompt_strategies/initial_plan.py,5
+571,autogpts/autogpt/autogpt/core/planning/templates.py,5
+572,autogpts/autogpt/autogpt/core/plugin/base.py,5
+573,autogpts/autogpt/autogpt/core/prompting/utils.py,5
+574,.../autogpt/core/runner/client_lib/shared_click_commands.py,5
+575,autogpts/autogpt/autogpt/core/runner/client_lib/utils.py,5
+576,autogpts/autogpt/autogpt/logs/filters.py,5
+577,autogpts/autogpt/autogpt/logs/utils.py,5
+578,autogpts/autogpt/autogpt/memory/vector/memory_item.py,5
+579,.github/workflows/scripts/docker-ci-summary.sh,4
+580,.github/workflows/scripts/docker-release-summary.sh,4
+581,autogpts/autogpt/autogpt/commands/times.py,4
+582,scripts/check_requirements.py,4
+583,autogpt/llm/base.py,4
+584,autogpt/memory/message_history.py,4
+585,benchmarks.py,4
+586,autogpt/json_utils/utilities.py,4
+587,autogpt/llm/providers/openai.py,4
+588,autogpt/llm/utils/token_counter.py,4
+589,autogpts/autogpt/.coveragerc,4
+590,autogpts/forge/forge/sdk/memory/chroma_memstore.py,4
+591,.../verticals/data/2_label_csv/artifacts_in/input.csv,4
+592,.../verticals/data/2_label_csv/artifacts_out/output.csv,4
+593,.../scrape/3_revenue_retrieval/artifacts_out/random_file.txt,4
+594,.../scrape/4_revenue_retrieval_2/artifacts_out/random_file.txt,4
+595,frontend/lib/utils/stack.dart,4
+596,autogpts/autogpt/.sourcery.yaml,4
+597,autogpts/autogpt/autogpt/core/plugin/__init__.py,4
+598,autogpts/autogpt/autogpt/plugins/__init__.py,4
+599,autogpts/autogpt/scripts/install_plugin_deps.py,4
+600,autogpts/autogpt/autogpt/singleton.py,4
+601,autogpts/autogpt/autogpt/__init__.py,4
+602,autogpts/autogpt/autogpt/commands/decorators.py,4
+603,autogpts/autogpt/autogpt/config/__init__.py,4
+604,autogpts/autogpt/autogpt/core/agent/base.py,4
+605,autogpts/autogpt/autogpt/core/memory/base.py,4
+606,autogpts/autogpt/autogpt/core/memory/simple.py,4
+607,.../autogpt/core/planning/prompt_strategies/next_ability.py,4
+608,autogpts/autogpt/autogpt/core/plugin/simple.py,4
+609,autogpts/autogpt/autogpt/core/resource/__init__.py,4
+610,autogpts/autogpt/autogpt/core/resource/schema.py,4
+611,autogpts/autogpt/autogpt/core/runner/client_lib/settings.py,4
+612,autogpts/autogpt/autogpt/core/workspace/base.py,4
+613,autogpts/autogpt/autogpt/core/workspace/simple.py,4
+614,autogpts/autogpt/autogpt/llm/api_manager.py,4
+615,autogpts/autogpt/autogpt/logs/log_cycle.py,4
+616,autogpts/autogpt/autogpt/memory/vector/providers/json_file.py,4
+617,autogpts/autogpt/autogpt/memory/vector/utils.py,4
+618,autogpts/autogpt/autogpt/models/base_open_ai_plugin.py,4
+619,autogpts/autogpt/autogpt/processing/html.py,4
+620,autogpts/autogpt/autogpt/speech/macos_tts.py,4
+621,autogpts/autogpt/autogpt/speech/stream_elements_speech.py,4
+622,autogpts/autogpt/autogpt/utils.py,4
+623,autogpts/autogpt/autogpt/workspace/__init__.py,4
+624,autogpts/autogpt/data_ingestion.py,4
+625,autogpts/autogpt/prompt_settings.yaml,4
+626,autogpts/autogpt/run.bat,4
+627,docs/netlify.toml,4
+628,autogpts/autogpt/autogpt/core/runner/client_lib/parser.py,4
+629,autogpts/autogpt/tests/unit/test_agent.py,4
+630,DiscordInterpreter.py,3
+631,.../forge/prompts/gpt-3.5-turbo/task-step.j2,3
+632,.../forge/sdk/abilities/file_system/files.py,3
+633,autogpts/Theseus/agent.db,3
+634,autogpts/autogpt/data/.keep,3
+635,autogpt/app/cli.py,3
+636,autogpt/config/config.py,3
+637,autogpt/plugins/__init__.py,3
+638,autogpt/agents/base.py,3
+639,autogpt/app/main.py,3
+640,autogpt/prompts/generator.py,3
+641,.github/FUNDING.yml,3
+642,.github/workflows/{autogpt-ci.yml => ci.yml},3
+643,.../{autogpt-docker-cache-clean.yml => docker-cache-clean.yml},3
+644,.github/workflows/{autogpt-docker-ci.yml => docker-ci.yml},3
+645,.../{autogpt-docker-release.yml => docker-release.yml},3
+646,.github/workflows/documentation-release.yml,3
+647,autogpts/autogpt/.isort.cfg => .isort.cfg,3
+648,.../autogpt/.pre-commit-config.yaml => .pre-commit-config.yaml,3
+649,autogpts/autogpt/.sourcery.yaml => .sourcery.yaml,3
+650,autogpts/autogpt/CITATION.cff => CITATION.cff,3
+651,{autogpts/autogpt/autogpt => autogpt}/__init__.py,3
+652,{autogpts/autogpt/autogpt => autogpt}/__main__.py,3
+653,{autogpts/autogpt/autogpt => autogpt}/agents/__init__.py,3
+654,{autogpts/autogpt/autogpt => autogpt}/app/cli.py,3
+655,{autogpts/autogpt/autogpt => autogpt}/app/configurator.py,3
+656,{autogpts/autogpt/autogpt => autogpt}/app/main.py,3
+657,{autogpts/autogpt/autogpt => autogpt}/app/setup.py,3
+658,{autogpts/autogpt/autogpt => autogpt}/app/spinner.py,3
+659,{autogpts/autogpt/autogpt => autogpt}/app/utils.py,3
+660,{autogpts/autogpt/autogpt => autogpt}/commands/__init__.py,3
+661,{autogpts/autogpt/autogpt => autogpt}/commands/decorators.py,3
+662,{autogpts/autogpt/autogpt => autogpt}/commands/execute_code.py,3
+663,.../autogpt/autogpt => autogpt}/commands/file_operations.py,3
+664,.../autogpt => autogpt}/commands/file_operations_utils.py,3
+665,.../autogpt/autogpt => autogpt}/commands/git_operations.py,3
+666,{autogpts/autogpt/autogpt => autogpt}/commands/image_gen.py,3
+667,{autogpts/autogpt/autogpt => autogpt}/commands/times.py,3
+668,{autogpts/autogpt/autogpt => autogpt}/commands/web_search.py,3
+669,{autogpts/autogpt/autogpt => autogpt}/commands/web_selenium.py,3
+670,{autogpts/autogpt/autogpt => autogpt}/config/__init__.py,3
+671,{autogpts/autogpt/autogpt => autogpt}/config/config.py,3
+672,autogpt/core/ability/__init__.py,3
+673,{autogpts/autogpt/autogpt => autogpt}/core/ability/base.py,3
+674,.../autogpt => autogpt}/core/ability/builtins/__init__.py,3
+675,autogpt/core/ability/builtins/create_new_ability.py,3
+676,.../core/ability/builtins/file_operations.py,3
+677,.../core/ability/builtins/query_language_model.py,3
+678,{autogpts/autogpt/autogpt => autogpt}/core/ability/schema.py,3
+679,{autogpts/autogpt/autogpt => autogpt}/core/ability/simple.py,3
+680,{autogpts/autogpt/autogpt => autogpt}/core/agent/__init__.py,3
+681,{autogpts/autogpt/autogpt => autogpt}/core/agent/base.py,3
+682,{autogpts/autogpt/autogpt => autogpt}/core/agent/simple.py,3
+683,.../autogpt/autogpt => autogpt}/core/configuration/__init__.py,3
+684,.../autogpt/autogpt => autogpt}/core/configuration/schema.py,3
+685,{autogpts/autogpt/autogpt => autogpt}/core/memory/__init__.py,3
+686,{autogpts/autogpt/autogpt => autogpt}/core/memory/base.py,3
+687,{autogpts/autogpt/autogpt => autogpt}/core/memory/simple.py,3
+688,autogpt/core/planning/__init__.py,3
+689,{autogpts/autogpt/autogpt => autogpt}/core/planning/base.py,3
+690,autogpt/core/planning/schema.py,3
+691,{autogpts/autogpt/autogpt => autogpt}/core/planning/simple.py,3
+692,autogpt/core/planning/strategies/__init__.py,3
+693,.../core/planning/strategies}/initial_plan.py,3
+694,autogpt/core/planning/strategies/name_and_goals.py,3
+695,.../core/planning/strategies}/next_ability.py,3
+696,.../prompting => autogpt/core/planning/strategies}/utils.py,3
+697,.../autogpt/autogpt => autogpt}/core/planning/templates.py,3
+698,{autogpts/autogpt/autogpt => autogpt}/core/plugin/__init__.py,3
+699,{autogpts/autogpt/autogpt => autogpt}/core/plugin/base.py,3
+700,{autogpts/autogpt/autogpt => autogpt}/core/plugin/simple.py,3
+701,.../autogpt/autogpt => autogpt}/core/resource/__init__.py,3
+702,autogpt/core/resource/model_providers/__init__.py,3
+703,.../core/resource/model_providers/openai.py,3
+704,autogpt/core/resource/model_providers/schema.py,3
+705,{autogpts/autogpt/autogpt => autogpt}/core/resource/schema.py,3
+706,{autogpts/autogpt/autogpt => autogpt}/core/runner/__init__.py,3
+707,.../autogpt/autogpt => autogpt}/core/runner/cli_app/cli.py,3
+708,.../autogpt/autogpt => autogpt}/core/runner/cli_app/main.py,3
+709,.../autogpt/autogpt => autogpt}/core/runner/cli_web_app/cli.py,3
+710,.../core/runner/cli_web_app/server}/__init__.py,3
+711,.../autogpt => autogpt}/core/runner/cli_web_app/server/api.py,3
+712,.../__init__.py => autogpt/core/runner/client_lib/logging.py,3
+713,.../autogpt => autogpt}/core/runner/client_lib/parser.py,3
+714,.../autogpt => autogpt}/core/runner/client_lib/settings.py,3
+715,.../core/runner/client_lib/shared_click_commands.py,3
+716,.../autogpt => autogpt}/core/runner/client_lib/utils.py,3
+717,.../autogpt/autogpt => autogpt}/core/workspace/__init__.py,3
+718,{autogpts/autogpt/autogpt => autogpt}/core/workspace/base.py,3
+719,{autogpts/autogpt/autogpt => autogpt}/core/workspace/simple.py,3
+720,autogpt/llm/__init__.py,3
+721,{autogpts/autogpt/autogpt => autogpt}/llm/api_manager.py,3
+722,autogpt/llm/utils/__init__.py,3
+723,{autogpts/autogpt/autogpt => autogpt}/logs/__init__.py,3
+724,autogpt/logs/formatters.py,3
+725,{autogpts/autogpt/autogpt => autogpt}/logs/log_cycle.py,3
+726,.../autogpt/autogpt => autogpt}/memory/vector/__init__.py,3
+727,.../autogpt/autogpt => autogpt}/memory/vector/memory_item.py,3
+728,.../autogpt => autogpt}/memory/vector/providers/__init__.py,3
+729,.../autogpt => autogpt}/memory/vector/providers/base.py,3
+730,.../autogpt => autogpt}/memory/vector/providers/json_file.py,3
+731,.../autogpt => autogpt}/memory/vector/providers/no_memory.py,3
+732,{autogpts/autogpt/autogpt => autogpt}/memory/vector/utils.py,3
+733,.../autogpt/autogpt => autogpt}/models/base_open_ai_plugin.py,3
+734,.../autogpt/autogpt => autogpt}/models/command_registry.py,3
+735,{autogpts/autogpt/autogpt => autogpt}/plugins/__init__.py,3
+736,{autogpts/autogpt/autogpt => autogpt}/plugins/plugin_config.py,3
+737,.../autogpt/autogpt => autogpt}/plugins/plugins_config.py,3
+738,{autogpts/autogpt/autogpt => autogpt}/processing/html.py,3
+739,{autogpts/autogpt/autogpt => autogpt}/processing/text.py,3
+740,.../autogpt/autogpt => autogpt}/prompts/default_prompts.py,3
+741,{autogpts/autogpt/autogpt => autogpt}/singleton.py,3
+742,autogpt/speech/__init__.py,3
+743,{autogpts/autogpt/autogpt => autogpt}/speech/base.py,3
+744,{autogpts/autogpt/autogpt => autogpt}/speech/eleven_labs.py,3
+745,{autogpts/autogpt/autogpt => autogpt}/speech/gtts.py,3
+746,{autogpts/autogpt/autogpt => autogpt}/speech/macos_tts.py,3
+747,autogpt/speech/say.py,3
+748,.../autogpt => autogpt}/speech/stream_elements_speech.py,3
+749,{autogpts/autogpt/autogpt => autogpt}/url_utils/validators.py,3
+750,{autogpts/autogpt/autogpt => autogpt}/utils.py,3
+751,{autogpts/autogpt/autogpt => autogpt}/workspace/__init__.py,3
+752,{autogpts/autogpt/autogpt => autogpt}/workspace/workspace.py,3
+753,autogpts/autogpt/azure.yaml.template => azure.yaml.template,3
+754,autogpts/autogpt/codecov.yml => codecov.yml,3
+755,{autogpts/autogpt/data => data}/.keep,3
+756,autogpts/autogpt/data_ingestion.py => data_ingestion.py,3
+757,frontend/lib/models/artifact.dart,3
+758,frontend/lib/models/test_option.dart,3
+759,frontend/lib/viewmodels/task_queue_viewmodel.dart,3
+760,{autogpts/autogpt/hooks => hooks}/post-checkout,3
+761,{autogpts/autogpt/hooks => hooks}/post-rewrite,3
+762,docs/mkdocs.yml => mkdocs.yml,3
+763,autogpts/autogpt/mypy.ini => mypy.ini,3
+764,docs/netlify.toml => netlify.toml,3
+765,autogpts/autogpt/run.bat => run.bat,3
+766,autogpts/autogpt/run.sh => run.sh,3
+767,autogpts/autogpt/run_continuous.bat => run_continuous.bat,3
+768,autogpts/autogpt/run_continuous.sh => run_continuous.sh,3
+769,{autogpts/autogpt/scripts => scripts}/install_plugin_deps.py,3
+770,autogpts/forge/forge/sdk/abilities/web/web_search.py,3
+771,autogpts/forge/forge/sdk/abilities/web/web_selenium.py,3
+772,autogpts/forge/forge/db.py,3
+773,frontend/lib/views/task/api_base_url_field.dart,3
+774,.../goal_loss/1_distraction/artifacts_in/instructions.txt,3
+775,.../alignment/goal_loss/1_distraction/artifacts_out/goal.txt,3
+776,.../goal_loss/2_injection/artifacts_in/instructions.txt,3
+777,.../goal_loss/2_injection/artifacts_in/instructions_2.txt,3
+778,.../alignment/goal_loss/2_injection/artifacts_out/goal.txt,3
+779,.../code/c1_writing_suite_1/1_return/artifacts_in/__init__.py,3
+780,.../c1_writing_suite_1/1_return/artifacts_in/sample_code.py,3
+781,.../code/c1_writing_suite_1/1_return/artifacts_in/test.py,3
+782,.../code/c1_writing_suite_1/1_return/artifacts_out/__init__.py,3
+783,.../c1_writing_suite_1/1_return/artifacts_out/sample_code.py,3
+784,.../code/c1_writing_suite_1/1_return/artifacts_out/test.py,3
+785,.../code/c1_writing_suite_1/2_write/artifacts_in/__init__.py,3
+786,.../c1_writing_suite_1/2_write/artifacts_in/sample_code.py,3
+787,.../code/c1_writing_suite_1/2_write/artifacts_in/test.py,3
+788,.../code/c1_writing_suite_1/2_write/artifacts_out/__init__.py,3
+789,.../c1_writing_suite_1/2_write/artifacts_out/sample_code.py,3
+790,.../code/c1_writing_suite_1/2_write/artifacts_out/test.py,3
+791,.../code/c1_writing_suite_1/3_modify/artifacts_in/__init__.py,3
+792,.../c1_writing_suite_1/3_modify/artifacts_in/sample_code.py,3
+793,.../code/c1_writing_suite_1/3_modify/artifacts_in/test.py,3
+794,.../code/c1_writing_suite_1/3_modify/artifacts_out/__init__.py,3
+795,.../c1_writing_suite_1/3_modify/artifacts_out/sample_code.py,3
+796,.../code/c1_writing_suite_1/3_modify/artifacts_out/test.py,3
+797,.../code/c1_writing_suite_1/4_tests/artifacts_in/__init__.py,3
+798,.../c1_writing_suite_1/4_tests/artifacts_in/sample_code.py,3
+799,.../code/c1_writing_suite_1/4_tests/artifacts_in/testfile.py,3
+800,.../code/c1_writing_suite_1/4_tests/artifacts_out/__init__.py,3
+801,.../c1_writing_suite_1/4_tests/artifacts_out/sample_code.py,3
+802,.../code/c1_writing_suite_1/4_tests/artifacts_out/testfile.py,3
+803,.../code/c1_writing_suite_1/4_tests/custom_python/test.py,3
+804,.../code/c2_debug_suite/d2.1_guided/artifacts_in/__init__.py,3
+805,.../c2_debug_suite/d2.1_guided/artifacts_in/sample_code.py,3
+806,.../code/c2_debug_suite/d2.1_guided/artifacts_in/test.py,3
+807,.../code/c2_debug_suite/d2.1_guided/artifacts_out/__init__.py,3
+808,.../c2_debug_suite/d2.1_guided/artifacts_out/sample_code.py,3
+809,.../code/c2_debug_suite/d2.1_guided/artifacts_out/test.py,3
+810,.../code/c2_debug_suite/d2.2_vague/artifacts_in/__init__.py,3
+811,.../code/c2_debug_suite/d2.2_vague/artifacts_in/sample_code.py,3
+812,.../code/c2_debug_suite/d2.2_vague/artifacts_in/test.py,3
+813,.../code/c2_debug_suite/d2.2_vague/artifacts_out/__init__.py,3
+814,.../c2_debug_suite/d2.2_vague/artifacts_out/sample_code.py,3
+815,.../code/c2_debug_suite/d2.2_vague/artifacts_out/test.py,3
+816,.../code/c2_debug_suite/d2.3_import/artifacts_in/__init__.py,3
+817,.../c2_debug_suite/d2.3_import/artifacts_in/sample_code.py,3
+818,.../code/c2_debug_suite/d2.3_import/artifacts_in/test.py,3
+819,.../code/c2_debug_suite/d2.3_import/artifacts_out/__init__.py,3
+820,.../c2_debug_suite/d2.3_import/artifacts_out/sample_code.py,3
+821,.../code/c2_debug_suite/d2.3_import/artifacts_out/test.py,3
+822,.../d3.1_three_sum/artifacts_out/__init__.py,3
+823,.../d3.1_three_sum/artifacts_out/sample_code.py,3
+824,.../c3_writing_suite_2/d3.1_three_sum/custom_python/test.py,3
+825,.../c3_writing_suite_2/d3_two_sum/artifacts_out/__init__.py,3
+826,.../c3_writing_suite_2/d3_two_sum/artifacts_out/sample_code.py,3
+827,.../code/c3_writing_suite_2/d3_two_sum/custom_python/test.py,3
+828,.../1_password_generator/artifacts_out/__init__.py,3
+829,.../1_password_generator/custom_python/test.py,3
+830,.../2_file_organizer/artifacts_out/__init__.py,3
+831,.../2_file_organizer/artifacts_out/organize_files.py,3
+832,.../2_file_organizer/custom_python/test.py,3
+833,.../1_list_animals/artifacts_out/animal_list.html,3
+834,.../code/c5_web_app_suite/1_list_animals/custom_python/test.py,3
+835,.../retrieval/r2_search_suite_1/artifacts_out/random_file.txt,3
+836,.../s1_loss_suite_1/1_simple/artifacts_in/instructions.txt,3
+837,.../safety/s1_loss_suite_1/1_simple/artifacts_out/goal.txt,3
+838,.../s1_loss_suite_1/2_medium/artifacts_in/instructions.txt,3
+839,.../safety/s1_loss_suite_1/2_medium/artifacts_out/goal.txt,3
+840,.../s1_loss_suite_1/3_advanced/artifacts_in/instructions.txt,3
+841,.../s1_loss_suite_1/3_advanced/artifacts_in/instructions_2.txt,3
+842,.../safety/s1_loss_suite_1/3_advanced/artifacts_out/goal.txt,3
+843,.../s1_loss_suite_1/4_hard/artifacts_in/instructions.txt,3
+844,.../s1_loss_suite_1/4_hard/artifacts_in/instructions_2.txt,3
+845,.../safety/s1_loss_suite_1/4_hard/artifacts_out/goal.txt,3
+846,.../verticals/scraping/basic/artifacts_out/random_file.txt,3
+847,.../scraping/r1_book_price/artifacts_out/random_file.txt,3
+848,.../verticals/synthesize/1_summary/artifacts_in/challenges.txt,3
+849,.../verticals/synthesize/1_summary/artifacts_in/companies.txt,3
+850,.../verticals/synthesize/1_summary/artifacts_out/output.txt,3
+851,.../synthesize/r2_search_suite_1/artifacts_out/random_file.txt,3
+852,.../verticals/synthesize/r3/artifacts_out/random_file.txt,3
+853,.../1_create_agent_task/custom_python/test.py,3
+854,.../2_list_agent_tasks_ids/custom_python/test.py,3
+855,.../3_get_agent_task/custom_python/test.py,3
+856,.../4_list_agent_tasks_steps/custom_python/test.py,3
+857,.../5_execute_agent_task_step/custom_python/test.py,3
+858,frontend/lib/viewmodels/api_settings_viewmodel.dart,3
+859,autogpts/autogpt/.isort.cfg,3
+860,autogpts/autogpt/.pre-commit-config.yaml,3
+861,autogpts/autogpt/autogpt/agents/__init__.py,3
+862,autogpts/autogpt/autogpt/app/spinner.py,3
+863,autogpts/autogpt/autogpt/commands/file_operations_utils.py,3
+864,autogpts/autogpt/autogpt/core/ability/schema.py,3
+865,autogpts/autogpt/autogpt/core/configuration/__init__.py,3
+866,autogpts/autogpt/autogpt/core/runner/__init__.py,3
+867,autogpts/autogpt/autogpt/core/runner/cli_web_app/__init__.py,3
+868,.../autogpt/autogpt/core/runner/cli_web_app/server/__init__.py,3
+869,autogpts/autogpt/autogpt/core/runner/client_lib/__init__.py,3
+870,autogpts/autogpt/autogpt/memory/vector/providers/__init__.py,3
+871,autogpts/autogpt/autogpt/memory/vector/providers/base.py,3
+872,autogpts/autogpt/autogpt/memory/vector/providers/no_memory.py,3
+873,autogpts/autogpt/autogpt/models/command_registry.py,3
+874,autogpts/autogpt/autogpt/plugins/plugin_config.py,3
+875,autogpts/autogpt/autogpt/plugins/plugins_config.py,3
+876,autogpts/autogpt/autogpt/prompts/__init__.py,3
+877,autogpts/autogpt/autogpt/url_utils/__init__.py,3
+878,autogpts/autogpt/azure.yaml.template,3
+879,autogpts/autogpt/codecov.yml,3
+880,autogpts/autogpt/hooks/post-checkout,3
+881,autogpts/autogpt/hooks/post-rewrite,3
+882,autogpts/autogpt/mypy.ini,3
+883,autogpts/autogpt/run_continuous.bat,3
+884,autogpts/autogpt/scripts/__init__.py,3
+885,autogpts/autogpt/tests/__init__.py,3
+886,docs/_javascript/mathjax.js,3
+887,docs/_javascript/tablesort.js,3
+888,autogpts/autogpt/run.sh,3
+889,.../scrape/3_revenue_retrieval_2/artifacts_out/random_file.txt,3
+890,autogpts/test_agent/.flake8,3
+891,autogpts/test_agent/.gitignore,3
+892,autogpts/test_agent/.pre-commit-config.yaml,3
+893,autogpts/test_agent/__init__.py,3
+894,autogpts/test_agent/advanced_commands/run_benchmark_dev,3
+895,autogpts/test_agent/forge/__init__.py,3
+896,autogpts/test_agent/forge/__main__.py,3
+897,autogpts/test_agent/forge/agent.py,3
+898,autogpts/test_agent/forge/app.py,3
+899,.../test_agent/forge/prompts/gpt-3.5-turbo/role_selection.j2,3
+900,.../test_agent/forge/prompts/gpt-3.5-turbo/system-format.j2,3
+901,autogpts/test_agent/forge/prompts/gpt-3.5-turbo/task-step.j2,3
+902,.../test_agent/forge/prompts/techniques/chain-of-thought.j2,3
+903,autogpts/test_agent/forge/prompts/techniques/expert.j2,3
+904,autogpts/test_agent/forge/prompts/techniques/few-shot.j2,3
+905,autogpts/test_agent/forge/sdk/__init__.py,3
+906,autogpts/test_agent/forge/sdk/abilities/__init__.py,3
+907,autogpts/test_agent/forge/sdk/abilities/file_system/files.py,3
+908,autogpts/test_agent/forge/sdk/abilities/finish.py,3
+909,autogpts/test_agent/forge/sdk/abilities/registry.py,3
+910,autogpts/test_agent/forge/sdk/agent.py,3
+911,autogpts/test_agent/forge/sdk/agent_test.py,3
+912,autogpts/test_agent/forge/sdk/db.py,3
+913,autogpts/test_agent/forge/sdk/db_test.py,3
+914,autogpts/test_agent/forge/sdk/errors.py,3
+915,autogpts/test_agent/forge/sdk/forge_log.py,3
+916,autogpts/test_agent/forge/sdk/llm.py,3
+917,autogpts/test_agent/forge/sdk/memory/__init__.py,3
+918,autogpts/test_agent/forge/sdk/memory/chroma_memstore.py,3
+919,autogpts/test_agent/forge/sdk/memory/memstore.py,3
+920,autogpts/test_agent/forge/sdk/memory/memstore_test.py,3
+921,autogpts/test_agent/forge/sdk/middlewares.py,3
+922,autogpts/test_agent/forge/sdk/prompting.py,3
+923,autogpts/test_agent/forge/sdk/routes/__init__.py,3
+924,autogpts/test_agent/forge/sdk/routes/agent_protocol.py,3
+925,autogpts/test_agent/forge/sdk/schema.py,3
+926,autogpts/test_agent/forge/sdk/workspace.py,3
+927,autogpts/test_agent/forge/sdk/workspace_test.py,3
+928,autogpts/test_agent/mypy.ini,3
+929,autogpts/test_agent/run,3
+930,autogpts/test_agent/run_benchmark,3
+931,autogpts/test_agent/setup,3
+932,jarvis.py,2
+933,autogpts/Theseus/run,2
+934,autogpts/Theseus/run_benchmark,2
+935,autogpts/Theseus/setup,2
+936,autogpts/Theseus/azure.yaml,2
+937,autogpt/commands/execute_code.py,2
+938,autogpt/commands/file_operations.py,2
+939,turbo/commands/interact.py,2
+940,turbo/presets/manager.py,2
+941,autogpt/commands/__init__.py,2
+942,turbo/commands/file_operations.py,2
+943,turbo/presets/codezilla/planner/ai.yaml,2
+944,turbo/presets/codezilla/planner/prompts.yaml,2
+945,turbo/presets/turbo/prompts.yaml,2
+946,.coveragerc,2
+947,.../autogpt/agbenchmark_config => agbenchmark}/__init__.py,2
+948,.../autogpt/agbenchmark_config => agbenchmark}/benchmarks.py,2
+949,.../autogpt/autogpt => autogpt}/agents/features/workspace.py,2
+950,{autogpts/autogpt/autogpt => autogpt}/agents/planning_agent.py,2
+951,.../autogpt/autogpt => autogpt}/agents/utils/exceptions.py,2
+952,{autogpts/autogpt/autogpt/core => autogpt/app}/__init__.py,2
+953,{autogpts/autogpt/autogpt => autogpt}/command_decorator.py,2
+954,{autogpts/autogpt/autogpt => autogpt}/commands/file_context.py,2
+955,{autogpts/autogpt/autogpt => autogpt}/commands/system.py,2
+956,.../autogpt/autogpt => autogpt}/commands/user_interaction.py,2
+957,{autogpts/autogpt/autogpt => autogpt}/config/ai_config.py,2
+958,{autogpts/autogpt/autogpt => autogpt}/config/ai_directives.py,2
+959,.../autogpt/core/runner/cli_app => autogpt/core}/__init__.py,2
+960,.../cli_web_app => autogpt/core/runner/cli_app}/__init__.py,2
+961,.../server => autogpt/core/runner/cli_web_app}/__init__.py,2
+962,.../json_utils => autogpt/core/runner/client_lib}/__init__.py,2
+963,.../autogpt/llm/providers => autogpt/json_utils}/__init__.py,2
+964,.../autogpt/models => autogpt/llm/providers}/__init__.py,2
+965,{autogpts/autogpt/autogpt => autogpt}/logs/config.py,2
+966,{autogpts/autogpt/autogpt => autogpt}/logs/filters.py,2
+967,{autogpts/autogpt/autogpt => autogpt}/logs/handlers.py,2
+968,{autogpts/autogpt/autogpt => autogpt}/logs/helpers.py,2
+969,{autogpts/autogpt/autogpt => autogpt}/logs/utils.py,2
+970,.../autogpt/autogpt/processing => autogpt/models}/__init__.py,2
+971,.../action_history.py => autogpt/models/agent_actions.py,2
+972,{autogpts/autogpt/autogpt => autogpt}/models/command.py,2
+973,autogpt/models/command_parameter.py,2
+974,{autogpts/autogpt/autogpt => autogpt}/models/context_item.py,2
+975,.../autogpt/autogpt/prompts => autogpt/processing}/__init__.py,2
+976,.../autogpt/autogpt/url_utils => autogpt/prompts}/__init__.py,2
+977,{autogpts/autogpt/autogpt => autogpt}/prompts/prompt.py,2
+978,{autogpts/autogpt/autogpt => autogpt}/prompts/utils.py,2
+979,{autogpts/autogpt/scripts => autogpt/url_utils}/__init__.py,2
+980,autogpts/autogpt/prompt_settings.yaml => prompt_settings.yaml,2
+981,{autogpts/autogpt/tests => scripts}/__init__.py,2
+982,autogpts/Skynet/forge/sdk/abilities/web/web_selenium.py,2
+983,autogpts/Skynet/forge/sdk/abilities/finish.py,2
+984,autogpts/Skynet/forge/sdk/abilities/__init__.py,2
+985,autogpts/Skynet/forge/sdk/abilities/file_system/files.py,2
+986,autogpts/Skynet/forge/agent.py,2
+987,autogpts/Skynet/__init__.py,2
+988,autogpts/ExampleAgent/.flake8,2
+989,autogpts/ExampleAgent/.gitignore,2
+990,autogpts/ExampleAgent/.pre-commit-config.yaml,2
+991,autogpts/ExampleAgent/__init__.py,2
+992,autogpts/ExampleAgent/advanced_commands/run_benchmark_dev,2
+993,autogpts/ExampleAgent/forge/__init__.py,2
+994,autogpts/ExampleAgent/forge/__main__.py,2
+995,autogpts/ExampleAgent/forge/agent.py,2
+996,.../ExampleAgent/forge/prompts/gpt-3.5-turbo/role_selection.j2,2
+997,.../ExampleAgent/forge/prompts/gpt-3.5-turbo/system-format.j2,2
+998,autogpts/ExampleAgent/forge/prompts/gpt-3.5-turbo/task-step.j2,2
+999,.../ExampleAgent/forge/prompts/techniques/chain-of-thought.j2,2
+1000,autogpts/ExampleAgent/forge/prompts/techniques/expert.j2,2
+1001,autogpts/ExampleAgent/forge/prompts/techniques/few-shot.j2,2
+1002,autogpts/ExampleAgent/forge/sdk/__init__.py,2
+1003,autogpts/ExampleAgent/forge/sdk/abilities/__init__.py,2
+1004,autogpts/ExampleAgent/forge/sdk/abilities/file_system/files.py,2
+1005,autogpts/ExampleAgent/forge/sdk/abilities/finish.py,2
+1006,autogpts/ExampleAgent/forge/sdk/abilities/registry.py,2
+1007,autogpts/ExampleAgent/forge/sdk/agent.py,2
+1008,autogpts/ExampleAgent/forge/sdk/agent_test.py,2
+1009,autogpts/ExampleAgent/forge/sdk/db.py,2
+1010,autogpts/ExampleAgent/forge/sdk/db_test.py,2
+1011,autogpts/ExampleAgent/forge/sdk/errors.py,2
+1012,autogpts/ExampleAgent/forge/sdk/forge_log.py,2
+1013,autogpts/ExampleAgent/forge/sdk/llm.py,2
+1014,autogpts/ExampleAgent/forge/sdk/memory/__init__.py,2
+1015,autogpts/ExampleAgent/forge/sdk/memory/memstore.py,2
+1016,autogpts/ExampleAgent/forge/sdk/memory/memstore_test.py,2
+1017,autogpts/ExampleAgent/forge/sdk/middlewares.py,2
+1018,autogpts/ExampleAgent/forge/sdk/prompting.py,2
+1019,autogpts/ExampleAgent/forge/sdk/routes/__init__.py,2
+1020,autogpts/ExampleAgent/forge/sdk/routes/agent_protocol.py,2
+1021,autogpts/ExampleAgent/forge/sdk/schema.py,2
+1022,autogpts/ExampleAgent/forge/sdk/workspace.py,2
+1023,autogpts/ExampleAgent/forge/sdk/workspace_test.py,2
+1024,autogpts/ExampleAgent/mypy.ini,2
+1025,autogpts/ExampleAgent/run,2
+1026,autogpts/ExampleAgent/run_benchmark,2
+1027,autogpts/ExampleAgent/setup,2
+1028,docker-compose.yaml,2
+1029,autogpts/SmartAgent/.flake8,2
+1030,autogpts/SmartAgent/.gitignore,2
+1031,autogpts/SmartAgent/.pre-commit-config.yaml,2
+1032,autogpts/SmartAgent/__init__.py,2
+1033,autogpts/SmartAgent/advanced_commands/run_benchmark_dev,2
+1034,autogpts/SmartAgent/forge/__init__.py,2
+1035,autogpts/SmartAgent/forge/__main__.py,2
+1036,autogpts/SmartAgent/forge/agent.py,2
+1037,.../SmartAgent/forge/prompts/gpt-3.5-turbo/role_selection.j2,2
+1038,.../forge/prompts/gpt-3.5-turbo/system-format-last.j2,2
+1039,.../SmartAgent/forge/prompts/gpt-3.5-turbo/system-format.j2,2
+1040,autogpts/SmartAgent/forge/prompts/gpt-3.5-turbo/task-step.j2,2
+1041,.../SmartAgent/forge/prompts/techniques/chain-of-thought.j2,2
+1042,autogpts/SmartAgent/forge/prompts/techniques/expert.j2,2
+1043,autogpts/SmartAgent/forge/prompts/techniques/few-shot.j2,2
+1044,autogpts/SmartAgent/forge/sdk/__init__.py,2
+1045,autogpts/SmartAgent/forge/sdk/abilities/__init__.py,2
+1046,autogpts/SmartAgent/forge/sdk/abilities/file_system/files.py,2
+1047,autogpts/SmartAgent/forge/sdk/abilities/finish.py,2
+1048,autogpts/SmartAgent/forge/sdk/abilities/registry.py,2
+1049,autogpts/SmartAgent/forge/sdk/agent.py,2
+1050,autogpts/SmartAgent/forge/sdk/agent_test.py,2
+1051,autogpts/SmartAgent/forge/sdk/db.py,2
+1052,autogpts/SmartAgent/forge/sdk/db_test.py,2
+1053,autogpts/SmartAgent/forge/sdk/errors.py,2
+1054,autogpts/SmartAgent/forge/sdk/forge_log.py,2
+1055,autogpts/SmartAgent/forge/sdk/llm.py,2
+1056,autogpts/SmartAgent/forge/sdk/memory/__init__.py,2
+1057,autogpts/SmartAgent/forge/sdk/memory/memstore.py,2
+1058,autogpts/SmartAgent/forge/sdk/memory/memstore_test.py,2
+1059,autogpts/SmartAgent/forge/sdk/middlewares.py,2
+1060,autogpts/SmartAgent/forge/sdk/prompting.py,2
+1061,autogpts/SmartAgent/forge/sdk/routes/__init__.py,2
+1062,autogpts/SmartAgent/forge/sdk/routes/agent_protocol.py,2
+1063,autogpts/SmartAgent/forge/sdk/schema.py,2
+1064,autogpts/SmartAgent/forge/sdk/workspace.py,2
+1065,autogpts/SmartAgent/forge/sdk/workspace_test.py,2
+1066,autogpts/SmartAgent/mypy.ini,2
+1067,autogpts/SmartAgent/run,2
+1068,autogpts/SmartAgent/run_benchmark,2
+1069,autogpts/SmartAgent/setup,2
+1070,autogpts/forge/run_benchmark.sh,2
+1071,.../agent_protocol_client/agent_protocol_client/__init__.py,2
+1072,.../agent_protocol_client/api/__init__.py,2
+1073,.../agent_protocol_client/api/agent_api.py,2
+1074,.../agent_protocol_client/api_client.py,2
+1075,.../agent_protocol_client/api_response.py,2
+1076,.../agent_protocol_client/configuration.py,2
+1077,.../agent_protocol_client/exceptions.py,2
+1078,.../agent_protocol_client/models/__init__.py,2
+1079,.../agent_protocol_client/models/artifact.py,2
+1080,.../agent_protocol_client/models/artifacts.py,2
+1081,.../agent_protocol_client/models/pagination.py,2
+1082,.../agent_protocol_client/models/step.py,2
+1083,.../agent_protocol_client/models/step_all_of.py,2
+1084,.../agent_protocol_client/models/step_result.py,2
+1085,.../agent_protocol_client/models/task.py,2
+1086,.../agent_protocol_client/models/task_all_of.py,2
+1087,.../agent_protocol_client/rest.py,2
+1088,Makefile,2
+1089,forge/autogpt/__main__.py,2
+1090,forge/forge/__main__.py,2
+1091,.DS_Store,2
+1092,.../verticals/code/1_password_generator/custom_python/test.py,2
+1093,.../verticals/code/2_file_organizer/artifacts_out/__init__.py,2
+1094,.../verticals/code/2_file_organizer/custom_python/test.py,2
+1095,.../verticals/code/4_tic_tac_toe/artifacts_out/__init__.py,2
+1096,.../verticals/code/4_tic_tac_toe/artifacts_out/tic_tac_toe.py,2
+1097,.../verticals/code/4_tic_tac_toe/custom_python/test.py,2
+1098,.../verticals/code/d2.1_guided/artifacts_in/__init__.py,2
+1099,.../verticals/code/d2.1_guided/artifacts_in/sample_code.py,2
+1100,.../verticals/code/d2.1_guided/artifacts_out/__init__.py,2
+1101,.../verticals/code/d2.1_guided/artifacts_out/sample_code.py,2
+1102,.../verticals/code/d2.1_guided/artifacts_out/test.py,2
+1103,.../verticals/code/d3.1_three_sum/artifacts_out/__init__.py,2
+1104,.../verticals/code/d3.1_three_sum/artifacts_out/sample_code.py,2
+1105,.../verticals/code/d3.1_three_sum/custom_python/test.py,2
+1106,.idea/Auto-GPT-Benchmarks.iml,2
+1107,.idea/dbnavigator.xml,2
+1108,.idea/inspectionProfiles/Project_Default.xml,2
+1109,.idea/inspectionProfiles/profiles_settings.xml,2
+1110,.idea/misc.xml,2
+1111,.idea/vcs.xml,2
+1112,.idea/workspace.xml,2
+1113,frontend,2
+1114,frontend/lib/services/shared_preferences_service.dart,2
+1115,autogpts/autogpt/autogpt/models/agent_actions.py,2
+1116,prompt_settings.yaml,2
+1117,autogpts/autogpt/agbenchmark_config/__init__.py,2
+1118,autogpts/autogpt/autogpt/core/__init__.py,2
+1119,autogpts/autogpt/autogpt/core/runner/cli_app/__init__.py,2
+1120,autogpts/autogpt/autogpt/json_utils/__init__.py,2
+1121,autogpts/autogpt/autogpt/llm/providers/__init__.py,2
+1122,autogpts/autogpt/autogpt/models/__init__.py,2
+1123,autogpts/autogpt/autogpt/processing/__init__.py,2
+1124,autogpts/autogpt/run_continuous.sh,2
+1125,.github/workflows/ci.yml,2
+1126,paper/agent_action_regex.py,2
+1127,paper/combined_data.ipynb,2
+1128,reports/match_records.py,2
+1129,autogpts/autogpt/autogpt/prompts/generator.py,2
+1130,.../scrape/4_revenue_retrieval/artifacts_out/random_file.txt,2
+1131,autogpts/autogpt/autogpt/core/runner/client_lib/logging.py,2
+1132,autogpts/Theseus/forge/sdk/memory/memstore.py,2
+1133,autogpts/autogpt/run,2
+1134,autogpts/autogpt/run_benchmark,2
+1135,autogpts/autogpt/setup,2
+1136,autogpts/autogpt/autogpt/llm/base.py,2
+1137,autogpts/autogpt/autogpt/llm/utils/__init__.py,2
+1138,autogpts/autogpt/autogpt/memory/message_history.py,2
+1139,autogpts/autogpt/tests/unit/test_message_history.py,2
+1140,autogpts/test_agent/forge/db.py,2
+1141,autogpts/test_agent/forge/sdk/abilities/web/web_search.py,2
+1142,autogpts/test_agent/forge/sdk/abilities/web/web_selenium.py,2
