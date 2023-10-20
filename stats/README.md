@@ -58,6 +58,3 @@ now plot `python ./plot.py`
 ![rebase_sizes.png](rebase_sizes.png "rebase_sizes.png")
 ![diff_hist.png](diff_hist.png "diff_hist.png")
 ![rebase_hist.png](rebase_hist.png "rebase_hist.png")
-
-
-
