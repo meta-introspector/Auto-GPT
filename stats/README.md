@@ -40,7 +40,7 @@ please `git stash` all your work or commit it first.
 `python run_version2.py ./users_repos.csv > git_samples.json`
 
 
-I prepared my second copy like this :
+Alternativtly you can call it from another dir, I prepared my second copy like this :
 ```
 git clone Auto-GPT Auto-GPT-work
 cd Auto-GPT-work/
