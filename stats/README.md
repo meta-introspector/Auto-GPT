@@ -37,7 +37,7 @@ Next we produce json.
 *warning* this changes the git head, you will lose local changes!
 please `git stash` all your work or commit it first.
 
-`python run_version2.py ./users_repos.csv > git_samples.json`
+`python run_version2.py ./users_repos.csv > git_samples2.json`
 
 But you can call it from another dir, I prepared my second copy like this :
 ```
@@ -52,8 +52,18 @@ And finally we can call the other version that is fixed with this verion
 ```
 python ../../Auto-GPT/stats/run_version2.py ../../Auto-GPT/stats/users_repos.csv > git_samples2.json
 ```
+
+now `git checkout bot_prep` again to go back to your branch. 
   
-now plot `python ./plot.py`
+`git_samples.json` is tracked in git so we want to rename `git_samples2.json`
+
+rename:
+`mv git_samples2.json git_samples.json`
+  
+now plot:
+`python ./plot.py`
+
+review output:
 ![diff_sizes.png](diff_sizes.png "diff_sizes.png")
 ![rebase_sizes.png](rebase_sizes.png "rebase_sizes.png")
 ![diff_hist.png](diff_hist.png "diff_hist.png")
