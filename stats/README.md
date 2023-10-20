@@ -68,3 +68,11 @@ review output:
 ![rebase_sizes.png](rebase_sizes.png "rebase_sizes.png")
 ![diff_hist.png](diff_hist.png "diff_hist.png")
 ![rebase_hist.png](rebase_hist.png "rebase_hist.png")
+
+# filtering the results
+
+Finally we can filter the results and extract out the good repos.
+`python filter.py  > todo.sh`
+
+That contains the submodule add and checkout, we apply submodule add to the vendor of ai ticket 
+this transfers the bots from eval into the arena.
