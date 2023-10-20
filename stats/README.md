@@ -32,7 +32,11 @@ Extract the repos, this script needs to be rewritten
 now we only use users_repos.csv from that to get the list of repos to look at.
 `python report.py all_30.json`
 
-produce json, warning this changes the git head 
+Next we produce json.
+
+*warning* this changes the git head, you will lose local changes!
+please `git stash` all your work or commit it first.
+
 `python run_version2.py ./users_repos.csv > git_samples.json`
 
 
@@ -41,7 +45,7 @@ I prepared my second copy like this :
 git clone Auto-GPT Auto-GPT-work
 cd Auto-GPT-work/
 cp ../Auto-GPT/.git/config .git/config #copy the remoted
-git fetch origin
+git fetch originx
 git checkout bot_prep
 ```
 

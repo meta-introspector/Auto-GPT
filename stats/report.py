@@ -17,9 +17,10 @@ def main(infile):
             #print(commit)
             for stat in commit["stats"]:
                 for filen in commit["stats"]["files"]:
+                    user_repo2[commit["author_email"]] = commit["commit"]
                     #user_repo[filen] = commit["author_email"]
                     if "arena/" in filen:
-                        user_repo2[commit["author_email"]] = commit["commit"]
+
                         filen = "<ARENA>"
                     if "benchmark/" in filen:
                         filen = "<benchmark>"
@@ -63,7 +64,7 @@ def main(infile):
     #result = df.groupby('username')['filename'].unique().apply(', '.join).reset_index(name='edited_files')
 
 # Filter users with only one contribution
-    filtered_result = ud2[ (ud2["edited_files"].str.count("\|") >0) & (ud2["edited_files"].str.contains("ARENA")) ]
+    filtered_result = ud2
 
     #####
     df2 = pd.DataFrame.from_dict(user_repo2,orient="index")
