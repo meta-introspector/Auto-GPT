@@ -172,3 +172,8 @@ pri*
 # ignore
 ig*
 .github_access_token
+*~
+/stats/git_samples2.json
+/stats/filtered_result.csv
+/stats/user_files.csv
+/stats/users_repos.csv
